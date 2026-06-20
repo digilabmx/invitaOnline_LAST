@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Cinzel:wght@400..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --font-display: "Cinzel", serif;
+  
+  --color-luxury-beige-50: #FAF9F6;
+  --color-luxury-beige-100: #F1EBE4;
+  --color-luxury-beige-200: #E5DACF;
+  --color-luxury-beige-300: #D9CBBF;
+  --color-luxury-beige-400: #C1B0A0;
+  --color-luxury-beige-500: #A68966;
+  --color-luxury-beige-600: #8F7250;
+  --color-luxury-beige-700: #745C3F;
+  --color-luxury-beige-800: #54422E;
+  --color-luxury-beige-900: #2D241E;
+  
+  --color-luxury-gold-50: #fffdf5;
+  --color-luxury-gold-100: #fef8e1;
+  --color-luxury-gold-200: #fbeeb5;
+  --color-luxury-gold-300: #f8df81;
+  --color-luxury-gold-400: #f3ca4e;
+  --color-luxury-gold-500: #cca32d;
+  --color-luxury-gold-600: #a7811e;
+  --color-luxury-gold-700: #836116;
+  --color-luxury-gold-800: #5f440f;
+  --color-luxury-gold-950: #3c2906;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-luxury-beige-50);
+    color: var(--color-luxury-beige-900);
+    overflow-x: hidden;
+  }
+}
