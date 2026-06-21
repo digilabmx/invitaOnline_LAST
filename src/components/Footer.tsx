@@ -90,7 +90,7 @@ export default function Footer() {
               <p>Mérida, Yucatán, México.</p>
               <p className="flex items-center space-x-2">
                 <MessageCircle className="w-4 h-4 text-luxury-beige-500" />
-                <span>+52 (1) 551 234 5678</span>
+                <span>+52 444 650 0910</span>
               </p>
               <p>soporte@invitaonline.mx</p>
               <p className="text-[10px] uppercase tracking-wider font-medium text-luxury-beige-500">

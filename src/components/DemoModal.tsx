@@ -109,7 +109,7 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
 
   const handleOpenWhatsAppSim = () => {
     const encoded = encodeURIComponent(simulatedPayload);
-    window.open(`https://wa.me/5215512345678?text=${encoded}`, '_blank');
+    window.open(`https://wa.me/524446500910?text=${encoded}`, '_blank');
   };
 
   // Theme configuration helper

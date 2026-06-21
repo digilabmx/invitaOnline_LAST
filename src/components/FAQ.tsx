@@ -83,7 +83,7 @@ export default function FAQ() {
           <button
             onClick={() => {
               const text = encodeURIComponent("Hola, tengo dudas adicionales sobre los paquetes de invitaciones.");
-              window.open(`https://wa.me/5215512345678?text=${text}`, '_blank');
+              window.open(`https://wa.me/524446500910?text=${text}`, '_blank');
             }}
             className="font-sans text-[11px] font-medium tracking-widest text-luxury-beige-900 uppercase border-b border-luxury-beige-900 hover:text-luxury-beige-600 hover:border-luxury-beige-500 pb-0.5 mt-3 inline-block transition-colors cursor-pointer"
           >

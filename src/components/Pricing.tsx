@@ -8,7 +8,7 @@ export default function Pricing() {
   const handleRequestPackage = (pkg: PricingPackage) => {
     const text = `Hola InvitaOnline. Estoy interesado en contratar el Paquete *${pkg.name}* (Precio: ${pkg.originalPrice ? `~~${pkg.originalPrice}~~ ${pkg.price}` : pkg.price}) para la invitación digital de mi evento. Me gustaría recibir los pasos para comenzar.`;
     const message = encodeURIComponent(text);
-    window.open(`https://wa.me/5215512345678?text=${message}`, '_blank');
+    window.open(`https://wa.me/524446500910?text=${message}`, '_blank');
   };
 
   return (

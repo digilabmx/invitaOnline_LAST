@@ -26,7 +26,7 @@ export default function Header() {
 
   const handleWhatsAppContact = () => {
     const message = encodeURIComponent("Hola InvitaOnline. Vi su sitio web y me gustaría obtener información sobre sus invitaciones digitales premium.");
-    window.open(`https://wa.me/5215512345678?text=${message}`, '_blank');
+    window.open(`https://wa.me/524446500910?text=${message}`, '_blank');
   };
 
   return (

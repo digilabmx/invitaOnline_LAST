@@ -16,6 +16,7 @@ import FAQ from './components/FAQ';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import DemoModal from './components/DemoModal';
+import WhatsAppFloatingButton from './components/WhatsAppFloatingButton';
 import { InvitationExample } from './types';
 import { EXAMPLES } from './data';
 
@@ -77,6 +78,9 @@ export default function App() {
 
       {/* Luxury Footer with Privacy notice drawer */}
       <Footer />
+
+      {/* Floating Sticky helper WhatsApp button */}
+      <WhatsAppFloatingButton />
 
       {/* Live-action Interactive Simulation Modal */}
       <AnimatePresence>
