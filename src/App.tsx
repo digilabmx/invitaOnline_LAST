@@ -26,6 +26,7 @@ const TemplateBoda2 = lazy(() => import('./components/templateboda2/TemplateBoda
 const TemplateBoda4 = lazy(() => import('./components/TemplateBoda4'));
 const TemplateBoda5 = lazy(() => import('./components/TemplateBoda5'));
 const TemplateBoda6 = lazy(() => import('./components/TemplateBoda6'));
+const TemplateBoda7 = lazy(() => import('./components/TemplateBoda7'));
 
 export default function App() {
   const [selectedExample, setSelectedExample] = useState<InvitationExample | null>(null);
@@ -63,7 +64,7 @@ export default function App() {
         if (found) setSelectedExample(found);
       } else {
         // Only close if we are not on one of the custom fullscreens
-        if (!['#templateboda', '#templateboda2', '#templateboda4', '#templateboda5', '#templateboda6'].includes(currentHash)) {
+        if (!['#templateboda', '#templateboda2', '#templateboda4', '#templateboda5', '#templateboda6', '#templateboda7'].includes(currentHash)) {
           setSelectedExample(null);
         }
       }
@@ -73,11 +74,25 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashCheck);
   }, []);
 
-  const isTemplateBoda6 = route.toLowerCase().includes('templateboda6');
-  const isTemplateBoda5 = route.toLowerCase().includes('templateboda5') && !isTemplateBoda6;
-  const isTemplateBoda4 = route.toLowerCase().includes('templateboda4') && !isTemplateBoda5 && !isTemplateBoda6;
-  const isTemplateBoda2 = route.toLowerCase().includes('templateboda2') && !isTemplateBoda4 && !isTemplateBoda5 && !isTemplateBoda6;
-  const isTemplateBoda = (route.toLowerCase().includes('templateboda') || route.toLowerCase().includes('demo-boda')) && !isTemplateBoda2 && !isTemplateBoda4 && !isTemplateBoda5 && !isTemplateBoda6;
+  const isTemplateBoda7 = route.toLowerCase().includes('templateboda7');
+  const isTemplateBoda6 = route.toLowerCase().includes('templateboda6') && !isTemplateBoda7;
+  const isTemplateBoda5 = route.toLowerCase().includes('templateboda5') && !isTemplateBoda6 && !isTemplateBoda7;
+  const isTemplateBoda4 = route.toLowerCase().includes('templateboda4') && !isTemplateBoda5 && !isTemplateBoda6 && !isTemplateBoda7;
+  const isTemplateBoda2 = route.toLowerCase().includes('templateboda2') && !isTemplateBoda4 && !isTemplateBoda5 && !isTemplateBoda6 && !isTemplateBoda7;
+  const isTemplateBoda = (route.toLowerCase().includes('templateboda') || route.toLowerCase().includes('demo-boda')) && !isTemplateBoda2 && !isTemplateBoda4 && !isTemplateBoda5 && !isTemplateBoda6 && !isTemplateBoda7;
+
+  if (isTemplateBoda7) {
+    return (
+      <Suspense fallback={
+        <div className="min-h-screen bg-[#FAF8F5] flex flex-col items-center justify-center font-serif text-stone-700">
+          <div className="w-12 h-12 rounded-full border border-[#A8BBA2]/25 border-t-[#A8BBA2] animate-spin mb-4" />
+          <p className="text-xs uppercase tracking-[0.25em]">Cargando Isabella & Mateo...</p>
+        </div>
+      }>
+        <TemplateBoda7 />
+      </Suspense>
+    );
+  }
 
   if (isTemplateBoda6) {
     return (

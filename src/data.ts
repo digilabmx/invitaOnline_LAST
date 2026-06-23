@@ -4,8 +4,17 @@ export const HERO_IMAGE = '/hero_phone_mockup_1781992151448.jpg';
 
 export const EXAMPLES: InvitationExample[] = [
   {
+    id: 'ex-botanical-luxury',
+    title: 'Colección Toscana & Versalles (Isabella & Mateo)',
+    category: 'Bodas',
+    image: '/isabella_mateo_couple.jpg',
+    demoUrl: '#templateboda7',
+    accentColor: '#A8BBA2',
+    features: ['Sobre de Algodón y Sello de Cera', 'Partículas de Hojas y Mariposas', 'Reproductor Caja Musical de Cristal', 'Capítulos Florales Interactivos']
+  },
+  {
     id: 'ex-rolls-royce-dior',
-    title: 'Colección Luxury (Victoria & Sebastián)',
+    title: 'Colección Rolls Royce & Dior (Victoria & Sebastián)',
     category: 'Bodas',
     image: '/v_s_hero_1782248283047.jpg',
     demoUrl: '#templateboda6',
@@ -14,7 +23,7 @@ export const EXAMPLES: InvitationExample[] = [
   },
   {
     id: 'ex-cartier-luxury',
-    title: 'Colección Alta Costura (Sofía & Alejandro)',
+    title: 'Colección Cartier: Alta Costura (Sofía & Alejandro)',
     category: 'Bodas',
     image: '/sofia_alejandro_stairs_1782247280237.jpg',
     demoUrl: '#templateboda5',
@@ -41,7 +50,7 @@ export const EXAMPLES: InvitationExample[] = [
   },
   {
     id: 'ex-monochrome-minimalist',
-    title: 'Minimalist (Andrés & Paulete)',
+    title: 'Monochrome Minimalist (Andrés & Paulete)',
     category: 'Bodas',
     image: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=600&fm=webp',
     demoUrl: '#templateboda4',
@@ -132,7 +141,7 @@ export const PACKAGES: PricingPackage[] = [
   {
     id: 'p-1',
     name: 'Básico',
-    price: '$299',
+    price: '$199',
     description: 'Invitación digital elegante y hermosa con las características esenciales para tu evento.',
     features: [
       { text: 'Diseño de plantilla elegante (Boda/XV/Bautizo)', included: true },
@@ -154,7 +163,7 @@ export const PACKAGES: PricingPackage[] = [
   {
     id: 'p-2',
     name: 'Premium',
-    price: '$599',
+    price: '$499',
     description: 'La experiencia de lujo más completa con asistencia técnica y panel de control de invitados.',
     hasDiscount: true,
     originalPrice: '$699',
