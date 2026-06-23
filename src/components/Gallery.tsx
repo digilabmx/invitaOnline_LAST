@@ -4,11 +4,7 @@ import { EXAMPLES } from '../data';
 import { Eye, ChevronRight, Sparkles } from 'lucide-react';
 import { InvitationExample } from '../types';
 
-interface GalleryProps {
-  onSelectExample: (example: InvitationExample) => void;
-}
-
-export default function Gallery({ onSelectExample }: GalleryProps) {
+export default function Gallery() {
   const [selectedFilter, setSelectedFilter] = useState<'Todos' | 'Bodas' | 'XV Años' | 'Bautizos' | 'Cumpleaños'>('Todos');
 
   const filteredExamples = selectedFilter === 'Todos'
@@ -110,7 +106,9 @@ export default function Gallery({ onSelectExample }: GalleryProps) {
                   {/* Middle interactive Trigger Button */}
                   <div className="flex justify-center items-center my-auto">
                     <button
-                      onClick={() => onSelectExample(example)}
+                      onClick={() => {
+                        window.location.hash = example.demoUrl;
+                      }}
                       className="px-6 py-3 bg-white hover:bg-luxury-beige-200 text-luxury-beige-950 text-xs font-sans uppercase tracking-widest transition-all duration-300 flex items-center space-x-2 border border-white cursor-pointer shadow-lg"
                     >
                       <Eye className="w-4 h-4 text-luxury-beige-700" />
@@ -136,7 +134,9 @@ export default function Gallery({ onSelectExample }: GalleryProps) {
                   </p>
                 </div>
                 <button
-                  onClick={() => onSelectExample(example)}
+                  onClick={() => {
+                    window.location.hash = example.demoUrl;
+                  }}
                   className="p-2.5 rounded-full bg-luxury-beige-100 group-hover:bg-luxury-beige-900 group-hover:text-white text-luxury-beige-700 transition-all duration-300"
                   aria-label="Ver detalles"
                 >

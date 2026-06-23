@@ -51,7 +51,7 @@ export default function Hero({ onVerEjemplosClick, onSolicitarClick }: HeroProps
 
   const toggleMusic = () => {
     if (!audioRef.current) {
-      audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-serene-view-1641.mp3');
+      audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-piano-momentum-741.mp3');
       audioRef.current.loop = true;
     }
     

@@ -111,7 +111,7 @@ export default function TemplateBoda() {
   // Initialize background music lazy
   const handleToggleMusic = () => {
     if (!audioRef.current) {
-      audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-serene-view-1641.mp3');
+      audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-piano-momentum-741.mp3');
       audioRef.current.loop = true;
     }
 
@@ -229,6 +229,15 @@ export default function TemplateBoda() {
   return (
     <div className="relative min-h-screen bg-neutral-950 font-sans text-stone-900 overflow-x-hidden selection:bg-rose-100 selection:text-stone-900">
       
+      {/* Floating back controller to close demo view */}
+      <a
+        href="#"
+        className="fixed top-5 left-5 z-40 bg-white/95 hover:bg-white text-stone-900 p-3 rounded-full shadow-lg border border-stone-200/55 transition-all duration-300 flex items-center justify-center hover:scale-105 active:scale-95 group"
+        title="Volver al catálogo"
+      >
+        <ArrowLeft className="w-4 h-4 text-stone-700 group-hover:-translate-x-0.5 transition-transform" />
+      </a>
+
       {/* Rose Petals Burst on Envelope Click */}
       <AnimatePresence>
         {showPetals && (

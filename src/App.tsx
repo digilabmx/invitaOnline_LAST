@@ -46,9 +46,34 @@ export default function App() {
     };
   }, []);
 
+  // Sync hashes like #demo-xv, #demo-bautizo, #demo-cumpleanos to automatically trigger the simulation modal
+  useEffect(() => {
+    const handleHashCheck = () => {
+      const currentHash = window.location.hash;
+      if (currentHash === '#demo-xv') {
+        const found = EXAMPLES.find(ex => ex.id === 'ex-2');
+        if (found) setSelectedExample(found);
+      } else if (currentHash === '#demo-bautizo') {
+        const found = EXAMPLES.find(ex => ex.id === 'ex-3');
+        if (found) setSelectedExample(found);
+      } else if (currentHash === '#demo-cumpleanos') {
+        const found = EXAMPLES.find(ex => ex.id === 'ex-4');
+        if (found) setSelectedExample(found);
+      } else {
+        // Only close if we are not on one of the custom fullscreens
+        if (!['#templateboda', '#templateboda2', '#templateboda4'].includes(currentHash)) {
+          setSelectedExample(null);
+        }
+      }
+    };
+    handleHashCheck();
+    window.addEventListener('hashchange', handleHashCheck);
+    return () => window.removeEventListener('hashchange', handleHashCheck);
+  }, []);
+
   const isTemplateBoda4 = route.toLowerCase().includes('templateboda4');
   const isTemplateBoda2 = route.toLowerCase().includes('templateboda2') && !isTemplateBoda4;
-  const isTemplateBoda = route.toLowerCase().includes('templateboda') && !isTemplateBoda2 && !isTemplateBoda4;
+  const isTemplateBoda = (route.toLowerCase().includes('templateboda') || route.toLowerCase().includes('demo-boda')) && !isTemplateBoda2 && !isTemplateBoda4;
 
   if (isTemplateBoda4) {
     return (
@@ -125,7 +150,7 @@ export default function App() {
       <Benefits />
 
       {/* Active High-Fashion Gallery Grid */}
-      <Gallery onSelectExample={(ex) => setSelectedExample(ex)} />
+      <Gallery />
 
       {/* 4 Steps Tutorial */}
       <HowItWorks />
@@ -153,7 +178,12 @@ export default function App() {
         {selectedExample && (
           <DemoModal
             example={selectedExample}
-            onClose={() => setSelectedExample(null)}
+            onClose={() => {
+              setSelectedExample(null);
+              if (['#demo-xv', '#demo-bautizo', '#demo-cumpleanos'].includes(window.location.hash)) {
+                window.location.hash = '';
+              }
+            }}
           />
         )}
       </AnimatePresence>

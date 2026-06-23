@@ -8,7 +8,7 @@ export const EXAMPLES: InvitationExample[] = [
     title: 'Elegancia Clásica (Sofía & Alejandro)',
     category: 'Bodas',
     image: '/wedding_portrait_1781994427687.jpg',
-    demoUrl: '#demo-boda',
+    demoUrl: '#templateboda',
     accentColor: '#b9976b',
     features: ['Música de Fondo', 'Confirmación por WhatsApp', 'Mesa de Regalos', 'Efecto de Hojas cayendo']
   },

@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Heart, Calendar, MapPin, Clock, Gift, Users, Music, 
   CheckCircle, Copy, ChevronDown, ChevronRight, ChevronLeft, 
-  Sparkles, VolumeX, Volume2, Info, Share2, Mail, ExternalLink
+  Sparkles, VolumeX, Volume2, Info, Share2, Mail, ExternalLink,
+  ArrowLeft
 } from 'lucide-react';
 import SparkleCanvas from './SparkleCanvas';
 
@@ -190,6 +191,15 @@ export default function TemplateBoda2() {
   return (
     <div className="relative min-h-screen bg-[#070707] font-sans text-stone-300 overflow-x-hidden selection:bg-[#d4b78f]/30 selection:text-[#d4b78f]">
       
+      {/* Floating back controller to close demo view */}
+      <a
+        href="#"
+        className="fixed top-5 left-5 z-45 bg-stone-900/90 hover:bg-stone-800 text-white p-3 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.5)] border border-stone-800 transition-all duration-300 flex items-center justify-center hover:scale-105 active:scale-95 group"
+        title="Volver al catálogo"
+      >
+        <ArrowLeft className="w-4 h-4 text-stone-300 group-hover:-translate-x-0.5 transition-transform" />
+      </a>
+
       {/* Luxury Golden Sparkles Canopy */}
       {envelopeOpened && <SparkleCanvas />}
 
