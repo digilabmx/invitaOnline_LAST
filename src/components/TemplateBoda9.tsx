@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Heart, Calendar, MapPin, Gift, Music, Play, Pause, 
   Copy, Check, Sparkles, Send, ExternalLink, 
-  ChevronLeft, ChevronRight, Volume2, VolumeX, Info, Phone, Eye
+  ChevronLeft, ChevronRight, Volume2, VolumeX, Info, Phone, Eye, ArrowLeft
 } from 'lucide-react';
 
 // Color Palette Constants:
@@ -1419,6 +1419,17 @@ export default function TemplateBoda9() {
                 <p className="text-stone-600 text-[9px] font-sans uppercase tracking-wider mt-4">
                   Diseño Exclusivo Celestial • Colección Starry Night
                 </p>
+
+                <div className="pt-8">
+                  <a
+                    href="#"
+                    onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
+                    className="inline-flex items-center space-x-1.5 px-4 py-2 bg-transparent hover:bg-[#0B1E3B]/40 border border-cyan-500/30 text-cyan-200 hover:text-white rounded-full font-sans text-[9px] uppercase tracking-[0.2em] transition-all shadow-md shadow-cyan-950/20"
+                  >
+                    <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>Regresar a Catálogo</span>
+                  </a>
+                </div>
               </div>
             </footer>
 

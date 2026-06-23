@@ -1088,10 +1088,12 @@ export default function TemplateBoda2() {
                 </p>
 
                 <a 
-                  href="/" 
-                  className="mt-6 text-[10px] font-sans text-[#d4af37] border-b border-[#d4af37]/30 hover:border-[#d4af37]"
+                  href="#" 
+                  onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
+                  className="mt-8 inline-flex items-center space-x-2 px-6 py-2.5 bg-stone-900 hover:bg-[#d4af37] text-[#d4af37] hover:text-stone-950 border border-[#d4af37]/35 rounded-xl font-sans text-[10px] font-semibold uppercase tracking-widest transition-all shadow-lg"
                 >
-                  Regresar a la página principal
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  <span>Regresar a Catálogo</span>
                 </a>
               </div>
             </footer>

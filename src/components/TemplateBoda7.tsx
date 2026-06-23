@@ -1390,6 +1390,17 @@ export default function TemplateBoda7() {
                 <p className="text-[9px] uppercase tracking-[0.35em] text-[#A8BBA2] font-mono">
                   AGENCIA CREATIVA DE BODAS DE ULTRA-LUJO
                 </p>
+
+                <div className="pt-8">
+                  <a
+                    href="#"
+                    onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
+                    className="inline-flex items-center space-x-1.5 px-4 py-2 bg-transparent hover:bg-stone-100 border border-stone-300 text-stone-600 hover:text-stone-800 rounded-full font-serif text-[9px] uppercase tracking-widest transition-all"
+                  >
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                    <span>Regresar a Catálogo</span>
+                  </a>
+                </div>
               </div>
             </footer>
 

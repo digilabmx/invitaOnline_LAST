@@ -20,7 +20,7 @@ const CATEGORY_STYLES: Record<string, Array<{
   'Bodas': [
     {
       id: 1,
-      name: 'Classic Rose (Romántico)',
+      name: 'Plantilla 1 - Elegante',
       primaryColor: 'bg-[#A68966]',
       accentColor: 'text-[#A68966]',
       accentBg: 'bg-[#FAF9F6]',
@@ -34,7 +34,7 @@ const CATEGORY_STYLES: Record<string, Array<{
     },
     {
       id: 2,
-      name: 'Black & Gold (Gala de Lujo)',
+      name: 'Plantilla 2 - Oro y Negro',
       primaryColor: 'bg-stone-900',
       accentColor: 'text-[#d4af37]',
       accentBg: 'bg-[#1c1917]',
@@ -62,7 +62,7 @@ const CATEGORY_STYLES: Record<string, Array<{
     },
     {
       id: 4,
-      name: 'Minimal Monochrome (Alta Costura)',
+      name: 'Plantilla 3 - Minimalista',
       primaryColor: 'bg-stone-900',
       accentColor: 'text-stone-900',
       accentBg: 'bg-[#F5F5F3]',
@@ -76,7 +76,7 @@ const CATEGORY_STYLES: Record<string, Array<{
     },
     {
       id: 5,
-      name: 'Colección Cartier (Elegancia Suprema)',
+      name: 'Plantilla 4 - Champagne',
       primaryColor: 'bg-black',
       accentColor: 'text-[#D4AF37]',
       accentBg: 'bg-[#0B0B0B]',
@@ -90,7 +90,7 @@ const CATEGORY_STYLES: Record<string, Array<{
     },
     {
       id: 6,
-      name: 'Colección Rolls Royce & Dior (Elite)',
+      name: 'Plantilla 5 - Obsidian',
       primaryColor: 'bg-black',
       accentColor: 'text-[#C8C8C8]',
       accentBg: 'bg-[#0A0A0A]',
@@ -104,7 +104,7 @@ const CATEGORY_STYLES: Record<string, Array<{
     },
     {
       id: 7,
-      name: 'Colección Toscana & Versalles (Botánico Lujo)',
+      name: 'Plantilla 6 - Toscana',
       primaryColor: 'bg-[#8CA28C]',
       accentColor: 'text-[#8CA28C]',
       accentBg: 'bg-[#FCFAF8]',
@@ -118,7 +118,7 @@ const CATEGORY_STYLES: Record<string, Array<{
     },
     {
       id: 8,
-      name: 'Colección Hacienda Virreinal (Gentry)',
+      name: 'Plantilla 7 - Hacienda',
       primaryColor: 'bg-[#A85B38]',
       accentColor: 'text-[#A85B38]',
       accentBg: 'bg-[#FAF6F2]',
@@ -132,7 +132,7 @@ const CATEGORY_STYLES: Record<string, Array<{
     },
     {
       id: 9,
-      name: 'Colección Bajo las Estrellas (Celeste)',
+      name: 'Plantilla 8 - Celestial',
       primaryColor: 'bg-[#0B1E3B]',
       accentColor: 'text-[#0B1E3B]',
       accentBg: 'bg-[#030712]',

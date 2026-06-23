@@ -952,13 +952,24 @@ export default function TemplateBoda4() {
                 </p>
 
                 {/* Main Action Call matching requirements: Ver demo en vivo de la boda */}
-                <a
-                  href="https://invitaonline.mx/templateboda"
-                  className="inline-flex w-full max-w-[280px] items-center justify-center space-x-2.5 py-4 bg-[#1a1a1a] hover:bg-[#c5a880] text-white rounded-full font-sans text-[10.5px] uppercase tracking-[0.22em] font-bold transition-all duration-300 shadow-xl hover:shadow-2xl"
-                >
-                  <Sparkles className="w-4 h-4 text-white" />
-                  <span>Ver demo en vivo de la boda</span>
-                </a>
+                <div className="flex flex-col items-center gap-4">
+                  <a
+                    href="https://invitaonline.mx/templateboda"
+                    className="inline-flex w-full max-w-[280px] items-center justify-center space-x-2.5 py-4 bg-[#1a1a1a] hover:bg-[#c5a880] text-white rounded-full font-sans text-[10.5px] uppercase tracking-[0.22em] font-bold transition-all duration-300 shadow-xl hover:shadow-2xl"
+                  >
+                    <Sparkles className="w-4 h-4 text-white" />
+                    <span>Ver demo en vivo de la boda</span>
+                  </a>
+
+                  <a
+                    href="#"
+                    onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
+                    className="inline-flex w-full max-w-[280px] items-center justify-center space-x-2 py-3 bg-stone-100 hover:bg-stone-250 text-stone-800 border border-stone-300 rounded-full font-sans text-[10px] uppercase tracking-[0.22em] font-bold transition-all duration-300 shadow-sm"
+                  >
+                    <ArrowLeft className="w-3.5 h-3.5 text-stone-600" />
+                    <span>Regresar a Catálogo</span>
+                  </a>
+                </div>
 
                 {/* Clean luxury footer signature */}
                 <div className="mt-16 text-[8.5px] font-sans text-stone-300 tracking-[0.25em] uppercase font-light leading-relaxed select-none">

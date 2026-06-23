@@ -1343,10 +1343,11 @@ export default function TemplateBoda() {
                 </p>
                 <a
                   href="#"
+                  onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
                   className="inline-flex items-center space-x-2.5 py-3 px-6 bg-gradient-to-tr from-stone-850 to-stone-900 hover:from-stone-900 hover:to-stone-950 text-white font-sans text-[9.5px] font-bold uppercase tracking-[0.2em] rounded-xl transition-all shadow-md hover:translate-y-[-1px]"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
-                  <span>Volver al Catálogo Principal</span>
+                  <span>Regresar a Catálogo</span>
                 </a>
               </div>
 

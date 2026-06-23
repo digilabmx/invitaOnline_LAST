@@ -77,17 +77,52 @@ export default function Gallery() {
               </div>
 
               {/* Card Image Container */}
-              <div className="relative w-full h-[360px] overflow-hidden bg-luxury-beige-100 flex items-center justify-center">
-                <img
-                  src={example.image}
-                  alt={example.title}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 select-none"
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                />
+              <div className="relative w-full h-[360px] overflow-hidden bg-gradient-to-tr from-stone-950 via-stone-900 to-luxury-beige-200 flex items-center justify-center p-4">
+                {/* Background blurred cover */}
+                <div className="absolute inset-0">
+                  <img
+                    src={example.image}
+                    alt={example.title}
+                    className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-all duration-700 select-none blur-[4px] scale-105"
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/45" />
+                </div>
+
+                {/* Floating Realistic Smartphone Device Mockup showing the actual template on a mobile screen */}
+                <div className="relative w-[170px] h-[310px] bg-stone-950 border-[5px] border-stone-850 rounded-[32px] shadow-2xl overflow-hidden flex flex-col z-10 transition-all duration-500 group-hover:scale-105 group-hover:-rotate-1">
+                  {/* Speaker and Camera Notch */}
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-3.5 bg-stone-900 rounded-full flex items-center justify-center z-20">
+                    <div className="w-1.5 h-1.5 rounded-full bg-stone-950 mr-1.5" />
+                    <div className="w-7 h-[2px] bg-stone-950 rounded-full" />
+                  </div>
+                  
+                  {/* Screen Content representing mobile view */}
+                  <div className="relative w-full h-full overflow-hidden bg-stone-950 flex flex-col">
+                    <img
+                      src={example.image}
+                      alt="Vista Móvil"
+                      className="w-full h-full object-cover select-none"
+                      referrerPolicy="no-referrer"
+                    />
+                    
+                    {/* Glowing borders */}
+                    <div className="absolute inset-0 border border-white/10 rounded-[26px] pointer-events-none" />
+                    
+                    {/* Status bar */}
+                    <div className="absolute top-0 inset-x-0 h-6 bg-gradient-to-b from-black/70 to-transparent flex items-center justify-between px-4 z-10">
+                      <span className="text-[7px] text-white/90 font-sans font-medium tracking-tight">12:00</span>
+                      <div className="flex items-center space-x-1 text-[7px] text-white/90">
+                        <span>📶</span>
+                        <span>🔋</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 {/* Ultimate Overlay Blur and Details */}
-                <div className="absolute inset-0 bg-luxury-beige-950/80 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-8 z-10">
+                <div className="absolute inset-0 bg-luxury-beige-950/90 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-8 z-20">
                   {/* Top features tag */}
                   <div className="flex flex-col space-y-2">
                     <p className="text-[10px] font-sans tracking-[0.25em] text-luxury-beige-300 uppercase">

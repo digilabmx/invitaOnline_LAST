@@ -1207,6 +1207,18 @@ export default function TemplateBoda5() {
           <p className="font-serif text-[12px] uppercase tracking-[0.25em] text-[#FAF8F5] max-w-xs mx-auto leading-relaxed">
             GRACIAS POR ACOMPAÑARNOS EN EL DÍA MÁS IMPORTANTE DE NUESTRAS VIDAS
           </p>
+          
+          <div className="mt-8">
+            <a
+              href="#"
+              onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
+              className="inline-flex items-center space-x-2 px-5 py-2.5 bg-transparent hover:bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30 rounded-full font-serif text-[9px] uppercase tracking-[0.2em] transition-all"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Regresar a Catálogo</span>
+            </a>
+          </div>
+
           <div className="text-[8.5px] font-mono text-stone-600 tracking-widest uppercase mt-8">
             © 2027 · Tijuana B.C. · Hecho con amor para siempre
           </div>

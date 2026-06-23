@@ -5,7 +5,7 @@ export const HERO_IMAGE = '/hero_phone_mockup_1781992151448.jpg';
 export const EXAMPLES: InvitationExample[] = [
   {
     id: 'ex-starry-night-celestial',
-    title: 'Colección Bajo las Estrellas (Valentina & Gabriel) - Nueva ✨',
+    title: 'Plantilla 8 - Celestial',
     category: 'Bodas',
     image: '/src/assets/images/celestial_hero_1782250292221.jpg',
     demoUrl: '#templateboda9',
@@ -14,7 +14,7 @@ export const EXAMPLES: InvitationExample[] = [
   },
   {
     id: 'ex-mexican-hacienda',
-    title: 'Colección Hacienda Virreinal (Sofía & Alejandro)',
+    title: 'Plantilla 7 - Hacienda',
     category: 'Bodas',
     image: '/src/assets/images/hacienda_hero_1782249686184.jpg',
     demoUrl: '#templateboda8',
@@ -23,16 +23,16 @@ export const EXAMPLES: InvitationExample[] = [
   },
   {
     id: 'ex-botanical-luxury',
-    title: 'Colección Toscana & Versalles (Isabella & Mateo)',
+    title: 'Plantilla 6 - Toscana',
     category: 'Bodas',
     image: '/isabella_mateo_couple.jpg',
     demoUrl: '#templateboda7',
     accentColor: '#A8BBA2',
-    features: ['Sobre de Algodón y Sello de Cera', 'Partículas de Hojas y Mariposas', 'Reproductor Caja Musical de Cristal', 'Capítulos Florales Interactivos']
+    features: ['Sobre de Algodón and Sello de Cera', 'Partículas de Hojas y Mariposas', 'Reproductor Caja Musical de Cristal', 'Capítulos Florales Interactivos']
   },
   {
     id: 'ex-rolls-royce-dior',
-    title: 'Colección Rolls Royce & Dior (Victoria & Sebastián)',
+    title: 'Plantilla 5 - Obsidian',
     category: 'Bodas',
     image: '/v_s_hero_1782248283047.jpg',
     demoUrl: '#templateboda6',
@@ -41,7 +41,7 @@ export const EXAMPLES: InvitationExample[] = [
   },
   {
     id: 'ex-cartier-luxury',
-    title: 'Colección Cartier: Alta Costura (Sofía & Alejandro)',
+    title: 'Plantilla 4 - Champagne',
     category: 'Bodas',
     image: '/sofia_alejandro_stairs_1782247280237.jpg',
     demoUrl: '#templateboda5',
@@ -50,7 +50,7 @@ export const EXAMPLES: InvitationExample[] = [
   },
   {
     id: 'ex-1',
-    title: 'Elegancia Clásica (Sofía & Alejandro)',
+    title: 'Plantilla 1 - Elegante',
     category: 'Bodas',
     image: '/wedding_portrait_1781994427687.jpg',
     demoUrl: '#templateboda',
@@ -59,7 +59,7 @@ export const EXAMPLES: InvitationExample[] = [
   },
   {
     id: 'ex-deep-gold',
-    title: 'Gala Black & Gold (Andrea & Juan)',
+    title: 'Plantilla 2 - Oro y Negro',
     category: 'Bodas',
     image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600&fm=webp',
     demoUrl: '#templateboda2',
@@ -68,7 +68,7 @@ export const EXAMPLES: InvitationExample[] = [
   },
   {
     id: 'ex-monochrome-minimalist',
-    title: 'Monochrome Minimalist (Andrés & Paulete)',
+    title: 'Plantilla 3 - Minimalista',
     category: 'Bodas',
     image: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=600&fm=webp',
     demoUrl: '#templateboda4',
@@ -77,7 +77,7 @@ export const EXAMPLES: InvitationExample[] = [
   },
   {
     id: 'ex-2',
-    title: 'Destellos de Rosa (Valentina)',
+    title: 'Plantilla 9 - XV Años',
     category: 'XV Años',
     image: '/quince_card_1781992176864.jpg',
     demoUrl: '#demo-xv',
@@ -86,7 +86,7 @@ export const EXAMPLES: InvitationExample[] = [
   },
   {
     id: 'ex-3',
-    title: 'Floralia Acuarela (Bautizo Mateo)',
+    title: 'Plantilla 10 - Bautizo',
     category: 'Bautizos',
     image: '/bautizo_card_1781992187887.jpg',
     demoUrl: '#demo-bautizo',
@@ -95,7 +95,7 @@ export const EXAMPLES: InvitationExample[] = [
   },
   {
     id: 'ex-4',
-    title: 'Noche de Gala (Santiago (40 años))',
+    title: 'Plantilla 11 - Cumpleaños',
     category: 'Cumpleaños',
     image: '/cumpleanos_card_1781992199358.jpg',
     demoUrl: '#demo-cumpleanos',

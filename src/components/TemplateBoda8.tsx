@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Heart, Calendar, MapPin, Gift, Music, Play, Pause, 
   Copy, Check, Sparkles, Send, ExternalLink, 
-  ChevronLeft, ChevronRight, Volume2, VolumeX, Info, Phone
+  ChevronLeft, ChevronRight, Volume2, VolumeX, Info, Phone, ArrowLeft
 } from 'lucide-react';
 
 // Color Palette Constants
@@ -1430,6 +1430,17 @@ export default function TemplateBoda8() {
                 <p className="text-stone-700 text-[9px] font-mono mt-1">
                   Exclusividad Hacendaria 1782 — San Miguel de Allende
                 </p>
+
+                <div className="pt-8">
+                  <a
+                    href="#"
+                    onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
+                    className="inline-flex items-center space-x-1.5 px-4 py-2 bg-transparent hover:bg-stone-800 border border-[#C7A76C]/40 text-[#E8D9C5] hover:text-[#F8F4EE] rounded-full font-serif text-[9px] uppercase tracking-widest transition-all"
+                  >
+                    <ArrowLeft className="w-3.5 h-3.5 text-[#C7A76C]" />
+                    <span>Regresar a Catálogo</span>
+                  </a>
+                </div>
               </div>
             </footer>
 

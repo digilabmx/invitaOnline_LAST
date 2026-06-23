@@ -906,6 +906,17 @@ export default function TemplateBoda6() {
                     <p className="text-[11px] uppercase tracking-widest text-white">Victoria & Sebastián</p>
                     <p className="text-[7px] uppercase tracking-[0.2em] text-stone-500 font-mono mt-2">Dior Haute Couture & Rolls Royce Digital Edition</p>
                   </div>
+                  
+                  <div className="pt-4">
+                    <a
+                      href="#"
+                      onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
+                      className="inline-flex items-center space-x-1.5 px-4 py-2 bg-transparent hover:bg-white/5 border border-white/20 text-stone-300 hover:text-white rounded-full font-serif text-[9px] uppercase tracking-widest transition-all"
+                    >
+                      <ArrowLeft className="w-3.5 h-3.5" />
+                      <span>Regresar a Catálogo</span>
+                    </a>
+                  </div>
                 </div>
               </ScrollReveal>
             </footer>
@@ -916,7 +927,11 @@ export default function TemplateBoda6() {
 
       {/* Catálogo button */}
       {envelopeOpened && (
-        <a href="/" className="fixed top-6 left-6 z-40 bg-[#121212]/90 border border-white/10 backdrop-blur-md px-3.5 py-2 rounded-full flex items-center space-x-1.5 hover:bg-stone-900 shadow-2xl transition-all">
+        <a 
+          href="#" 
+          onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
+          className="fixed top-6 left-6 z-40 bg-[#121212]/90 border border-white/10 backdrop-blur-md px-3.5 py-2 rounded-full flex items-center space-x-1.5 hover:bg-stone-900 shadow-2xl transition-all"
+        >
           <ArrowLeft className="w-3.5 h-3.5 text-stone-400" />
           <span className="text-[8px] uppercase tracking-[0.2em] font-medium text-stone-300">Regresar</span>
         </a>
