@@ -101,6 +101,48 @@ const CATEGORY_STYLES: Record<string, Array<{
       description: 'Sobre negro mate obsidiana interactivo con monograma de plata cromada, reloj suizo mecánico y caja fuerte de regalos.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda6'
+    },
+    {
+      id: 7,
+      name: 'Colección Toscana & Versalles (Botánico Lujo)',
+      primaryColor: 'bg-[#8CA28C]',
+      accentColor: 'text-[#8CA28C]',
+      accentBg: 'bg-[#FCFAF8]',
+      title: 'Isabella & Mateo',
+      tagline: 'Un amor que florece bajo el sol de la campiña.',
+      badge: 'Template 7 Botánico Lujo',
+      image: '/isabella_mateo_couple.jpg',
+      description: 'Sobre de algodón puro con sello de cera, reproducción de caja musical, capítulos de amor florales y mariposas flotantes.',
+      isCustomFullscreen: true,
+      fullscreenUrl: '#templateboda7'
+    },
+    {
+      id: 8,
+      name: 'Colección Hacienda Virreinal (Gentry)',
+      primaryColor: 'bg-[#A85B38]',
+      accentColor: 'text-[#A85B38]',
+      accentBg: 'bg-[#FAF6F2]',
+      title: 'Sofía & Alejandro',
+      tagline: 'Descubre el encanto de nuestra unión en una hacienda del siglo XVIII.',
+      badge: 'Template 8 Gentry',
+      image: '/src/assets/images/hacienda_hero_1782249686184.jpg',
+      description: 'Inspiración barroca virreinal, pergamino heráldico medieval con música de guitarra española sintetizada y velas flotantes.',
+      isCustomFullscreen: true,
+      fullscreenUrl: '#templateboda8'
+    },
+    {
+      id: 9,
+      name: 'Colección Bajo las Estrellas (Celeste)',
+      primaryColor: 'bg-[#0B1E3B]',
+      accentColor: 'text-[#0B1E3B]',
+      accentBg: 'bg-[#030712]',
+      title: 'Valentina & Gabriel',
+      tagline: 'Una historia escrita entre las estrellas y el infinito.',
+      badge: 'Template 9 Celestial Ultra Premium',
+      image: '/src/assets/images/celestial_hero_1782250292221.jpg',
+      description: 'Sobre de lujo medianoche, estrellas fugaces cruzando, constelaciones interactivas, piano cinematográfico y partículas cósmicas.',
+      isCustomFullscreen: true,
+      fullscreenUrl: '#templateboda9'
     }
   ],
   'XV Años': [

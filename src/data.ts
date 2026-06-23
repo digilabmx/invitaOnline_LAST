@@ -4,6 +4,24 @@ export const HERO_IMAGE = '/hero_phone_mockup_1781992151448.jpg';
 
 export const EXAMPLES: InvitationExample[] = [
   {
+    id: 'ex-starry-night-celestial',
+    title: 'Colección Bajo las Estrellas (Valentina & Gabriel) - Nueva ✨',
+    category: 'Bodas',
+    image: '/src/assets/images/celestial_hero_1782250292221.jpg',
+    demoUrl: '#templateboda9',
+    accentColor: '#0B1E3B',
+    features: ['Sobre Celestial Azul Medianoche', 'Constelaciones Interactivas', 'Sintetizador Piano de Cola Cósmico', 'Mosaico Orbital de Recuerdos']
+  },
+  {
+    id: 'ex-mexican-hacienda',
+    title: 'Colección Hacienda Virreinal (Sofía & Alejandro)',
+    category: 'Bodas',
+    image: '/src/assets/images/hacienda_hero_1782249686184.jpg',
+    demoUrl: '#templateboda8',
+    accentColor: '#C96A45',
+    features: ['Pliego Heráldico (Pergamino)', 'Campanas de Catedral y Velas', 'Sintetizador Guitarra Española', 'Arcos de Cantera e Historia de Amor']
+  },
+  {
     id: 'ex-botanical-luxury',
     title: 'Colección Toscana & Versalles (Isabella & Mateo)',
     category: 'Bodas',

@@ -27,6 +27,8 @@ const TemplateBoda4 = lazy(() => import('./components/TemplateBoda4'));
 const TemplateBoda5 = lazy(() => import('./components/TemplateBoda5'));
 const TemplateBoda6 = lazy(() => import('./components/TemplateBoda6'));
 const TemplateBoda7 = lazy(() => import('./components/TemplateBoda7'));
+const TemplateBoda8 = lazy(() => import('./components/TemplateBoda8'));
+const TemplateBoda9 = lazy(() => import('./components/TemplateBoda9'));
 
 export default function App() {
   const [selectedExample, setSelectedExample] = useState<InvitationExample | null>(null);
@@ -64,7 +66,7 @@ export default function App() {
         if (found) setSelectedExample(found);
       } else {
         // Only close if we are not on one of the custom fullscreens
-        if (!['#templateboda', '#templateboda2', '#templateboda4', '#templateboda5', '#templateboda6', '#templateboda7'].includes(currentHash)) {
+        if (!['#templateboda', '#templateboda2', '#templateboda4', '#templateboda5', '#templateboda6', '#templateboda7', '#templateboda8', '#templateboda9'].includes(currentHash)) {
           setSelectedExample(null);
         }
       }
@@ -74,12 +76,40 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashCheck);
   }, []);
 
-  const isTemplateBoda7 = route.toLowerCase().includes('templateboda7');
-  const isTemplateBoda6 = route.toLowerCase().includes('templateboda6') && !isTemplateBoda7;
-  const isTemplateBoda5 = route.toLowerCase().includes('templateboda5') && !isTemplateBoda6 && !isTemplateBoda7;
-  const isTemplateBoda4 = route.toLowerCase().includes('templateboda4') && !isTemplateBoda5 && !isTemplateBoda6 && !isTemplateBoda7;
-  const isTemplateBoda2 = route.toLowerCase().includes('templateboda2') && !isTemplateBoda4 && !isTemplateBoda5 && !isTemplateBoda6 && !isTemplateBoda7;
-  const isTemplateBoda = (route.toLowerCase().includes('templateboda') || route.toLowerCase().includes('demo-boda')) && !isTemplateBoda2 && !isTemplateBoda4 && !isTemplateBoda5 && !isTemplateBoda6 && !isTemplateBoda7;
+  const isTemplateBoda9 = route.toLowerCase().includes('templateboda9');
+  const isTemplateBoda8 = route.toLowerCase().includes('templateboda8') && !isTemplateBoda9;
+  const isTemplateBoda7 = route.toLowerCase().includes('templateboda7') && !isTemplateBoda8 && !isTemplateBoda9;
+  const isTemplateBoda6 = route.toLowerCase().includes('templateboda6') && !isTemplateBoda7 && !isTemplateBoda8 && !isTemplateBoda9;
+  const isTemplateBoda5 = route.toLowerCase().includes('templateboda5') && !isTemplateBoda6 && !isTemplateBoda7 && !isTemplateBoda8 && !isTemplateBoda9;
+  const isTemplateBoda4 = route.toLowerCase().includes('templateboda4') && !isTemplateBoda5 && !isTemplateBoda6 && !isTemplateBoda7 && !isTemplateBoda8 && !isTemplateBoda9;
+  const isTemplateBoda2 = route.toLowerCase().includes('templateboda2') && !isTemplateBoda4 && !isTemplateBoda5 && !isTemplateBoda6 && !isTemplateBoda7 && !isTemplateBoda8 && !isTemplateBoda9;
+  const isTemplateBoda = (route.toLowerCase().includes('templateboda') || route.toLowerCase().includes('demo-boda')) && !isTemplateBoda2 && !isTemplateBoda4 && !isTemplateBoda5 && !isTemplateBoda6 && !isTemplateBoda7 && !isTemplateBoda8 && !isTemplateBoda9;
+
+  if (isTemplateBoda9) {
+    return (
+      <Suspense fallback={
+        <div className="min-h-screen bg-[#030712] flex flex-col items-center justify-center font-serif text-cyan-200">
+          <div className="w-12 h-12 rounded-full border-2 border-cyan-500/20 border-t-cyan-300 animate-spin mb-4" />
+          <p className="text-xs uppercase tracking-[0.25em]">Cargando Bóveda Celestial...</p>
+        </div>
+      }>
+        <TemplateBoda9 />
+      </Suspense>
+    );
+  }
+
+  if (isTemplateBoda8) {
+    return (
+      <Suspense fallback={
+        <div className="min-h-screen bg-[#F8F4EE] flex flex-col items-center justify-center font-serif text-[#C96A45]">
+          <div className="w-12 h-12 rounded-full border border-[#C96A45]/25 border-t-[#C96A45] animate-spin mb-4" />
+          <p className="text-xs uppercase tracking-[0.25em]">Abriendo pliego heráldico...</p>
+        </div>
+      }>
+        <TemplateBoda8 />
+      </Suspense>
+    );
+  }
 
   if (isTemplateBoda7) {
     return (

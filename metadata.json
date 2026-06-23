@@ -1,6 +1,6 @@
 {
   "name": "InvitaOnline",
-  "description": "Invitaciones digitales premium para bodas, XV años, bautizos y eventos extraordinarios. Diseños sofisticados con confirmación por WhatsApp, mapas e historia interactiva.",
+  "description": "Invitaciones digitales premium e interactivas. Descubre nuestra nueva colección de lujo inspirada en haciendas mexicanas del siglo XVIII con música tradicional sintetizada y pliegos heráldicos.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
