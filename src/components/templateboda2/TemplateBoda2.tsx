@@ -120,8 +120,44 @@ export default function TemplateBoda2() {
   };
 
   const copyDetail = (text: string, label: string) => {
-    navigator.clipboard.writeText(text);
-    triggerToast(`¡${label} copiado con éxito al portapapeles!`);
+    try {
+      if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+          .then(() => {
+            triggerToast(`¡${label} copiado con éxito al portapapeles!`);
+          })
+          .catch(() => {
+            // Fallback inside promise reject
+            fallbackCopy(text, label);
+          });
+      } else {
+        fallbackCopy(text, label);
+      }
+    } catch (err) {
+      fallbackCopy(text, label);
+    }
+  };
+
+  const fallbackCopy = (text: string, label: string) => {
+    try {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      const success = document.execCommand("copy");
+      textArea.remove();
+      if (success) {
+        triggerToast(`¡${label} copiado con éxito!`);
+      } else {
+        triggerToast(`${label}: ${text}`);
+      }
+    } catch (e) {
+      triggerToast(`${label}: ${text}`);
+    }
   };
 
   const handleSubmitRsvp = (e: React.FormEvent) => {
@@ -133,7 +169,7 @@ export default function TemplateBoda2() {
 
     setSubmitting(true);
     setTimeout(() => {
-      const msg = `*CONFIRMACIÓN DE ASISTENCIA BODA*\n\n¡Hola Andrea y Josué! 👋\n\nConfirmamos con mucha emoción nuestra asistencia a su boda:\n\n👤 *Invitado:* ${guestName}\n🎫 *Lugares solicitados:* ${guestCount} pases\n🍽️ *Alergias/Notas:* ${allergies || 'Ninguna'}\n\n✨ ¡Nos vemos pronto para alzar la copa por ustedes!`;
+      const msg = `*CONFIRMACIÓN DE ASISTENCIA BODA*\n\n¡Hola Andrea y Juan! 👋\n\nConfirmamos con mucha emoción nuestra asistencia a su boda:\n\n👤 *Invitado:* ${guestName}\n🎫 *Lugares solicitados:* ${guestCount} pases\n🍽️ *Alergias/Notas:* ${allergies || 'Ninguna'}\n\n✨ ¡Nos vemos pronto para alzar la copa por ustedes!`;
       setSimulatedMessage(msg);
       setSubmitting(false);
       setCompletedRsvp(true);
@@ -301,6 +337,7 @@ export default function TemplateBoda2() {
                 <img
                   src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200&fm=webp"
                   alt="Andrea y Juan"
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover filter brightness-[0.7] saturate-[0.8]"
                 />
                 {/* Rich matte black gradients covering top and bottom segments */}
@@ -634,6 +671,7 @@ export default function TemplateBoda2() {
                       key={activePhotoIdx}
                       src={memoriesPhotos[activePhotoIdx]}
                       alt="Recuerdo de Andrea & Juan"
+                      referrerPolicy="no-referrer"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}

@@ -149,10 +149,41 @@ export default function TemplateBoda() {
 
   // Bank Copy Details
   const copyToClipboard = (text: string, title: string) => {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text);
-      showToast(`⚡ ${title} copiada al portapapeles con éxito`);
-    } else {
+    try {
+      if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+          .then(() => {
+            showToast(`⚡ ${title} copiada al portapapeles con éxito`);
+          })
+          .catch(() => {
+            fallbackCopy(text, title);
+          });
+      } else {
+        fallbackCopy(text, title);
+      }
+    } catch (err) {
+      fallbackCopy(text, title);
+    }
+  };
+
+  const fallbackCopy = (text: string, title: string) => {
+    try {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      const success = document.execCommand("copy");
+      textArea.remove();
+      if (success) {
+        showToast(`⚡ ${title} copiada con éxito`);
+      } else {
+        showToast(`Datos: ${text}`);
+      }
+    } catch (e) {
       showToast(`Datos: ${text}`);
     }
   };
