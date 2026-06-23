@@ -258,19 +258,28 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
 
             {example.category === 'Bodas' && (
               <div className="mt-8 bg-[#FAF9F6] border border-[#A68966]/20 p-4 rounded-xl shadow-sm text-left">
-                <p className="font-sans text-[9px] uppercase tracking-wider font-bold text-[#A68966] mb-1">
-                  ✨ DETECTADA NUEVA PLANTILLA INMERSIVA DE LUJO
+                <p className="font-sans text-[10px] uppercase tracking-wider font-bold text-[#A68966] mb-1">
+                  ✨ DETECTADAS PLANTILLAS INMERSIVAS DE LUJO
                 </p>
                 <p className="font-sans text-[10px] text-stone-600 leading-relaxed mb-3 font-light">
-                  Hemos diseñado un demo en pantalla completa con sobre interactivo, sutiles pétalos flotantes y reproductor integrado para tu boda.
+                  Hemos diseñado demos en pantalla completa con sobre interactivo, efectos premium en tiempo real y reproductor integrado de música para tu boda.
                 </p>
-                <a
-                  href="#templateboda"
-                  className="inline-flex items-center space-x-1.5 px-3 py-2 bg-[#A68966] hover:bg-[#8F7250] text-[#fbfbfa] text-[9px] font-sans font-bold uppercase tracking-wider rounded-lg transition-colors w-full justify-center shadow-xs"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-                  <span>Ver Demo Completa Inmersiva</span>
-                </a>
+                <div className="flex flex-col gap-2">
+                  <a
+                    href="#templateboda"
+                    className="inline-flex items-center space-x-1.5 px-3 py-2 bg-[#A68966] hover:bg-[#8F7250] text-[#fbfbfa] text-[9px] font-sans font-bold uppercase tracking-wider rounded-lg transition-all duration-300 w-full justify-center shadow-xs"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
+                    <span>Ver Demo Estilo 1 (Classic Rose)</span>
+                  </a>
+                  <a
+                    href="#templateboda2"
+                    className="inline-flex items-center space-x-1.5 px-3 py-2 bg-stone-900 hover:bg-stone-800 text-[#d4af37] border border-[#d4af37]/35 text-[9px] font-sans font-bold uppercase tracking-wider rounded-lg transition-all duration-300 w-full justify-center shadow-xs"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-yellow-500 animate-pulse" />
+                    <span>Ver Demo Estilo 2 (Black & Gold)</span>
+                  </a>
+                </div>
               </div>
             )}
           </div>

@@ -20,6 +20,7 @@ import WhatsAppFloatingButton from './components/WhatsAppFloatingButton';
 import { InvitationExample } from './types';
 import { EXAMPLES } from './data';
 import TemplateBoda from './components/TemplateBoda';
+import TemplateBoda2 from './components/templateboda2/TemplateBoda2';
 
 export default function App() {
   const [selectedExample, setSelectedExample] = useState<InvitationExample | null>(null);
@@ -42,7 +43,12 @@ export default function App() {
     };
   }, []);
 
-  const isTemplateBoda = route.toLowerCase().includes('templateboda');
+  const isTemplateBoda2 = route.toLowerCase().includes('templateboda2');
+  const isTemplateBoda = route.toLowerCase().includes('templateboda') && !isTemplateBoda2;
+
+  if (isTemplateBoda2) {
+    return <TemplateBoda2 />;
+  }
 
   if (isTemplateBoda) {
     return <TemplateBoda />;

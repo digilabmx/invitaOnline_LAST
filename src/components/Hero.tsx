@@ -132,7 +132,7 @@ export default function Hero({ onVerEjemplosClick, onSolicitarClick }: HeroProps
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+            className="flex flex-col sm:flex-row flex-wrap items-center gap-4 w-full sm:w-auto"
           >
             <button
               onClick={onSolicitarClick}
@@ -147,6 +147,13 @@ export default function Hero({ onVerEjemplosClick, onSolicitarClick }: HeroProps
               <span>Ver Ejemplos</span>
               <ArrowRight className="w-3.5 h-3.5 text-luxury-beige-500 group-hover:translate-x-1 transition-transform" />
             </button>
+            <a
+              href="#templateboda2"
+              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-stone-900 via-neutral-950 to-stone-950 hover:brightness-110 text-white border border-[#d4af37]/45 font-sans text-xs uppercase tracking-[0.11em] rounded-full transition-all duration-300 hover:translate-y-[-2px] cursor-pointer flex items-center justify-center gap-2 shadow-lg hover:shadow-xl shadow-amber-950/10"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-[#d4af37] animate-pulse" />
+              <span>Ver Demo Boda Template 2</span>
+            </a>
           </motion.div>
 
           {/* Brand highlights */}

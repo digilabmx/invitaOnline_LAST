@@ -13,6 +13,15 @@ export const EXAMPLES: InvitationExample[] = [
     features: ['Música de Fondo', 'Confirmación por WhatsApp', 'Mesa de Regalos', 'Efecto de Hojas cayendo']
   },
   {
+    id: 'ex-deep-gold',
+    title: 'Gala Black & Gold (Andrea & Juan)',
+    category: 'Bodas',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600&fm=webp',
+    demoUrl: '#templateboda2',
+    accentColor: '#d4af37',
+    features: ['Sobre Wax-Seal Interactivo', 'Efecto Stardust de Oro', 'Mapeo Directo GPS', 'Cuenta Regresiva Circular']
+  },
+  {
     id: 'ex-2',
     title: 'Destellos de Rosa (Valentina)',
     category: 'XV Años',
