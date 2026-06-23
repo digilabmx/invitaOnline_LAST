@@ -5,13 +5,22 @@ import { Logo } from './Logo';
 
 export default function Footer() {
   const [showPrivacy, setShowPrivacy] = useState(false);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    const timeoutId = setTimeout(() => {
+      setToastMessage((prev) => prev === message ? null : prev);
+    }, 4000);
+    return () => clearTimeout(timeoutId);
+  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSocialClick = (platform: string) => {
-    alert(`Redireccionando a nuestra cuenta oficial de ${platform} (Simulado para fines estáticos).`);
+    showToast(`Redireccionando a nuestra cuenta oficial de ${platform} (Simulado para fines estáticos).`);
   };
 
   return (
@@ -180,6 +189,22 @@ export default function Footer() {
                 </button>
               </div>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Elegant overlay Toast */}
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="fixed bottom-10 left-1/2 -translate-x-1/2 z-55 bg-neutral-900/95 backdrop-blur-md text-white border border-neutral-800 px-6 py-3.5 rounded-full shadow-2xl flex items-center gap-3 font-sans text-xs max-w-sm text-center"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-luxury-beige-400 animate-ping shrink-0" />
+            <span>{toastMessage}</span>
           </motion.div>
         )}
       </AnimatePresence>

@@ -6,7 +6,11 @@ export default function CTA() {
   const handleWhatsAppContact = () => {
     const text = `Hola InvitaOnline. Estoy listo para diseñar mi invitación digital premium. ¿Me podrían indicar los pasos iniciales?`;
     const message = encodeURIComponent(text);
-    window.open(`https://wa.me/524446500910?text=${message}`, '_blank');
+    try {
+      window.open(`https://wa.me/524446500910?text=${message}`, '_blank');
+    } catch (e) {
+      console.warn("Popup blocked:", e);
+    }
   };
 
   return (

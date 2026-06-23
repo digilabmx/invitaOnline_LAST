@@ -183,7 +183,7 @@ export default function Hero({ onVerEjemplosClick, onSolicitarClick }: HeroProps
                   transition={{ duration: 0.3 }}
                 >
                   <img
-                    src="/src/assets/images/wedding_portrait_1781994427687.jpg"
+                    src="/wedding_portrait_1781994427687.jpg"
                     alt="Sofía & Alejandro"
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"

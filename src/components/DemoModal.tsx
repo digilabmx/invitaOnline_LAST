@@ -24,6 +24,15 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
   const [submittingRsvp, setSubmittingRsvp] = useState(false);
   const [rsvpCompleted, setRsvpCompleted] = useState(false);
   const [simulatedPayload, setSimulatedPayload] = useState('');
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    const timeoutId = setTimeout(() => {
+      setToastMessage((prev) => prev === message ? null : prev);
+    }, 4000);
+    return () => clearTimeout(timeoutId);
+  };
 
   // Audio Ref
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -43,7 +52,6 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
         setSeconds(0);
         return;
       }
-
       const d = Math.floor(distance / (1000 * 60 * 60 * 24));
       const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -73,28 +81,40 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
   const toggleMusic = () => {
     if (!audioRef.current) {
       // Elegant, peaceful piano track appropriate for events
-      audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-serene-view-1641.mp3');
-      audioRef.current.loop = true;
+      try {
+        const audio = new Audio('https://assets.mixkit.co/music/preview/mixkit-serene-view-1641.mp3');
+        audio.loop = true;
+        audio.addEventListener('error', (e) => {
+          console.warn("Audio failed to load or was blocked:", e);
+        });
+        audioRef.current = audio;
+      } catch (err) {
+        console.warn("Audio creation failed:", err);
+      }
     }
 
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(err => {
+          console.log("Audio play blocked by browser config, checking support:", err);
+          // Fallback user alert or toast
+          showToast("Haz clic en reproducir nuevamente. El reproductor requiere interacción previa.");
+        });
+      }
     } else {
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch(err => {
-        console.log("Audio play blocked by browser config, checking support:", err);
-        // Fallback user alert or toast
-        alert("Haz clic en reproducir nuevamente. El reproductor requiere interacción previa.");
-      });
+      showToast("El audio no está disponible en este momento.");
     }
   };
 
   const handleSimulateRsvp = (e: React.FormEvent) => {
     e.preventDefault();
     if (!guestName.trim()) {
-      alert("Por favor ingresa tu nombre completo.");
+      showToast("Por favor ingresa tu nombre completo.");
       return;
     }
 
@@ -109,7 +129,15 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
 
   const handleOpenWhatsAppSim = () => {
     const encoded = encodeURIComponent(simulatedPayload);
-    window.open(`https://wa.me/524446500910?text=${encoded}`, '_blank');
+    try {
+      const win = window.open(`https://wa.me/524446500910?text=${encoded}`, '_blank');
+      if (!win) {
+        showToast("Por favor habilita las ventanas emergentes (popups) para abrir WhatsApp.");
+      }
+    } catch (e) {
+      console.warn("Popup blocked by container sandbox policy:", e);
+      showToast("La ventana externa fue bloqueada. Copiaremos la confirmación.");
+    }
   };
 
   // Theme configuration helper
@@ -395,7 +423,7 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
                           <strong>Lugar:</strong> Templo de Santo Domingo, Calle 60 #24X, Centro Histórico.
                         </p>
                         <button
-                          onClick={() => alert("Ubicación GPS: Abre Google Maps con la ruta hacia el Templo de Santo Domingo en Mérida (Simulado).")}
+                          onClick={() => showToast("Ubicación GPS: Abre Google Maps con la ruta hacia el Templo de Santo Domingo en Mérida (Simulado).")}
                           className="mt-2 text-[9px] font-sans font-medium uppercase tracking-wider text-luxury-beige-700 hover:text-luxury-beige-900 flex items-center space-x-1"
                         >
                           <span>📍 Ver en Google Maps</span>
@@ -413,7 +441,7 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
                           <strong>Lugar:</strong> Quinta Quinta Hermosa, Carr. Mérida-Tulum Km 14.
                         </p>
                         <button
-                          onClick={() => alert("Ubicación GPS: Abre Google Maps con la ruta hacia la Hacienda Quinta Hermosa (Simulado).")}
+                          onClick={() => showToast("Ubicación GPS: Abre Google Maps con la ruta hacia la Hacienda Quinta Hermosa (Simulado).")}
                           className="mt-2 text-[9px] font-sans font-medium uppercase tracking-wider text-luxury-beige-700 hover:text-luxury-beige-900 flex items-center space-x-1"
                         >
                           <span>📍 Ver Recepción GPS</span>
@@ -581,6 +609,22 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
         </div>
 
       </motion.div>
+
+      {/* Elegant overlay Toast */}
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="fixed bottom-10 left-1/2 -translate-x-1/2 z-55 bg-neutral-900/95 backdrop-blur-md text-white border border-neutral-800 px-6 py-3.5 rounded-full shadow-2xl flex items-center gap-3 font-sans text-xs max-w-sm text-center"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-luxury-beige-400 animate-ping shrink-0" />
+            <span>{toastMessage}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
