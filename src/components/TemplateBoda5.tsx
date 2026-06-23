@@ -113,9 +113,15 @@ export default function TemplateBoda5() {
   // Initialize background music
   useEffect(() => {
     // Beautiful romantic instrumental track
-    audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-piano-momentum-741.mp3');
+    audioRef.current = new Audio('/music.mp3');
     audioRef.current.loop = true;
     audioRef.current.volume = 0.5;
+
+    audioRef.current.play()
+      .then(() => setIsPlaying(true))
+      .catch((err) => {
+        console.warn("Autoplay blocked on mount:", err);
+      });
 
     // Listeners for progress updates
     const updateTime = () => {

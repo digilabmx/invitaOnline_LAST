@@ -106,9 +106,15 @@ export default function TemplateBoda6() {
 
   // Background music audio setup
   useEffect(() => {
-    audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-midnight-groove-742.mp3');
+    audioRef.current = new Audio('/music.mp3');
     audioRef.current.loop = true;
     audioRef.current.volume = 0.40;
+
+    audioRef.current.play()
+      .then(() => setIsPlaying(true))
+      .catch((err) => {
+        console.warn("Autoplay blocked on mount:", err);
+      });
 
     const updateTime = () => {
       if (audioRef.current) setCurrentTime(Math.floor(audioRef.current.currentTime));

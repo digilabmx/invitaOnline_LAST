@@ -348,7 +348,7 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
     if (!audioRef.current) {
       // Elegant, peaceful piano track appropriate for events
       try {
-        const audio = new Audio('https://assets.mixkit.co/music/preview/mixkit-piano-momentum-741.mp3');
+        const audio = new Audio('/music.mp3');
         audio.loop = true;
         audio.addEventListener('error', (e) => {
           console.warn("Audio failed to load or was blocked:", e);

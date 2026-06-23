@@ -210,7 +210,7 @@ export default function TemplateBoda9() {
 
   const startSynthesizer = () => {
     if (!audioRef.current) {
-      audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-romantic-vows-1151.mp3');
+      audioRef.current = new Audio('/music.mp3');
       audioRef.current.loop = true;
     }
     setIsPlaying(true);
@@ -227,8 +227,17 @@ export default function TemplateBoda9() {
     }
   };
 
-  // Clean audio on unmount
+  // Clean audio on unmount & autoplay on mount
   useEffect(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio('/music.mp3');
+      audioRef.current.loop = true;
+    }
+    setIsPlaying(true);
+    audioRef.current.play().catch(err => {
+      console.warn("Autoplay blocked on mount:", err);
+    });
+
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();

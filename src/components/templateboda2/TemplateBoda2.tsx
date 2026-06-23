@@ -64,8 +64,25 @@ export default function TemplateBoda2() {
     return () => clearInterval(interval);
   }, [targetDate]);
 
-  // Clean audio on unmount
+  // Clean audio on unmount & autoplay on mount
   useEffect(() => {
+    if (!audioRef.current) {
+      try {
+        const audio = new Audio('/music.mp3');
+        audio.loop = true;
+        audioRef.current = audio;
+      } catch (err) {
+        console.warn("Could not load audio source: ", err);
+      }
+    }
+    if (audioRef.current) {
+      audioRef.current.play()
+        .then(() => setIsPlaying(true))
+        .catch((err) => {
+          console.warn("Autoplay blocked on mount:", err);
+        });
+    }
+
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -84,7 +101,7 @@ export default function TemplateBoda2() {
   const handleToggleMusic = () => {
     if (!audioRef.current) {
       try {
-        const audio = new Audio('https://assets.mixkit.co/music/preview/mixkit-romantic-vows-1151.mp3');
+        const audio = new Audio('/music.mp3');
         audio.loop = true;
         audioRef.current = audio;
       } catch (err) {

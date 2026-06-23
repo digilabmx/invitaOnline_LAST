@@ -128,8 +128,18 @@ export default function TemplateBoda() {
     }
   };
 
-  // Clean audio on unmount
+  // Clean audio on unmount & autoplay on mount
   useEffect(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio('/music.mp3');
+      audioRef.current.loop = true;
+    }
+    audioRef.current.play()
+      .then(() => setIsPlaying(true))
+      .catch((err) => {
+        console.warn("Autoplay blocked on mount:", err);
+      });
+
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
