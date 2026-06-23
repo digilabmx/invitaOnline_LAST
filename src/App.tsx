@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'motion/react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -19,9 +19,34 @@ import DemoModal from './components/DemoModal';
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton';
 import { InvitationExample } from './types';
 import { EXAMPLES } from './data';
+import TemplateBoda from './components/TemplateBoda';
 
 export default function App() {
   const [selectedExample, setSelectedExample] = useState<InvitationExample | null>(null);
+  const [route, setRoute] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.hash || window.location.pathname;
+    }
+    return '';
+  });
+
+  useEffect(() => {
+    const handleNavigation = () => {
+      setRoute(window.location.hash || window.location.pathname);
+    };
+    window.addEventListener('hashchange', handleNavigation);
+    window.addEventListener('popstate', handleNavigation);
+    return () => {
+      window.removeEventListener('hashchange', handleNavigation);
+      window.removeEventListener('popstate', handleNavigation);
+    };
+  }, []);
+
+  const isTemplateBoda = route.toLowerCase().includes('templateboda');
+
+  if (isTemplateBoda) {
+    return <TemplateBoda />;
+  }
 
   const handleVerEjemplos = () => {
     const el = document.getElementById('galeria');

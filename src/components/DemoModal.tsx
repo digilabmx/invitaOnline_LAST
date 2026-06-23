@@ -255,6 +255,24 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
                 </div>
               </div>
             </div>
+
+            {example.category === 'Bodas' && (
+              <div className="mt-8 bg-[#FAF9F6] border border-[#A68966]/20 p-4 rounded-xl shadow-sm text-left">
+                <p className="font-sans text-[9px] uppercase tracking-wider font-bold text-[#A68966] mb-1">
+                  ✨ DETECTADA NUEVA PLANTILLA INMERSIVA DE LUJO
+                </p>
+                <p className="font-sans text-[10px] text-stone-600 leading-relaxed mb-3 font-light">
+                  Hemos diseñado un demo en pantalla completa con sobre interactivo, sutiles pétalos flotantes y reproductor integrado para tu boda.
+                </p>
+                <a
+                  href="#templateboda"
+                  className="inline-flex items-center space-x-1.5 px-3 py-2 bg-[#A68966] hover:bg-[#8F7250] text-[#fbfbfa] text-[9px] font-sans font-bold uppercase tracking-wider rounded-lg transition-colors w-full justify-center shadow-xs"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
+                  <span>Ver Demo Completa Inmersiva</span>
+                </a>
+              </div>
+            )}
           </div>
 
           <div className="mt-8 pt-6 border-t border-luxury-beige-200 flex items-center justify-between">

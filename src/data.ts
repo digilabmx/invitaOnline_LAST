@@ -149,7 +149,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Boda en Hacienda',
     text: '“La invitación fue un éxito absoluto. A todos nuestros invitados les encantó la música de fondo y la facilidad de confirmar asistencia con un solo click. InvitaOnline nos ahorró miles de pesos en papelería y envíos.”',
     rating: 5,
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces&q=80',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces&q=70&fm=webp',
     date: 'Hace 1 mes'
   },
   {
@@ -158,7 +158,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Mamá de Sofía (XV Años)',
     text: '“El diseño de puras flores acuareladas con destellos rosas quedó precioso. Modificaron los colores para que coincidieran exactamente con el vestido de mi hija y nos entregaron en solo dos días. Altamente profesionales.”',
     rating: 5,
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=faces&q=80',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=faces&q=70&fm=webp',
     date: 'Hace 3 semanas'
   },
   {
@@ -167,7 +167,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Boda Destino Tulum',
     text: '“Viviendo fuera de México, mandar invitaciones físicas era imposible. Con InvitaOnline enviamos por WhatsApp un link hermoso. El mapa interactivo ayudó a que todos llegaran sin contratiempos al hotel de playa.”',
     rating: 5,
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces&q=80',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces&q=70&fm=webp',
     date: 'Hace 2 meses'
   }
 ];
