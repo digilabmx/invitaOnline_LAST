@@ -24,6 +24,7 @@ import { EXAMPLES } from './data';
 const TemplateBoda = lazy(() => import('./components/TemplateBoda'));
 const TemplateBoda2 = lazy(() => import('./components/templateboda2/TemplateBoda2'));
 const TemplateBoda4 = lazy(() => import('./components/TemplateBoda4'));
+const TemplateBoda5 = lazy(() => import('./components/TemplateBoda5'));
 
 export default function App() {
   const [selectedExample, setSelectedExample] = useState<InvitationExample | null>(null);
@@ -61,7 +62,7 @@ export default function App() {
         if (found) setSelectedExample(found);
       } else {
         // Only close if we are not on one of the custom fullscreens
-        if (!['#templateboda', '#templateboda2', '#templateboda4'].includes(currentHash)) {
+        if (!['#templateboda', '#templateboda2', '#templateboda4', '#templateboda5'].includes(currentHash)) {
           setSelectedExample(null);
         }
       }
@@ -71,9 +72,23 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashCheck);
   }, []);
 
-  const isTemplateBoda4 = route.toLowerCase().includes('templateboda4');
-  const isTemplateBoda2 = route.toLowerCase().includes('templateboda2') && !isTemplateBoda4;
-  const isTemplateBoda = (route.toLowerCase().includes('templateboda') || route.toLowerCase().includes('demo-boda')) && !isTemplateBoda2 && !isTemplateBoda4;
+  const isTemplateBoda5 = route.toLowerCase().includes('templateboda5');
+  const isTemplateBoda4 = route.toLowerCase().includes('templateboda4') && !isTemplateBoda5;
+  const isTemplateBoda2 = route.toLowerCase().includes('templateboda2') && !isTemplateBoda4 && !isTemplateBoda5;
+  const isTemplateBoda = (route.toLowerCase().includes('templateboda') || route.toLowerCase().includes('demo-boda')) && !isTemplateBoda2 && !isTemplateBoda4 && !isTemplateBoda5;
+
+  if (isTemplateBoda5) {
+    return (
+      <Suspense fallback={
+        <div className="min-h-screen bg-[#0B0B0B] flex flex-col items-center justify-center font-serif text-[#D4AF37]">
+          <div className="w-12 h-12 rounded-full border border-[#D4AF37]/25 border-t-[#D4AF37] animate-spin mb-4" />
+          <p className="text-xs uppercase tracking-[0.25em]">Cargando Alta Costura Sofía & Alejandro...</p>
+        </div>
+      }>
+        <TemplateBoda5 />
+      </Suspense>
+    );
+  }
 
   if (isTemplateBoda4) {
     return (

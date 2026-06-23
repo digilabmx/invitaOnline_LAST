@@ -73,6 +73,20 @@ const CATEGORY_STYLES: Record<string, Array<{
       description: 'Diseño grayscale minimalista de alta costura inspirado en el romance vintage.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda4'
+    },
+    {
+      id: 5,
+      name: 'Colección Cartier (Elegancia Suprema)',
+      primaryColor: 'bg-black',
+      accentColor: 'text-[#D4AF37]',
+      accentBg: 'bg-[#0B0B0B]',
+      title: 'Sofía & Alejandro',
+      tagline: 'Una experiencia premium de cinco estrellas inspirada en la alta joyería.',
+      badge: 'Template 5 Premium',
+      image: 'https://images.unsplash.com/photo-1519225495810-7517cbd14560?auto=format&fit=crop&q=80&w=1200&fm=webp',
+      description: 'Diseño editorial con reproductor de audio de lujo, pétalos de oro champagne, libro de recuerdos real e interactivo.',
+      isCustomFullscreen: true,
+      fullscreenUrl: '#templateboda5'
     }
   ],
   'XV Años': [
