@@ -1,13 +1,13 @@
 import { InvitationExample, Benefit, PricingPackage, Testimonial, FAQItem } from './types';
 
-export const HERO_IMAGE = '/src/assets/images/hero_phone_mockup_1781992151448.jpg';
+export const HERO_IMAGE = '/public/images/hero_phone_mockup_1781992151448.jpg';
 
 export const EXAMPLES: InvitationExample[] = [
   {
     id: 'ex-1',
     title: 'Elegancia Clásica (Sofía & Alejandro)',
     category: 'Bodas',
-    image: '/src/assets/images/wedding_portrait_1781994427687.jpg',
+    image: '/public/images/wedding_portrait_1781994427687.jpg',
     demoUrl: '#demo-boda',
     accentColor: '#b9976b',
     features: ['Música de Fondo', 'Confirmación por WhatsApp', 'Mesa de Regalos', 'Efecto de Hojas cayendo']
@@ -16,7 +16,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-2',
     title: 'Destellos de Rosa (Valentina)',
     category: 'XV Años',
-    image: '/src/assets/images/quince_card_1781992176864.jpg',
+    image: '/public/images/quince_card_1781992176864.jpg',
     demoUrl: '#demo-xv',
     accentColor: '#e0b3b3',
     features: ['Cuenta Regresiva', 'Código de Vestimenta', 'Galería de Fotos', 'Efecto Glitter']
@@ -25,7 +25,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-3',
     title: 'Floralia Acuarela (Bautizo Mateo)',
     category: 'Bautizos',
-    image: '/src/assets/images/bautizo_card_1781992187887.jpg',
+    image: '/public/images/bautizo_card_1781992187887.jpg',
     demoUrl: '#demo-bautizo',
     accentColor: '#8da592',
     features: ['Ubicación GPS', 'Información de Padrinos', 'Espacio para Oración', 'Estilo Minimalista']
@@ -34,7 +34,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-4',
     title: 'Noche de Gala (Santiago (40 años))',
     category: 'Cumpleaños',
-    image: '/src/assets/images/cumpleanos_card_1781992199358.jpg',
+    image: '/public/images/cumpleanos_card_1781992199358.jpg',
     demoUrl: '#demo-cumpleanos',
     accentColor: '#3a3028',
     features: ['Sugerencia de Hospedaje', 'Confirmación Instantánea', 'Playlist de Spotify', 'Diseño Dark Premium']
