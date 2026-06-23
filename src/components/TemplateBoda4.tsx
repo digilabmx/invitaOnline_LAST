@@ -57,7 +57,7 @@ export default function TemplateBoda4() {
 
   useEffect(() => {
     // Elegant, romantic instrumental classical track for luxury vibe - soft piano
-    audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-piano-momentum-741.mp3');
+    audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-romantic-vows-1151.mp3');
     audioRef.current.loop = true;
     audioRef.current.volume = 0.45;
 

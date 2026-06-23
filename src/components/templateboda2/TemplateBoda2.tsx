@@ -84,7 +84,7 @@ export default function TemplateBoda2() {
   const handleToggleMusic = () => {
     if (!audioRef.current) {
       try {
-        const audio = new Audio('https://assets.mixkit.co/music/preview/mixkit-piano-momentum-741.mp3');
+        const audio = new Audio('https://assets.mixkit.co/music/preview/mixkit-romantic-vows-1151.mp3');
         audio.loop = true;
         audioRef.current = audio;
       } catch (err) {

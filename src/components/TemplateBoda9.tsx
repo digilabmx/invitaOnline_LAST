@@ -205,164 +205,39 @@ export default function TemplateBoda9() {
     return () => clearInterval(interval);
   }, []);
 
-  // Web Audio Cinematic Piano Synthesis Engine
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const pianoSequenceRef = useRef<number | null>(null);
-  const isPlayingRef = useRef<boolean>(false);
+  // Background MP3 Music Engine
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Play ambient synth piano notes
   const startSynthesizer = () => {
-    if (audioInited && audioCtxRef.current) {
-      if (audioCtxRef.current.state === 'suspended') {
-        audioCtxRef.current.resume();
-      }
-      isPlayingRef.current = true;
-      setIsPlaying(true);
-      playCinematicPianoArpeggio();
-      return;
+    if (!audioRef.current) {
+      audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-romantic-vows-1151.mp3');
+      audioRef.current.loop = true;
     }
-
-    try {
-      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-      const ctx = new AudioContextClass();
-      audioCtxRef.current = ctx;
-      setAudioInited(true);
-      isPlayingRef.current = true;
+    setIsPlaying(true);
+    audioRef.current.play().catch(err => {
+      console.warn("Audio blocked:", err);
       setIsPlaying(true);
-      playCinematicPianoArpeggio();
-    } catch (err) {
-      console.warn("Web Audio not supported in this environment.", err);
-    }
+    });
   };
 
   const stopSynthesizer = () => {
-    isPlayingRef.current = false;
     setIsPlaying(false);
-    if (pianoSequenceRef.current) {
-      clearTimeout(pianoSequenceRef.current);
-      pianoSequenceRef.current = null;
+    if (audioRef.current) {
+      audioRef.current.pause();
     }
   };
 
-  // Sound generator for a deep space cosmic tone (orchestral background pad)
-  const playCosmicPad = (ctx: AudioContext, time: number, freq: number, duration: number = 4.0) => {
-    const osc1 = ctx.createOscillator();
-    const osc2 = ctx.createOscillator();
-    const gainNode = ctx.createGain();
-    const filter = ctx.createBiquadFilter();
-
-    osc1.type = 'sine';
-    osc1.frequency.setValueAtTime(freq, time);
-
-    osc2.type = 'triangle';
-    osc2.frequency.setValueAtTime(freq * 1.5, time); // fifth harmonic
-
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(400, time);
-    filter.frequency.exponentialRampToValueAtTime(150, time + duration);
-
-    gainNode.gain.setValueAtTime(0, time);
-    gainNode.gain.linearRampToValueAtTime(0.08, time + 1.5);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, time + duration);
-
-    osc1.connect(filter);
-    osc2.connect(filter);
-    filter.connect(gainNode);
-    gainNode.connect(ctx.destination);
-
-    osc1.start(time);
-    osc1.stop(time + duration);
-    osc2.start(time);
-    osc2.stop(time + duration);
-  };
-
-  // Synthesize a beautiful soft piano note with hammer thud and resonance
-  const playPianoNote = (ctx: AudioContext, time: number, freq: number, duration: number = 2.5, volume: number = 0.15) => {
-    // Principal sound
-    const oscCore = ctx.createOscillator();
-    oscCore.type = 'triangle';
-    oscCore.frequency.setValueAtTime(freq, time);
-
-    // Warm high harmonic
-    const oscHarm = ctx.createOscillator();
-    oscHarm.type = 'sine';
-    oscHarm.frequency.setValueAtTime(freq * 2, time);
-
-    const gainCore = ctx.createGain();
-    gainCore.gain.setValueAtTime(0, time);
-    gainCore.gain.linearRampToValueAtTime(volume, time + 0.005);
-    gainCore.gain.exponentialRampToValueAtTime(0.001, time + duration);
-
-    const gainHarm = ctx.createGain();
-    gainHarm.gain.setValueAtTime(0, time);
-    gainHarm.gain.linearRampToValueAtTime(volume * 0.4, time + 0.01);
-    gainHarm.gain.exponentialRampToValueAtTime(0.001, time + duration * 0.6);
-
-    // Filter to soften the triangle wave into a sweet wooden hammer sound
-    const lpFilter = ctx.createBiquadFilter();
-    lpFilter.type = 'lowpass';
-    lpFilter.frequency.setValueAtTime(1000, time);
-    lpFilter.frequency.exponentialRampToValueAtTime(350, time + 0.3);
-
-    oscCore.connect(gainCore);
-    oscHarm.connect(gainHarm);
-
-    gainCore.connect(lpFilter);
-    gainHarm.connect(lpFilter);
-    lpFilter.connect(ctx.destination);
-
-    oscCore.start(time);
-    oscCore.stop(time + duration);
-    oscHarm.start(time);
-    oscHarm.stop(time + duration);
-  };
-
-  // Beautiful cinematic ambient piano arpeggio loop
-  const playCinematicPianoArpeggio = () => {
-    const ctx = audioCtxRef.current;
-    if (!ctx || !isPlayingRef.current) return;
-
-    // Frequencies representing starry space chord changes
-    // Progression: Bm7 -> Gmaj7 -> Dmaj7 -> A9sus4 (celestial resonance)
-    const progressions = [
-      [246.94, 293.66, 369.99, 440.00, 493.88], // Bm7 (B, D, F#, A, B)
-      [196.00, 246.94, 293.66, 392.00, 440.00], // Gmaj7 (G, B, D, G, A)
-      [146.83, 220.00, 277.18, 329.63, 440.00], // Dmaj7 (D, A, C#, E, A)
-      [220.00, 293.66, 329.63, 440.00, 587.33]  // A9sus4 (A, D, E, A, D)
-    ];
-
-    let chordIndex = 0;
-    let arpeggioIndex = 0;
-
-    const tick = () => {
-      if (!isPlayingRef.current) return;
-      const now = ctx.currentTime;
-      const currentChord = progressions[chordIndex];
-
-      // Play soft arpeggiated piano note
-      const baseNote = currentChord[arpeggioIndex % currentChord.length];
-      playPianoNote(ctx, now, baseNote, 2.0, 0.12);
-
-      // On beat 0, play an atmospheric string-like cosmic pad & deep bass note
-      if (arpeggioIndex === 0) {
-        // Deep bass
-        playPianoNote(ctx, now, currentChord[0] / 2, 3.5, 0.2);
-        // Soft pad frequency (Bm/G/D/A)
-        playCosmicPad(ctx, now, currentChord[1], 4.5);
+  // Clean audio on unmount
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
       }
-
-      arpeggioIndex++;
-      if (arpeggioIndex >= 8) {
-        arpeggioIndex = 0;
-        chordIndex = (chordIndex + 1) % progressions.length;
-      }
-
-      // Schedule next arpeggio note in 350ms (peaceful tempo)
-      pianoSequenceRef.current = window.setTimeout(tick, 350);
     };
+  }, []);
 
-    tick();
-  };
+  // Obsolete synthesis engines removed in favor of high-quality romantic MP3 streaming
+
 
   const handleOpenInvitation = () => {
     setIsOpen(true);

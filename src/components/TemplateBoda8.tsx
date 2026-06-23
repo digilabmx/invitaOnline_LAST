@@ -165,188 +165,49 @@ export default function TemplateBoda8() {
     return () => clearInterval(interval);
   }, []);
 
-  // Web Audio Synthesis Engine
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const guitarSequenceRef = useRef<number | null>(null);
-  const isPlayingRef = useRef<boolean>(false);
+  // Background MP3 Music Engine
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Synthesize a majestic Mexican Spanish Guitar Chord & Classical Violin melody
   const startSynthesizer = () => {
-    if (audioInited && audioCtxRef.current) {
-      if (audioCtxRef.current.state === 'suspended') {
-        audioCtxRef.current.resume();
-      }
-      isPlayingRef.current = true;
+    if (!audioRef.current) {
+      audioRef.current = new Audio('https://assets.mixkit.co/music/preview/mixkit-romantic-vows-1151.mp3');
+      audioRef.current.loop = true;
+    }
+    setIsPlaying(true);
+    audioRef.current.play().catch(err => {
+      console.warn("Audio blocked:", err);
       setIsPlaying(true);
-      playHaciendaMelody();
-      return;
-    }
-
-    try {
-      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-      const ctx = new AudioContextClass();
-      audioCtxRef.current = ctx;
-      setAudioInited(true);
-      isPlayingRef.current = true;
-      setIsPlaying(true);
-      playHaciendaMelody();
-    } catch (err) {
-      console.warn("Web Audio is not supported in this browser.", err);
-    }
-  };
-
-  const stopSynthesizer = () => {
-    isPlayingRef.current = false;
-    setIsPlaying(false);
-    if (guitarSequenceRef.current) {
-      clearTimeout(guitarSequenceRef.current);
-      guitarSequenceRef.current = null;
-    }
-  };
-
-  // Sound generator for a deep resonant church bell
-  const playChurchBell = (ctx: AudioContext, time: number, pitch: number = 180) => {
-    // A classic bell sound is made of several inharmonic partials
-    const partials = [1, 1.9, 2.7, 3.4, 4.2];
-    const gains = [0.8, 0.4, 0.25, 0.15, 0.1];
-
-    const masterGain = ctx.createGain();
-    masterGain.gain.setValueAtTime(0, time);
-    masterGain.gain.linearRampToValueAtTime(0.35, time + 0.05);
-    masterGain.gain.exponentialRampToValueAtTime(0.0001, time + 4.5);
-    masterGain.connect(ctx.destination);
-
-    partials.forEach((pRatio, index) => {
-      const osc = ctx.createOscillator();
-      const pGain = ctx.createGain();
-      
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(pitch * pRatio, time);
-      
-      // Slight pitch wobble for vintage iron bell character
-      osc.frequency.setValueAtTime(pitch * pRatio, time);
-      osc.frequency.linearRampToValueAtTime(pitch * pRatio * 0.995, time + 4.0);
-
-      pGain.gain.setValueAtTime(gains[index] * 0.5, time);
-      pGain.gain.exponentialRampToValueAtTime(0.0001, time + (4.0 / pRatio));
-
-      osc.connect(pGain);
-      pGain.connect(masterGain);
-      osc.start(time);
-      osc.stop(time + 5.0);
     });
   };
 
-  // Plucked Guitar String synthesis using sine and triangle layers with short noise burst filter
-  const playGuitarPluck = (ctx: AudioContext, time: number, freq: number, duration: number = 1.2, volume: number = 0.25) => {
-    const pluckGain = ctx.createGain();
-    pluckGain.gain.setValueAtTime(0, time);
-    pluckGain.gain.linearRampToValueAtTime(volume, time + 0.01);
-    pluckGain.gain.exponentialRampToValueAtTime(0.001, time + duration);
-
-    // Warm triangle oscillator representing the wooden body
-    const oscBody = ctx.createOscillator();
-    oscBody.type = 'triangle';
-    oscBody.frequency.setValueAtTime(freq, time);
-    oscBody.frequency.exponentialRampToValueAtTime(freq * 0.998, time + duration);
-
-    // High frequency harmonic
-    const oscString = ctx.createOscillator();
-    oscString.type = 'sine';
-    oscString.frequency.setValueAtTime(freq * 2, time);
-
-    const bodyGain = ctx.createGain();
-    bodyGain.gain.setValueAtTime(0.8, time);
-    bodyGain.gain.exponentialRampToValueAtTime(0.001, time + duration * 0.8);
-
-    const stringGain = ctx.createGain();
-    stringGain.gain.setValueAtTime(0.2, time);
-    stringGain.gain.exponentialRampToValueAtTime(0.001, time + duration * 0.4);
-
-    oscBody.connect(bodyGain);
-    oscString.connect(stringGain);
-
-    bodyGain.connect(pluckGain);
-    stringGain.connect(pluckGain);
-    
-    // Add a simple bandpass filter for the "plucking" resonance
-    const filter = ctx.createBiquadFilter();
-    filter.type = 'bandpass';
-    filter.Q.setValueAtTime(1.5, time);
-    filter.frequency.setValueAtTime(800, time);
-    filter.frequency.exponentialRampToValueAtTime(120, time + 0.15);
-
-    pluckGain.connect(filter);
-    filter.connect(ctx.destination);
-
-    oscBody.start(time);
-    oscBody.stop(time + duration);
-    oscString.start(time);
-    oscString.stop(time + duration);
+  const stopSynthesizer = () => {
+    setIsPlaying(false);
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
   };
 
-  // Rich flowing Spanish arpeggio loop and warm slow violin
-  const playHaciendaMelody = () => {
-    const ctx = audioCtxRef.current;
-    if (!ctx || !isPlayingRef.current) return;
-
-    const chords = [
-      [146.83, 220.00, 277.18, 329.63, 440.00], // Dmaj7 / A
-      [130.81, 196.00, 246.94, 293.66, 392.00], // Cmaj7
-      [110.07, 164.81, 220.00, 261.63, 329.63], // Am
-      [123.47, 185.00, 246.94, 311.13, 369.99]  // B7
-    ];
-
-    let chordIdx = 0;
-    let noteIdx = 0;
-
-    const tick = () => {
-      if (!isPlayingRef.current) return;
-      const now = ctx.currentTime;
-      const currentChord = chords[chordIdx];
-
-      // Play elegant classic acoustic arpeggio
-      const noteFreq = currentChord[noteIdx % currentChord.length];
-      playGuitarPluck(ctx, now, noteFreq, 1.4, 0.18);
-
-      // On beat 0 of each chord, play a resonant bass note
-      if (noteIdx === 0) {
-        playGuitarPluck(ctx, now, currentChord[0] / 2, 2.0, 0.35);
+  // Clean audio on unmount
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
       }
-
-      noteIdx++;
-      if (noteIdx >= 8) {
-        noteIdx = 0;
-        chordIdx = (chordIdx + 1) % chords.length;
-      }
-
-      // Schedule next pluck in 280ms for a steady romance rhythm
-      guitarSequenceRef.current = window.setTimeout(tick, 280);
     };
+  }, []);
 
-    tick();
-  };
+  // Obsolete synthesis engines removed in favor of high-quality romantic MP3 streaming
 
-  // Open the Scroll, light up candles, and play distant church bells
+
+  // Open the Scroll and light up candles
   const handleOpenInvitation = () => {
     setIsOpen(true);
     startSynthesizer();
     
-    // Light up the hacienda candles after 1s
+    // Light up the hacienda candles after 1.2s
     setTimeout(() => {
       setCandleLit(true);
     }, 1200);
-
-    // Play three majestic church bells to represent the San Miguel de Allende cathedral call!
-    setTimeout(() => {
-      const ctx = audioCtxRef.current;
-      if (ctx) {
-        const now = ctx.currentTime;
-        playChurchBell(ctx, now, 120);
-        playChurchBell(ctx, now + 1.2, 120 * 1.2);
-        playChurchBell(ctx, now + 2.4, 120);
-      }
-    }, 800);
   };
 
   const handleCopy = (text: string) => {
