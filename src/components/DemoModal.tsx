@@ -87,6 +87,20 @@ const CATEGORY_STYLES: Record<string, Array<{
       description: 'Diseño editorial con reproductor de audio de lujo, pétalos de oro champagne, libro de recuerdos real e interactivo.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda5'
+    },
+    {
+      id: 6,
+      name: 'Colección Rolls Royce & Dior (Elite)',
+      primaryColor: 'bg-black',
+      accentColor: 'text-[#C8C8C8]',
+      accentBg: 'bg-[#0A0A0A]',
+      title: 'Victoria & Sebastián',
+      tagline: 'La experiencia definitiva de ultra-lujo y silencioso refinamiento.',
+      badge: 'Template 6 Ultra Premium',
+      image: '/v_s_hero_1782248283047.jpg',
+      description: 'Sobre negro mate obsidiana interactivo con monograma de plata cromada, reloj suizo mecánico y caja fuerte de regalos.',
+      isCustomFullscreen: true,
+      fullscreenUrl: '#templateboda6'
     }
   ],
   'XV Años': [

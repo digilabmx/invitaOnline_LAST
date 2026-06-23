@@ -4,6 +4,15 @@ export const HERO_IMAGE = '/hero_phone_mockup_1781992151448.jpg';
 
 export const EXAMPLES: InvitationExample[] = [
   {
+    id: 'ex-rolls-royce-dior',
+    title: 'Colección Rolls Royce & Dior (Victoria & Sebastián)',
+    category: 'Bodas',
+    image: '/v_s_hero_1782248283047.jpg',
+    demoUrl: '#templateboda6',
+    accentColor: '#C8C8C8',
+    features: ['Sobre de Lujo Obsidian & Plata', 'Efecto Partículas Plata Cromada', 'Reloj Suizo de Cuenta Regresiva', 'Caja Fuerte de Regalos e Historia 3D']
+  },
+  {
     id: 'ex-cartier-luxury',
     title: 'Colección Cartier: Alta Costura (Sofía & Alejandro)',
     category: 'Bodas',

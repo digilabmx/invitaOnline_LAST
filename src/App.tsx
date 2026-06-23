@@ -25,6 +25,7 @@ const TemplateBoda = lazy(() => import('./components/TemplateBoda'));
 const TemplateBoda2 = lazy(() => import('./components/templateboda2/TemplateBoda2'));
 const TemplateBoda4 = lazy(() => import('./components/TemplateBoda4'));
 const TemplateBoda5 = lazy(() => import('./components/TemplateBoda5'));
+const TemplateBoda6 = lazy(() => import('./components/TemplateBoda6'));
 
 export default function App() {
   const [selectedExample, setSelectedExample] = useState<InvitationExample | null>(null);
@@ -62,7 +63,7 @@ export default function App() {
         if (found) setSelectedExample(found);
       } else {
         // Only close if we are not on one of the custom fullscreens
-        if (!['#templateboda', '#templateboda2', '#templateboda4', '#templateboda5'].includes(currentHash)) {
+        if (!['#templateboda', '#templateboda2', '#templateboda4', '#templateboda5', '#templateboda6'].includes(currentHash)) {
           setSelectedExample(null);
         }
       }
@@ -72,10 +73,24 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashCheck);
   }, []);
 
-  const isTemplateBoda5 = route.toLowerCase().includes('templateboda5');
-  const isTemplateBoda4 = route.toLowerCase().includes('templateboda4') && !isTemplateBoda5;
-  const isTemplateBoda2 = route.toLowerCase().includes('templateboda2') && !isTemplateBoda4 && !isTemplateBoda5;
-  const isTemplateBoda = (route.toLowerCase().includes('templateboda') || route.toLowerCase().includes('demo-boda')) && !isTemplateBoda2 && !isTemplateBoda4 && !isTemplateBoda5;
+  const isTemplateBoda6 = route.toLowerCase().includes('templateboda6');
+  const isTemplateBoda5 = route.toLowerCase().includes('templateboda5') && !isTemplateBoda6;
+  const isTemplateBoda4 = route.toLowerCase().includes('templateboda4') && !isTemplateBoda5 && !isTemplateBoda6;
+  const isTemplateBoda2 = route.toLowerCase().includes('templateboda2') && !isTemplateBoda4 && !isTemplateBoda5 && !isTemplateBoda6;
+  const isTemplateBoda = (route.toLowerCase().includes('templateboda') || route.toLowerCase().includes('demo-boda')) && !isTemplateBoda2 && !isTemplateBoda4 && !isTemplateBoda5 && !isTemplateBoda6;
+
+  if (isTemplateBoda6) {
+    return (
+      <Suspense fallback={
+        <div className="min-h-screen bg-[#0A0A0A] flex flex-col items-center justify-center font-serif text-[#C8C8C8]">
+          <div className="w-12 h-12 rounded-full border border-[#C8C8C8]/20 border-t-[#C8C8C8] animate-spin mb-4" />
+          <p className="text-xs uppercase tracking-[0.25em]">Cargando Victoria & Sebastián...</p>
+        </div>
+      }>
+        <TemplateBoda6 />
+      </Suspense>
+    );
+  }
 
   if (isTemplateBoda5) {
     return (
