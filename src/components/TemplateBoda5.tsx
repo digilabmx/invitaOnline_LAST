@@ -450,10 +450,11 @@ export default function TemplateBoda5() {
           {/* Premium Main Image Portrait with Dior styling and luxury gold border */}
           <div className="relative w-full aspect-[4/5] rounded-[30px] overflow-hidden bg-stone-900 border border-[#D4AF37]/25 shadow-2xl my-8">
             <img
-              src="https://images.unsplash.com/photo-1519225495810-7517cbd14560?auto=format&fit=crop&q=80&w=1200&fm=webp"
+              src="/sofia_alejandro_stairs_1782247280237.jpg"
               alt="Sofía & Alejandro"
               className="w-full h-full object-cover filter contrast-[1.05] brightness-[0.85] saturate-75 transition-all duration-1000"
               loading="eager"
+              referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0E] via-transparent to-transparent" />
             

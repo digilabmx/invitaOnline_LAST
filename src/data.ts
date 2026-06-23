@@ -7,7 +7,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-cartier-luxury',
     title: 'Colección Cartier: Alta Costura (Sofía & Alejandro)',
     category: 'Bodas',
-    image: 'https://images.unsplash.com/photo-1519225495810-7517cbd14560?auto=format&fit=crop&q=80&w=600&fm=webp',
+    image: '/sofia_alejandro_stairs_1782247280237.jpg',
     demoUrl: '#templateboda5',
     accentColor: '#D4AF37',
     features: ['Diseño Editorial de Lujo', 'Efecto Partículas Oro Champagne', 'Reproductor Apple Music Edition', 'Libro de Recuerdos Real-time']

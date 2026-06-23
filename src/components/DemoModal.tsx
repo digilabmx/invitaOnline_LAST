@@ -83,7 +83,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Sofía & Alejandro',
       tagline: 'Una experiencia premium de cinco estrellas inspirada en la alta joyería.',
       badge: 'Template 5 Premium',
-      image: 'https://images.unsplash.com/photo-1519225495810-7517cbd14560?auto=format&fit=crop&q=80&w=1200&fm=webp',
+      image: '/sofia_alejandro_stairs_1782247280237.jpg',
       description: 'Diseño editorial con reproductor de audio de lujo, pétalos de oro champagne, libro de recuerdos real e interactivo.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda5'
