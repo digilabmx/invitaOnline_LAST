@@ -5,7 +5,7 @@ export const HERO_IMAGE = '/hero_phone_mockup_1781992151448.jpg';
 export const EXAMPLES: InvitationExample[] = [
   {
     id: 'ex-rolls-royce-dior',
-    title: 'Colección Rolls Royce & Dior (Victoria & Sebastián)',
+    title: 'Colección Luxury (Victoria & Sebastián)',
     category: 'Bodas',
     image: '/v_s_hero_1782248283047.jpg',
     demoUrl: '#templateboda6',
@@ -14,7 +14,7 @@ export const EXAMPLES: InvitationExample[] = [
   },
   {
     id: 'ex-cartier-luxury',
-    title: 'Colección Cartier: Alta Costura (Sofía & Alejandro)',
+    title: 'Colección Alta Costura (Sofía & Alejandro)',
     category: 'Bodas',
     image: '/sofia_alejandro_stairs_1782247280237.jpg',
     demoUrl: '#templateboda5',
@@ -41,7 +41,7 @@ export const EXAMPLES: InvitationExample[] = [
   },
   {
     id: 'ex-monochrome-minimalist',
-    title: 'Monochrome Minimalist (Andrés & Paulete)',
+    title: 'Minimalist (Andrés & Paulete)',
     category: 'Bodas',
     image: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=600&fm=webp',
     demoUrl: '#templateboda4',
@@ -132,7 +132,7 @@ export const PACKAGES: PricingPackage[] = [
   {
     id: 'p-1',
     name: 'Básico',
-    price: '$199',
+    price: '$299',
     description: 'Invitación digital elegante y hermosa con las características esenciales para tu evento.',
     features: [
       { text: 'Diseño de plantilla elegante (Boda/XV/Bautizo)', included: true },
@@ -154,7 +154,7 @@ export const PACKAGES: PricingPackage[] = [
   {
     id: 'p-2',
     name: 'Premium',
-    price: '$499',
+    price: '$599',
     description: 'La experiencia de lujo más completa con asistencia técnica y panel de control de invitados.',
     hasDiscount: true,
     originalPrice: '$699',
