@@ -420,10 +420,10 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
                         </div>
                         <p className="font-sans text-[10px] text-luxury-beige-700 leading-relaxed font-light mt-1.5">
                           <strong>Hora:</strong> 18:00 hrs. <br />
-                          <strong>Lugar:</strong> Templo de Santo Domingo, Calle 60 #24X, Centro Histórico.
+                          <strong>Lugar:</strong> Catedral Metropolitana de San Luis Potosí, Centro Histórico.
                         </p>
                         <button
-                          onClick={() => showToast("Ubicación GPS: Abre Google Maps con la ruta hacia el Templo de Santo Domingo en Mérida (Simulado).")}
+                          onClick={() => showToast("Ubicación GPS: Abre Google Maps con la ruta hacia la Catedral de San Luis Potosí (Simulado).")}
                           className="mt-2 text-[9px] font-sans font-medium uppercase tracking-wider text-luxury-beige-700 hover:text-luxury-beige-900 flex items-center space-x-1"
                         >
                           <span>📍 Ver en Google Maps</span>
@@ -438,10 +438,10 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
                         </div>
                         <p className="font-sans text-[10px] text-luxury-beige-700 leading-relaxed font-light mt-1.5">
                           <strong>Hora:</strong> 20:00 hrs (Siguiente). <br />
-                          <strong>Lugar:</strong> Quinta Quinta Hermosa, Carr. Mérida-Tulum Km 14.
+                          <strong>Lugar:</strong> Jardín de Eventos Quinta Hermosa, San Luis Potosí, S.L.P.
                         </p>
                         <button
-                          onClick={() => showToast("Ubicación GPS: Abre Google Maps con la ruta hacia la Hacienda Quinta Hermosa (Simulado).")}
+                          onClick={() => showToast("Ubicación GPS: Abre Google Maps con la ruta hacia la Quinta Hermosa en San Luis Potosí (Simulado).")}
                           className="mt-2 text-[9px] font-sans font-medium uppercase tracking-wider text-luxury-beige-700 hover:text-luxury-beige-900 flex items-center space-x-1"
                         >
                           <span>📍 Ver Recepción GPS</span>

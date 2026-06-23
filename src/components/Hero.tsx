@@ -355,7 +355,7 @@ export default function Hero({ onVerEjemplosClick, onSolicitarClick }: HeroProps
                     <svg className="w-2.5 h-2.5 text-stone-300/70 fill-stone-300/70" viewBox="0 0 24 24">
                       <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm10 14c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2V10c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v10z" />
                     </svg>
-                    <span className="font-sans text-[8.5px] tracking-wide font-light text-stone-300/95">estasinvitadomx.com</span>
+                    <span className="font-sans text-[8.5px] tracking-wide font-light text-stone-300/95">invitaonline.mx</span>
                   </div>
                   {/* Refresh icon */}
                   <svg className="w-2.5 h-2.5 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">

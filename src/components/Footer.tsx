@@ -96,7 +96,7 @@ export default function Footer() {
               Contacto
             </h4>
             <div className="space-y-3 font-sans text-xs font-light text-luxury-beige-700 leading-relaxed">
-              <p>Mérida, Yucatán, México.</p>
+              <p>San Luis Potosí, SLP, México.</p>
               <p className="flex items-center space-x-2">
                 <MessageCircle className="w-4 h-4 text-luxury-beige-500" />
                 <span>+52 444 650 0910</span>
@@ -164,7 +164,7 @@ export default function Footer() {
 
               <div className="space-y-4 font-light text-justify">
                 <p>
-                  <strong>EnvitaOnline S.A. de C.V.</strong>, con domicilio en Mérida, Yucatán, es responsable del tratamiento y salvaguarda de los datos personales proporcionados por los usuarios.
+                  <strong>InvitaOnline S.A. de C.V.</strong>, con domicilio en San Luis Potosí, SLP, es responsable del tratamiento y salvaguarda de los datos personales proporcionados por los usuarios.
                 </p>
                 <p>
                   <strong>¿Qué datos recabamos?</strong> Únicamente recabamos información de contacto, imágenes y logotipos del evento, nombres de contrayentes o cumpleañeros, ubicaciones de Google Maps y detalles de mesa de regalos estrictamente con la finalidad comercial elegida por el cliente para adaptarlos a su plantilla.
