@@ -23,6 +23,7 @@ import { EXAMPLES } from './data';
 // Lazily load massive fullscreen template components to keep index bundle extremely lightweight
 const TemplateBoda = lazy(() => import('./components/TemplateBoda'));
 const TemplateBoda2 = lazy(() => import('./components/templateboda2/TemplateBoda2'));
+const TemplateBoda4 = lazy(() => import('./components/TemplateBoda4'));
 
 export default function App() {
   const [selectedExample, setSelectedExample] = useState<InvitationExample | null>(null);
@@ -45,8 +46,22 @@ export default function App() {
     };
   }, []);
 
-  const isTemplateBoda2 = route.toLowerCase().includes('templateboda2');
-  const isTemplateBoda = route.toLowerCase().includes('templateboda') && !isTemplateBoda2;
+  const isTemplateBoda4 = route.toLowerCase().includes('templateboda4');
+  const isTemplateBoda2 = route.toLowerCase().includes('templateboda2') && !isTemplateBoda4;
+  const isTemplateBoda = route.toLowerCase().includes('templateboda') && !isTemplateBoda2 && !isTemplateBoda4;
+
+  if (isTemplateBoda4) {
+    return (
+      <Suspense fallback={
+        <div className="min-h-screen bg-[#F5F5F3] flex flex-col items-center justify-center font-serif text-stone-800">
+          <div className="w-12 h-12 rounded-full border-2 border-stone-300 border-t-stone-800 animate-spin mb-4" />
+          <p className="text-xs uppercase tracking-widest">Cargando Andrés & Paulete...</p>
+        </div>
+      }>
+        <TemplateBoda4 />
+      </Suspense>
+    );
+  }
 
   if (isTemplateBoda2) {
     return (

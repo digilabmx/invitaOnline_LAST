@@ -22,6 +22,15 @@ export const EXAMPLES: InvitationExample[] = [
     features: ['Sobre Wax-Seal Interactivo', 'Efecto Stardust de Oro', 'Mapeo Directo GPS', 'Cuenta Regresiva Circular']
   },
   {
+    id: 'ex-monochrome-minimalist',
+    title: 'Monochrome Minimalist (Andrés & Paulete)',
+    category: 'Bodas',
+    image: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=600&fm=webp',
+    demoUrl: '#templateboda4',
+    accentColor: '#1a1a1a',
+    features: ['Efecto de Hojas Orgánicas', 'Monograma de Alta Costura', 'Diseño Grayscale Minimalista', 'Itinerario de Íconos Hand-drawn']
+  },
+  {
     id: 'ex-2',
     title: 'Destellos de Rosa (Valentina)',
     category: 'XV Años',

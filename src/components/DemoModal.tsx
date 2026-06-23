@@ -59,6 +59,20 @@ const CATEGORY_STYLES: Record<string, Array<{
       description: 'Estilo botánico minimalista con delicados follajes de eucalipto.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda?theme=ivory'
+    },
+    {
+      id: 4,
+      name: 'Minimal Monochrome (Alta Costura)',
+      primaryColor: 'bg-stone-900',
+      accentColor: 'text-stone-900',
+      accentBg: 'bg-[#F5F5F3]',
+      title: 'Andrés & Paulete',
+      tagline: 'Tenemos el honor de invitarlos a nuestro matrimonio.',
+      badge: 'Alta Costura',
+      image: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=1200&fm=webp',
+      description: 'Diseño grayscale minimalista de alta costura inspirado en el romance vintage.',
+      isCustomFullscreen: true,
+      fullscreenUrl: '#templateboda4'
     }
   ],
   'XV Años': [
@@ -407,7 +421,7 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
                 </p>
               </div>
               <p className="font-sans text-[10px] text-stone-600 leading-relaxed mb-4 font-light">
-                Cada tipo de evento cuenta con 3 variaciones de plantillas premium de alta costura. Haz clic para simular cada diseño o ver demos completas:
+                Cada tipo de evento cuenta con múltiples variaciones de plantillas premium de alta costura. Haz clic para simular cada diseño o ver demos completas:
               </p>
               
               <div className="space-y-2.5">
