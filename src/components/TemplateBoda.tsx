@@ -22,6 +22,20 @@ const FloralDivider = () => (
 );
 
 export default function TemplateBoda() {
+  // Check if ivory theme is requested from query/hash URL parameter
+  const [isIvoryTheme, setIsIvoryTheme] = useState(false);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hasIvory = window.location.hash.includes('theme=ivory') || window.location.search.includes('theme=ivory');
+      setIsIvoryTheme(hasIvory);
+    }
+  }, []);
+
+  const brideName = isIvoryTheme ? 'Adriana' : 'Andrea';
+  const groomName = isIvoryTheme ? 'Mauricio' : 'Josué';
+  const coupleNames = isIvoryTheme ? 'Adriana & Mauricio' : 'Andrea & Josué';
+  const coupleNamesAnd = isIvoryTheme ? 'Adriana y Mauricio' : 'Andrea y Josué';
+
   // Navigation & Envelope stage
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
   const [showPetals, setShowPetals] = useState(false);
@@ -276,7 +290,7 @@ export default function TemplateBoda() {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 1.05 }}
             transition={{ duration: 0.9, ease: 'easeInOut' }}
-            className="min-h-screen relative flex items-center justify-center bg-radial from-neutral-900 to-neutral-950 px-4 py-8 overflow-hidden"
+            className={`min-h-screen relative flex items-center justify-center px-4 py-8 overflow-hidden transition-colors duration-500 ${isIvoryTheme ? 'bg-[#FCFBF9]' : 'bg-radial from-neutral-900 to-neutral-950'}`}
           >
             {/* Elegant luxury botanical gold line overlays in background */}
             <div className="absolute inset-0 opacity-[0.06] pointer-events-none filter scale-105 select-none">
@@ -303,7 +317,7 @@ export default function TemplateBoda() {
                     repeat: Infinity,
                     ease: 'linear'
                   }}
-                  className="absolute w-1 h-1 bg-yellow-400 rounded-full opacity-30"
+                  className={`absolute w-1 h-1 rounded-full opacity-30 ${isIvoryTheme ? 'bg-[#8F7C6E]' : 'bg-yellow-400'}`}
                   style={{ top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%` }}
                 />
               ))}
@@ -316,28 +330,32 @@ export default function TemplateBoda() {
               className="relative w-full max-w-[420px] text-center"
             >
               {/* Luxury Envelope Container */}
-              <div className="bg-[#151413] border-2 border-[#d4af37]/35 rounded-2xl p-6 md:p-8 shadow-[0_30px_70px_rgba(0,0,0,0.6)] relative z-10 transition-all">
+              <div className={`border-2 rounded-2xl p-6 md:p-8 relative z-10 transition-all duration-300 ${
+                isIvoryTheme 
+                  ? 'bg-white border-[#8F7C6E]/35 shadow-[0_30px_70px_rgba(143,124,110,0.12)]' 
+                  : 'bg-[#151413] border-[#d4af37]/35 shadow-[0_30px_70px_rgba(0,0,0,0.6)]'
+              }`}>
                 
                 {/* Thin gold accent border frame */}
-                <div className="absolute inset-2.5 border border-[#d4af37]/15 rounded-xl pointer-events-none" />
+                <div className={`absolute inset-2.5 border rounded-xl pointer-events-none ${isIvoryTheme ? 'border-[#8F7C6E]/15' : 'border-[#d4af37]/15'}`} />
 
                 {/* Top decorative crest botanical branch */}
-                <svg className="w-18 h-18 text-[#d4af37]/75 mx-auto mb-6" viewBox="0 0 100 100" fill="currentColor">
+                <svg className={`w-18 h-18 mx-auto mb-6 ${isIvoryTheme ? 'text-[#8F7C6E]/75' : 'text-[#d4af37]/75'}`} viewBox="0 0 100 100" fill="currentColor">
                   <path d="M50 20 C45 35 32 45 20 48 C32 51 45 61 50 76 C55 61 68 51 80 48 C68 45 55 35 50 20 Z" className="animate-pulse" />
                   <circle cx="50" cy="48" r="4" fill="white" />
                 </svg>
 
                 {/* Subtitle pre-invite */}
-                <span className="font-display text-[10px] uppercase tracking-[0.3em] text-[#d4af37]/80 block mb-2 font-medium">
+                <span className={`font-display text-[10px] uppercase tracking-[0.3em] block mb-2 font-medium ${isIvoryTheme ? 'text-[#8F7C6E]' : 'text-[#d4af37]/80'}`}>
                   NUESTRA CELEBRACIÓN
                 </span>
 
                 {/* Bold invite line */}
-                <h2 className="font-serif text-2xl md:text-3xl font-light text-neutral-100 tracking-wide mt-2 mb-1.5 leading-relaxed">
-                  Has sido invitado <br /> <span className="font-script text-4xl block text-[#ead397] mt-1">a nuestra boda</span>
+                <h2 className={`font-serif text-2xl md:text-3xl font-light tracking-wide mt-2 mb-1.5 leading-relaxed ${isIvoryTheme ? 'text-[#5C4D3C]' : 'text-neutral-100'}`}>
+                  Has sido invitado <br /> <span className={`font-script text-4xl block mt-1 ${isIvoryTheme ? 'text-[#8F7C6E]' : 'text-[#ead397]'}`}>a nuestra boda</span>
                 </h2>
 
-                <p className="font-sans text-xs text-neutral-400 font-light tracking-wide max-w-xs mx-auto mb-10 leading-relaxed">
+                <p className={`font-sans text-xs font-light tracking-wide max-w-xs mx-auto mb-10 leading-relaxed ${isIvoryTheme ? 'text-stone-600' : 'text-neutral-400'}`}>
                   Te invitamos a ser parte de este momento tan importante en nuestras vidas. Abre este sobre digital para conocer los detalles.
                 </p>
 
@@ -345,21 +363,25 @@ export default function TemplateBoda() {
                 <div className="relative flex justify-center py-4">
                   
                   {/* Visual background ripple pulse */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-[#d4af37]/10 rounded-full animate-ping pointer-events-none" style={{ animationDuration: '3s' }} />
+                  <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full animate-ping pointer-events-none ${isIvoryTheme ? 'bg-[#8F7C6E]/10' : 'bg-[#d4af37]/10'}`} style={{ animationDuration: '3s' }} />
 
                   <button
                     onClick={handleOpenEnvelope}
-                    className="relative z-10 w-20 h-20 rounded-full bg-gradient-to-tr from-[#9c7823] to-[#ead397] text-stone-900 flex flex-col items-center justify-center font-serif text-[10px] font-bold uppercase tracking-wider shadow-2xl hover:scale-105 active:scale-95 duration-200 cursor-pointer border-3 border-[#151413] group"
+                    className={`relative z-10 w-20 h-20 rounded-full flex flex-col items-center justify-center font-serif text-[10px] font-bold uppercase tracking-wider shadow-2xl hover:scale-105 active:scale-95 duration-200 cursor-pointer border-3 group ${
+                      isIvoryTheme
+                        ? 'bg-gradient-to-tr from-[#8F7C6E] to-[#bfae9e] text-white border-white'
+                        : 'bg-gradient-to-tr from-[#9c7823] to-[#ead397] text-stone-900 border-[#151413]'
+                    }`}
                     title="Haga clic para abrir el sobre"
                   >
                     {/* Tiny floral stamp overlay icon */}
-                    <Heart className="w-6 h-6 text-stone-950 fill-stone-950/20 mb-1 group-hover:scale-110 duration-200" />
-                    <span className="text-[7.5px] tracking-widest text-stone-950">ABRIR</span>
+                    <Heart className={`w-6 h-6 mb-1 group-hover:scale-110 duration-200 ${isIvoryTheme ? 'text-white fill-white/20' : 'text-stone-950 fill-stone-950/20'}`} />
+                    <span className={`text-[7.5px] tracking-widest ${isIvoryTheme ? 'text-white' : 'text-stone-950'}`}>ABRIR</span>
                   </button>
                 </div>
 
-                <div className="mt-8 text-[9px] font-sans text-[#ead397]/60 tracking-widest uppercase">
-                  Andrea & Josué · 30.05.2027
+                <div className={`mt-8 text-[9px] font-sans tracking-widest uppercase ${isIvoryTheme ? 'text-[#8F7C6E]/80' : 'text-[#ead397]/60'}`}>
+                  {coupleNames} · 30.05.2027
                 </div>
 
               </div>
@@ -411,7 +433,7 @@ export default function TemplateBoda() {
                 <div className="relative aspect-[3/4.2] w-full overflow-hidden bg-stone-100 rounded-t-full">
                   <img
                     src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=70&w=800&fm=webp"
-                    alt="Andrea & Josue"
+                    alt={coupleNames}
                     className="w-full h-full object-cover select-none filter brightness-90 saturate-[0.8] sepia-[15%] contrast-[105%]"
                     loading="eager"
                     decoding="async"
@@ -424,7 +446,7 @@ export default function TemplateBoda() {
                   {/* Overlaid Names - Pristine tracking, Serif Display capitalized */}
                   <div className="absolute inset-0 flex items-end justify-center pb-12 px-4">
                     <h2 className="font-serif text-2xl md:text-3xl text-white tracking-[0.18em] uppercase text-center font-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
-                      Andrea y Josué
+                      {coupleNamesAnd}
                     </h2>
                   </div>
 

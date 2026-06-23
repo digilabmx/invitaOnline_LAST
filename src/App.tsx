@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { AnimatePresence } from 'motion/react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -19,8 +19,10 @@ import DemoModal from './components/DemoModal';
 import WhatsAppFloatingButton from './components/WhatsAppFloatingButton';
 import { InvitationExample } from './types';
 import { EXAMPLES } from './data';
-import TemplateBoda from './components/TemplateBoda';
-import TemplateBoda2 from './components/templateboda2/TemplateBoda2';
+
+// Lazily load massive fullscreen template components to keep index bundle extremely lightweight
+const TemplateBoda = lazy(() => import('./components/TemplateBoda'));
+const TemplateBoda2 = lazy(() => import('./components/templateboda2/TemplateBoda2'));
 
 export default function App() {
   const [selectedExample, setSelectedExample] = useState<InvitationExample | null>(null);
@@ -47,11 +49,29 @@ export default function App() {
   const isTemplateBoda = route.toLowerCase().includes('templateboda') && !isTemplateBoda2;
 
   if (isTemplateBoda2) {
-    return <TemplateBoda2 />;
+    return (
+      <Suspense fallback={
+        <div className="min-h-screen bg-[#1c1917] flex flex-col items-center justify-center font-serif text-[#d4af37]">
+          <div className="w-12 h-12 rounded-full border-2 border-[#d4af37]/20 border-t-[#d4af37] animate-spin mb-4" />
+          <p className="text-xs uppercase tracking-widest">Cargando Black & Gold Gala...</p>
+        </div>
+      }>
+        <TemplateBoda2 />
+      </Suspense>
+    );
   }
 
   if (isTemplateBoda) {
-    return <TemplateBoda />;
+    return (
+      <Suspense fallback={
+        <div className="min-h-screen bg-[#FAF9F6] flex flex-col items-center justify-center font-serif text-stone-800">
+          <div className="w-12 h-12 rounded-full border-2 border-[#A68966]/20 border-t-[#A68966] animate-spin mb-4" />
+          <p className="text-xs uppercase tracking-widest">Cargando Classic Rose...</p>
+        </div>
+      }>
+        <TemplateBoda />
+      </Suspense>
+    );
   }
 
   const handleVerEjemplos = () => {

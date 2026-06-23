@@ -3,6 +3,180 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, Play, Pause, MapPin, Calendar, Clock, Gift, Users, Music, Image as ImageIcon, Send, Sparkles, CheckCircle } from 'lucide-react';
 import { InvitationExample } from '../types';
 
+const CATEGORY_STYLES: Record<string, Array<{
+  id: number;
+  name: string;
+  primaryColor: string;
+  accentColor: string;
+  accentBg: string;
+  title: string;
+  tagline: string;
+  badge: string;
+  image: string;
+  description: string;
+  isCustomFullscreen?: boolean;
+  fullscreenUrl?: string;
+}>> = {
+  'Bodas': [
+    {
+      id: 1,
+      name: 'Classic Rose (Romántico)',
+      primaryColor: 'bg-[#A68966]',
+      accentColor: 'text-[#A68966]',
+      accentBg: 'bg-[#FAF9F6]',
+      title: 'Sofia & Alejandro',
+      tagline: '¡Nos casamos y queremos festejarlo contigo!',
+      badge: 'Nuestra Unión',
+      image: '/wedding_portrait_1781994427687.jpg',
+      description: 'Paleta floral suave y pétalos cayendo.',
+      isCustomFullscreen: true,
+      fullscreenUrl: '#templateboda'
+    },
+    {
+      id: 2,
+      name: 'Black & Gold (Gala de Lujo)',
+      primaryColor: 'bg-stone-900',
+      accentColor: 'text-[#d4af37]',
+      accentBg: 'bg-[#1c1917]',
+      title: 'Andrea & Juan',
+      tagline: 'Una noche de gala mágica para celebrar nuestro amor.',
+      badge: 'Gala de Bodas',
+      image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200&fm=webp',
+      description: 'Fondo negro mate elegante con polvo estelar de oro.',
+      isCustomFullscreen: true,
+      fullscreenUrl: '#templateboda2'
+    },
+    {
+      id: 3,
+      name: 'Warm Ivory (Botánico Atemporal)',
+      primaryColor: 'bg-[#8F7C6E]',
+      accentColor: 'text-[#8F7C6E]',
+      accentBg: 'bg-[#FCFBF9]',
+      title: 'Adriana & Mauricio',
+      tagline: 'Unión espiritual frente al mar en una tarde cálida.',
+      badge: 'Nuestra Ceremonia',
+      image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1200&fm=webp',
+      description: 'Estilo botánico minimalista con delicados follajes de eucalipto.',
+      isCustomFullscreen: true,
+      fullscreenUrl: '#templateboda?theme=ivory'
+    }
+  ],
+  'XV Años': [
+    {
+      id: 1,
+      name: 'Destellos de Rosa (Classic Pink)',
+      primaryColor: 'bg-[#D28190]',
+      accentColor: 'text-[#D28190]',
+      accentBg: 'bg-[#FFF5F6]',
+      title: 'Valentina',
+      tagline: 'Mis Dulces XV Años. Una noche mágica de gala.',
+      badge: 'Mis XV',
+      image: '/quince_card_1781992176864.jpg',
+      description: 'Elegante rosa pastel con sutiles destellos de glitter.'
+    },
+    {
+      id: 2,
+      name: 'Violet Empress (Lila Mágico)',
+      primaryColor: 'bg-[#7C628C]',
+      accentColor: 'text-[#7C628C]',
+      accentBg: 'bg-[#F9F4FC]',
+      title: 'Camila',
+      tagline: 'XV Años llenos de sueños, destellos lila y música mágica.',
+      badge: 'XV Camila',
+      image: 'https://images.unsplash.com/photo-1549417229-aa67d3263c09?auto=format&fit=crop&q=80&w=600&fm=webp',
+      description: 'Místico morado y lavanda con decorados florales modernos.'
+    },
+    {
+      id: 3,
+      name: 'Midnight Star (Glamour Oscuro)',
+      primaryColor: 'bg-[#1E2022]',
+      accentColor: 'text-[#E0A96D]',
+      accentBg: 'bg-[#2D2F31]',
+      title: 'Regina',
+      tagline: 'Una noche bajo las estrellas con brillo dorado y pista iluminada.',
+      badge: 'Gala XV',
+      image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600&fm=webp',
+      description: 'Fondo negro noche profunda con luces de fiesta y acentos en oro.'
+    }
+  ],
+  'Bautizos': [
+    {
+      id: 1,
+      name: 'Eucalipto Acuarela (Verde Sabio)',
+      primaryColor: 'bg-[#738276]',
+      accentColor: 'text-[#738276]',
+      accentBg: 'bg-[#F4F6F4]',
+      title: 'Bautizo de Mateo',
+      tagline: 'Mi primer sacramento en compañía de mis padrinos.',
+      badge: 'Santo Sacramento',
+      image: '/bautizo_card_1781992187887.jpg',
+      description: 'Toque natural botánico con acuarelas elegantes y verdes suaves.'
+    },
+    {
+      id: 2,
+      name: 'Nube Celeste (Baby Blue)',
+      primaryColor: 'bg-[#7694A6]',
+      accentColor: 'text-[#7694A6]',
+      accentBg: 'bg-[#F0F5F7]',
+      title: 'Bautizo de Benjamín',
+      tagline: 'Damos gracias a Dios por el don de mi vida en esta santa liturgia.',
+      badge: 'Mi Bautizo',
+      image: 'https://images.unsplash.com/photo-1507504038482-76211a224ebc?auto=format&fit=crop&q=80&w=600&fm=webp',
+      description: 'Tonalidades cielo con nubes esponjosas e ilustraciones de querubines.'
+    },
+    {
+      id: 3,
+      name: 'Minimalista Dorado (Dorado & Marfil)',
+      primaryColor: 'bg-[#9C8465]',
+      accentColor: 'text-[#9C8465]',
+      accentBg: 'bg-[#FCFAF7]',
+      title: 'Bautizo de Lucía',
+      tagline: 'Guiada por la luz de la fe para bendecir mi camino de amor.',
+      badge: 'Luz Celestial',
+      image: 'https://images.unsplash.com/photo-1519225495810-7512c696505a?auto=format&fit=crop&q=80&w=600&fm=webp',
+      description: 'Combinación limpia de marfil liso con marcos dorados finos y luz pura.'
+    }
+  ],
+  'Cumpleaños': [
+    {
+      id: 1,
+      name: 'Noche de Gala (Black & Gold 40s)',
+      primaryColor: 'bg-stone-900',
+      accentColor: 'text-amber-500',
+      accentBg: 'bg-stone-800',
+      title: 'Santiago 40th',
+      tagline: 'Una noche de oro y buen jazz. ¡Ven a brindar!',
+      badge: 'Brindis Especial',
+      image: '/cumpleanos_card_1781992199358.jpg',
+      description: 'Elegante combinación retro dark-mode con foil dorado.'
+    },
+    {
+      id: 2,
+      name: 'Neon Glow (Fiesta Vibrante)',
+      primaryColor: 'bg-[#0E1B29]',
+      accentColor: 'text-[#0FF0FC]',
+      accentBg: 'bg-[#152636]',
+      title: 'Sofía Fest (30)',
+      tagline: "Let's Party! Música, cócteles de autor y luces de neón.",
+      badge: 'Fiesta Neon',
+      image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=600&fm=webp',
+      description: 'Estilo club neón con acentos cyan/magenta de alta intensidad.'
+    },
+    {
+      id: 3,
+      name: 'Boho Warm Sand (Terracota)',
+      primaryColor: 'bg-[#965A42]',
+      accentColor: 'text-[#965A42]',
+      accentBg: 'bg-[#FAF4F0]',
+      title: 'Cumple de Emma',
+      tagline: 'Tarde de pícnic, flores silvestres y atardecer cálido.',
+      badge: 'Emma Fest',
+      image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=600&fm=webp',
+      description: 'Diseño rústico bohemio con tonos arcilla, lino y pampa grass.'
+    }
+  ]
+};
+
 interface DemoModalProps {
   example: InvitationExample | null;
   onClose: () => void;
@@ -17,6 +191,14 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  
+  // Track selected template style (1, 2, or 3) for the current category
+  const [styleId, setStyleId] = useState(1);
+
+  // Reset styleId back to 1 if we open a different example category
+  useEffect(() => {
+    setStyleId(1);
+  }, [example.category]);
   
   // Custom states for RSVP simulation
   const [guestName, setGuestName] = useState('');
@@ -140,58 +322,19 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
     }
   };
 
-  // Theme configuration helper
-  const getThemeColors = () => {
-    switch (example.category) {
-      case 'Bodas':
-        return {
-          primary: 'bg-luxury-beige-900',
-          accent: 'text-luxury-beige-600',
-          accentBg: 'bg-luxury-beige-100',
-          title: 'Sofia & Alejandro',
-          tagline: '¡Nos casamos y queremos festejarlo contigo!',
-          badge: 'Nuestra Unión'
-        };
-      case 'XV Años':
-        return {
-          primary: 'bg-rose-950',
-          accent: 'text-rose-400',
-          accentBg: 'bg-rose-50',
-          title: 'Valentina',
-          tagline: 'Mis Dulces XV Años. Una noche mágica de gala.',
-          badge: 'Mis XV'
-        };
-      case 'Bautizos':
-        return {
-          primary: 'bg-emerald-950',
-          accent: 'text-emerald-700',
-          accentBg: 'bg-emerald-50',
-          title: 'Bautizo de Mateo',
-          tagline: 'Mi primer sacramento en compañía de mis padrinos.',
-          badge: 'Santo Sacramento'
-        };
-      case 'Cumpleaños':
-        return {
-          primary: 'bg-stone-900',
-          accent: 'text-amber-500',
-          accentBg: 'bg-stone-800',
-          title: 'Santiago 40th',
-          tagline: 'Una noche de oro y buen jazz. ¡Ven a brindar!',
-          badge: 'Brindis Especial'
-        };
-      default:
-        return {
-          primary: 'bg-luxury-beige-900',
-          accent: 'text-luxury-beige-600',
-          accentBg: 'bg-luxury-beige-100',
-          title: 'Mi Fiesta',
-          tagline: 'Un momento único.',
-          badge: 'Especial'
-        };
-    }
-  };
+  // Theme configuration helper dynamically driven by active styleId
+  const currentCategoryStyles = CATEGORY_STYLES[example.category] || CATEGORY_STYLES['Bodas'];
+  const currentStyle = currentCategoryStyles.find(s => s.id === styleId) || currentCategoryStyles[0];
 
-  const themeColors = getThemeColors();
+  const themeColors = {
+    primary: currentStyle.primaryColor,
+    accent: currentStyle.accentColor,
+    accentBg: currentStyle.accentBg,
+    title: currentStyle.title,
+    tagline: currentStyle.tagline,
+    badge: currentStyle.badge,
+    image: currentStyle.image
+  };
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-luxury-beige-950/80 backdrop-blur-md flex items-center justify-center p-4">
@@ -256,32 +399,69 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
               </div>
             </div>
 
-            {example.category === 'Bodas' && (
-              <div className="mt-8 bg-[#FAF9F6] border border-[#A68966]/20 p-4 rounded-xl shadow-sm text-left">
-                <p className="font-sans text-[10px] uppercase tracking-wider font-bold text-[#A68966] mb-1">
-                  ✨ DETECTADAS PLANTILLAS INMERSIVAS DE LUJO
+            <div className="mt-8 bg-white border border-luxury-beige-300/60 p-5 rounded-2xl shadow-sm text-left">
+              <div className="flex items-center gap-2 mb-2">
+                <Sparkles className="w-4 h-4 text-luxury-beige-600 animate-pulse" />
+                <p className="font-sans text-[11px] uppercase tracking-widest font-bold text-luxury-beige-900">
+                  {example.category} · Premium Edition
                 </p>
-                <p className="font-sans text-[10px] text-stone-600 leading-relaxed mb-3 font-light">
-                  Hemos diseñado demos en pantalla completa con sobre interactivo, efectos premium en tiempo real y reproductor integrado de música para tu boda.
-                </p>
-                <div className="flex flex-col gap-2">
-                  <a
-                    href="#templateboda"
-                    className="inline-flex items-center space-x-1.5 px-3 py-2 bg-[#A68966] hover:bg-[#8F7250] text-[#fbfbfa] text-[9px] font-sans font-bold uppercase tracking-wider rounded-lg transition-all duration-300 w-full justify-center shadow-xs"
-                  >
-                    <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-                    <span>Ver Demo Estilo 1 (Classic Rose)</span>
-                  </a>
-                  <a
-                    href="#templateboda2"
-                    className="inline-flex items-center space-x-1.5 px-3 py-2 bg-stone-900 hover:bg-stone-800 text-[#d4af37] border border-[#d4af37]/35 text-[9px] font-sans font-bold uppercase tracking-wider rounded-lg transition-all duration-300 w-full justify-center shadow-xs"
-                  >
-                    <Sparkles className="w-3.5 h-3.5 text-yellow-500 animate-pulse" />
-                    <span>Ver Demo Estilo 2 (Black & Gold)</span>
-                  </a>
-                </div>
               </div>
-            )}
+              <p className="font-sans text-[10px] text-stone-600 leading-relaxed mb-4 font-light">
+                Cada tipo de evento cuenta con 3 variaciones de plantillas premium de alta costura. Haz clic para simular cada diseño o ver demos completas:
+              </p>
+              
+              <div className="space-y-2.5">
+                {currentCategoryStyles.map((style) => {
+                  const isSelected = style.id === styleId;
+                  return (
+                    <div 
+                      key={style.id}
+                      onClick={() => setStyleId(style.id)}
+                      className={`group/item p-3 rounded-xl border transition-all duration-300 cursor-pointer flex items-center justify-between ${
+                        isSelected 
+                          ? 'bg-luxury-beige-100/50 border-luxury-beige-400 shadow-xs' 
+                          : 'bg-stone-50/50 border-stone-200/60 hover:bg-stone-50 hover:border-stone-300'
+                      }`}
+                    >
+                      <div className="flex-1 pr-3">
+                        <div className="flex items-center gap-1.5">
+                          <div className={`w-2 h-2 rounded-full ${isSelected ? 'bg-luxury-beige-800 animate-pulse' : 'bg-stone-300'}`} />
+                          <p className="font-serif text-[11px] font-semibold text-stone-900 leading-none">
+                            {style.name}
+                          </p>
+                        </div>
+                        <p className="font-sans text-[9px] text-stone-500 font-light mt-1.5 leading-relaxed">
+                          {style.description}
+                        </p>
+                      </div>
+                      
+                      {style.isCustomFullscreen ? (
+                        <a
+                          href={style.fullscreenUrl}
+                          onClick={(e) => {
+                            setStyleId(style.id);
+                          }}
+                          className={`shrink-0 px-2.5 py-1.5 rounded-lg text-[9px] font-sans font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-1 ${
+                            isSelected 
+                              ? 'bg-stone-900 text-white hover:bg-stone-800' 
+                              : 'bg-luxury-beige-200/50 text-luxury-beige-900 hover:bg-luxury-beige-200'
+                          }`}
+                        >
+                          <span>Ver Demo</span>
+                          <Sparkles className="w-2.5 h-2.5 text-amber-400 animate-pulse" />
+                        </a>
+                      ) : (
+                        <span className={`shrink-0 text-[8px] font-sans font-medium uppercase tracking-widest px-2 py-1 rounded transition-colors ${
+                          isSelected ? 'bg-luxury-beige-800 text-white' : 'bg-stone-200/50 text-stone-500 group-hover/item:bg-stone-200'
+                        }`}>
+                          {isSelected ? 'Activo' : 'Simular'}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
           <div className="mt-8 pt-6 border-t border-luxury-beige-200 flex items-center justify-between">
@@ -324,8 +504,8 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
               {/* Image Banner top Header Cover relative */}
               <div className="relative w-full h-[180px] shrink-0 overflow-hidden bg-luxury-beige-100">
                 <img
-                  src={example.image}
-                  alt={example.title}
+                  src={themeColors.image}
+                  alt={themeColors.title}
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />

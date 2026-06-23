@@ -87,6 +87,7 @@ export default function Gallery({ onSelectExample }: GalleryProps) {
                   alt={example.title}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 select-none"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
 
                 {/* Ultimate Overlay Blur and Details */}
