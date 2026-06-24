@@ -222,7 +222,7 @@ export default function Hero({ onVerEjemplosClick, onSolicitarClick }: HeroProps
               {/* Background portrait of the couple taking the whole screen */}
               <div className="absolute inset-0 pointer-events-none z-0">
                 <img
-                  src="/wedding_portrait_1781994427687.jpg"
+                  src="/wedding_portrait_1781994427687.webp"
                   alt="Andrea & Josue"
                   className="w-full h-full object-cover brightness-[0.75] contrast-[1.05]"
                   referrerPolicy="no-referrer"
