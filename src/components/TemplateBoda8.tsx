@@ -255,35 +255,35 @@ export default function TemplateBoda8() {
     {
       id: 'hacienda',
       title: 'Hacienda Histórica',
-      src: '/src/assets/images/hacienda_hero_1782249686184.jpg',
+      src: '/hacienda_hero_1782249686184.jpg',
       description: 'Una joya del siglo XVIII, con majestuosos arcos de cantera, rodeada de historia y romance clásico.',
       credit: 'Vista del jardín principal'
     },
     {
       id: 'balcon',
       title: 'Balcones de Cantera',
-      src: '/src/assets/images/hacienda_balcony_1782249700340.jpg',
+      src: '/hacienda_balcony_1782249700340.jpg',
       description: 'Detalles tallados a mano que conservan los ecos de banquetes virreinales y tertulias imperiales.',
       credit: 'Detalle arquitectónico colonial'
     },
     {
       id: 'caballos',
       title: 'Caballos Elegantes',
-      src: '/src/assets/images/hacienda_horses_1782249712620.jpg',
+      src: '/hacienda_horses_1782249712620.jpg',
       description: 'Tradición ecuestre y distinción, reflejo de la hidalguía y opulencia de nuestra historia.',
       credit: 'Tradición de la hacienda mexicana'
     },
     {
       id: 'patios',
       title: 'Patios Iluminados',
-      src: '/src/assets/images/hacienda_patio_1782249723122.jpg',
+      src: '/hacienda_patio_1782249723122.jpg',
       description: 'La velada cobrará vida bajo un cielo de candiles antiguos y cientos de velas parpadeantes.',
       credit: 'Atmósfera de recepción'
     },
     {
       id: 'jardines',
       title: 'Jardines Coloniales',
-      src: '/src/assets/images/hacienda_gardens_1782249733973.jpg',
+      src: '/hacienda_gardens_1782249733973.jpg',
       description: 'Vegetación exuberante y fuentes de cantera que susurran secretos de amores eternos.',
       credit: 'Rincón romántico de San Miguel'
     },
@@ -488,7 +488,7 @@ export default function TemplateBoda8() {
               {/* Background cover image of the Mexican Colonial Hacienda */}
               <div className="absolute inset-0 pointer-events-none opacity-50 select-none">
                 <img 
-                  src="/src/assets/images/hacienda_hero_1782249686184.jpg" 
+                  src="/hacienda_hero_1782249686184.jpg" 
                   alt="Hacienda colonial mexicana hero" 
                   className="w-full h-full object-cover filter brightness-[0.45] contrast-[1.1]"
                   referrerPolicy="no-referrer"

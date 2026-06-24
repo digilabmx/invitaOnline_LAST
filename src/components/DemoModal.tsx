@@ -125,7 +125,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Sofía & Alejandro',
       tagline: 'Descubre el encanto de nuestra unión en una hacienda del siglo XVIII.',
       badge: 'Template 8 Gentry',
-      image: '/src/assets/images/hacienda_hero_1782249686184.jpg',
+      image: '/hacienda_hero_1782249686184.jpg',
       description: 'Inspiración barroca virreinal, pergamino heráldico medieval con música de guitarra española sintetizada y velas flotantes.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda8'
@@ -139,7 +139,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Valentina & Gabriel',
       tagline: 'Una historia escrita entre las estrellas y el infinito.',
       badge: 'Template 9 Celestial Ultra Premium',
-      image: '/src/assets/images/celestial_hero_1782250292221.jpg',
+      image: '/celestial_hero_1782250292221.jpg',
       description: 'Sobre de lujo medianoche, estrellas fugaces cruzando, constelaciones interactivas, piano cinematográfico y partículas cósmicas.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda9'

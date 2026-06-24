@@ -7,7 +7,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-starry-night-celestial',
     title: 'Plantilla 8 - Celestial',
     category: 'Bodas',
-    image: '/src/assets/images/celestial_hero_1782250292221.jpg',
+    image: '/celestial_hero_1782250292221.jpg',
     demoUrl: '#templateboda9',
     accentColor: '#0B1E3B',
     features: ['Sobre Celestial Azul Medianoche', 'Constelaciones Interactivas', 'Sintetizador Piano de Cola Cósmico', 'Mosaico Orbital de Recuerdos']
@@ -16,7 +16,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-mexican-hacienda',
     title: 'Plantilla 7 - Hacienda',
     category: 'Bodas',
-    image: '/src/assets/images/hacienda_hero_1782249686184.jpg',
+    image: '/hacienda_hero_1782249686184.jpg',
     demoUrl: '#templateboda8',
     accentColor: '#C96A45',
     features: ['Pliego Heráldico (Pergamino)', 'Campanas de Catedral y Velas', 'Sintetizador Guitarra Española', 'Arcos de Cantera e Historia de Amor']
@@ -159,7 +159,7 @@ export const PACKAGES: PricingPackage[] = [
   {
     id: 'p-1',
     name: 'Básico',
-    price: '$199',
+    price: '$299 MXN',
     description: 'Invitación digital elegante y hermosa con las características esenciales para tu evento.',
     features: [
       { text: 'Diseño de plantilla elegante (Boda/XV/Bautizo)', included: true },
@@ -181,10 +181,10 @@ export const PACKAGES: PricingPackage[] = [
   {
     id: 'p-2',
     name: 'Premium',
-    price: '$499',
+    price: '$599 MXN',
     description: 'La experiencia de lujo más completa con asistencia técnica y panel de control de invitados.',
     hasDiscount: true,
-    originalPrice: '$699',
+    originalPrice: '$799 MXN',
     features: [
       { text: 'Personalización de colores a tu paleta de evento', included: true },
       { text: 'Datos principales ilimitados', included: true },

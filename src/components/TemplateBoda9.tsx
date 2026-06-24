@@ -324,35 +324,35 @@ export default function TemplateBoda9() {
     {
       id: 1,
       title: "Fusión Cósmica",
-      src: "/src/assets/images/celestial_hero_1782250292221.jpg",
+      src: "/celestial_hero_1782250292221.jpg",
       desc: "Valentina y Gabriel contemplando la majestuosidad de la Vía Láctea en una noche mágica.",
       coord: "RA 18h 36m / DEC +38°"
     },
     {
       id: 2,
       title: "Cúpula Estelar",
-      src: "/src/assets/images/celestial_observatory_1782250302880.jpg",
+      src: "/celestial_observatory_1782250302880.jpg",
       desc: "El observatorio donde trazamos las primeras coordenadas de nuestro destino juntos.",
       coord: "RA 19h 50m / DEC +08°"
     },
     {
       id: 3,
       title: "Bosque de Faroles",
-      src: "/src/assets/images/celestial_forest_1782250315828.jpg",
+      src: "/celestial_forest_1782250315828.jpg",
       desc: "Un claro mágico rodeado de pinos antiguos iluminados por candiles plateados.",
       coord: "RA 05h 35m / DEC -05°"
     },
     {
       id: 4,
       title: "Reflejo del Infinito",
-      src: "/src/assets/images/celestial_lake_1782250329521.jpg",
+      src: "/celestial_lake_1782250329521.jpg",
       desc: "La serenidad del lago de Valle de Bravo duplicando el esplendor de las estrellas.",
       coord: "RA 06h 45m / DEC -16°"
     },
     {
       id: 5,
       title: "Valentina & Gabriel",
-      src: "/src/assets/images/celestial_couple_1782250364007.jpg",
+      src: "/celestial_couple_1782250364007.jpg",
       desc: "Nuestro infinito amor inmortalizado bajo la inmensidad del firmamento nocturno.",
       coord: "RA 12h 45m / DEC -20°"
     }
@@ -535,7 +535,7 @@ export default function TemplateBoda9() {
               {/* Generated high-end background of couple watching the Milky Way */}
               <div className="absolute inset-0 pointer-events-none opacity-60 select-none">
                 <img 
-                  src="/src/assets/images/celestial_hero_1782250292221.jpg" 
+                  src="/celestial_hero_1782250292221.jpg" 
                   alt="Valentina & Gabriel Milky Way Background" 
                   className="w-full h-full object-cover filter brightness-[0.4] contrast-[1.2] saturate-[0.8]"
                   referrerPolicy="no-referrer"
