@@ -348,10 +348,13 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
     if (!audioRef.current) {
       // Elegant, peaceful piano track appropriate for events
       try {
-        const audio = new Audio('/music.mp3');
+        const audio = new Audio('https://res.cloudinary.com/dhs8skhqm/video/upload/v1782263468/AThousandYears_pjdjzt.mp3');
         audio.loop = true;
+        audio.volume = 0.5;
         audio.addEventListener('error', (e) => {
-          console.warn("Audio failed to load or was blocked:", e);
+          console.warn("Audio failed to load, falling back to Chopin:", e);
+          audio.src = 'https://upload.wikimedia.org/wikipedia/commons/3/30/Chopin_Nocturne_Op._9_No._2_-_Florence_Robineau.mp3';
+          audio.load();
         });
         audioRef.current = audio;
       } catch (err) {

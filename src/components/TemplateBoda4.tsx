@@ -59,12 +59,12 @@ export default function TemplateBoda4() {
 
   const togglePlayPause = () => {
     if (!audioRef.current) {
-      const audio = new Audio('/music.mp3');
+      const audio = new Audio('https://res.cloudinary.com/dhs8skhqm/video/upload/v1782263468/AThousandYears_pjdjzt.mp3');
       audio.loop = true;
       audio.volume = 0.5;
       
       audio.addEventListener('error', () => {
-        console.warn("Local /music.mp3 not found, falling back to Chopin Nocturne Op. 9 No. 2");
+        console.warn("Cloudinary music load failed, falling back to Chopin Nocturne Op. 9 No. 2");
         audio.src = 'https://upload.wikimedia.org/wikipedia/commons/3/30/Chopin_Nocturne_Op._9_No._2_-_Florence_Robineau.mp3';
         audio.load();
         audio.play().then(() => setIsPlaying(true)).catch(err => console.log("Fallback play blocked:", err));
@@ -162,12 +162,12 @@ export default function TemplateBoda4() {
 
     // Play music immediately within user click gesture to guarantee autoplay
     if (!audioRef.current) {
-      const audio = new Audio('/music.mp3');
+      const audio = new Audio('https://res.cloudinary.com/dhs8skhqm/video/upload/v1782263468/AThousandYears_pjdjzt.mp3');
       audio.loop = true;
       audio.volume = 0.5;
       
       audio.addEventListener('error', () => {
-        console.warn("Local /music.mp3 not found, falling back to Chopin Nocturne Op. 9 No. 2");
+        console.warn("Cloudinary music load failed, falling back to Chopin Nocturne Op. 9 No. 2");
         audio.src = 'https://upload.wikimedia.org/wikipedia/commons/3/30/Chopin_Nocturne_Op._9_No._2_-_Florence_Robineau.mp3';
         audio.load();
         audio.play().then(() => setIsPlaying(true)).catch(err => console.log("Fallback play blocked:", err));
@@ -279,61 +279,29 @@ export default function TemplateBoda4() {
           <>
             {isMusicCardOpen ? (
               <motion.div
-                initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 50, scale: 0.95 }}
-                className="fixed bottom-6 right-6 z-50 w-[300px] bg-[#FDFBF7]/95 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(42,37,33,0.15)] border border-[#c5a880]/30 p-3 flex flex-col font-sans"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="fixed bottom-6 right-6 z-50 flex items-center space-x-2 bg-[#FDFBF7]/95 backdrop-blur-md rounded-full border border-[#c5a880]/30 p-1.5 shadow-[0_4px_20px_rgba(42,37,33,0.15)] font-sans"
               >
-                <div className="flex items-center justify-between pb-2 border-b border-[#c5a880]/10">
-                  <div className="flex items-center space-x-1.5 text-[#1a1a1a]">
-                    <Music className="w-3.5 h-3.5 text-[#c5a880]" />
-                    <span className="text-[10px] uppercase tracking-widest font-sans font-bold text-stone-700">Música de Fondo</span>
-                  </div>
-                  <button onClick={toggleMusic} className="text-stone-400 hover:text-stone-600 transition-colors">
-                    <X className="w-4 h-4" />
-                  </button>
+                <button 
+                  onClick={togglePlayPause}
+                  className="w-8 h-8 rounded-full bg-[#c5a880] hover:bg-[#b59870] text-white flex items-center justify-center transition-all active:scale-95 shadow-md flex-shrink-0"
+                  title={isPlaying ? "Pausar" : "Reproducir"}
+                >
+                  {isPlaying ? <Pause className="w-3 h-3 fill-white" /> : <Play className="w-3 h-3 fill-white ml-0.5" />}
+                </button>
+                <div className="pr-1 pl-1 min-w-0 flex flex-col justify-center">
+                  <span className="text-[10px] font-bold text-[#1a1a1a] whitespace-nowrap leading-none block">A Thousand Years</span>
+                  <span className="text-[8px] text-stone-500 whitespace-nowrap leading-none block mt-0.5">Música de Fondo</span>
                 </div>
-                
-                <div className="flex flex-col space-y-2 pt-2 text-stone-800">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 rounded-lg bg-[#c5a880]/10 flex items-center justify-center border border-[#c5a880]/30">
-                      <Music className={`w-5 h-5 text-[#c5a880] ${isPlaying ? 'animate-spin' : ''}`} style={{ animationDuration: '6s' }} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-xs font-semibold truncate text-[#1a1a1a]">Sinfonía de Amor</h4>
-                      <p className="text-[10px] text-stone-500 truncate">Melodía Romántica de Piano</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center justify-between pt-1">
-                    <button 
-                      onClick={togglePlayPause}
-                      className="p-2 bg-[#c5a880] hover:bg-[#b59870] text-white rounded-lg transition-all active:scale-95 flex items-center justify-center"
-                      title={isPlaying ? "Pausar" : "Reproducir"}
-                    >
-                      {isPlaying ? <Pause className="w-4 h-4 fill-white" /> : <Play className="w-4 h-4 fill-white ml-0.5" />}
-                    </button>
-                    
-                    <div className="flex items-center space-x-2 flex-1 ml-4">
-                      {isPlaying ? (
-                        <Volume2 className="w-3.5 h-3.5 text-[#c5a880] animate-pulse" />
-                      ) : (
-                        <VolumeX className="w-3.5 h-3.5 text-stone-400" />
-                      )}
-                      <input 
-                        type="range" 
-                        min="0" 
-                        max="1" 
-                        step="0.05" 
-                        defaultValue="0.5"
-                        onChange={(e) => {
-                          if (audioRef.current) audioRef.current.volume = parseFloat(e.target.value);
-                        }}
-                        className="w-full h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-[#c5a880]"
-                      />
-                    </div>
-                  </div>
-                </div>
+                <button 
+                  onClick={toggleMusic} 
+                  className="text-stone-400 hover:text-stone-600 p-1 rounded-full hover:bg-stone-100 transition-colors"
+                  title="Minimizar"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
               </motion.div>
             ) : (
               <motion.button
@@ -341,11 +309,10 @@ export default function TemplateBoda4() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 onClick={toggleMusic}
-                className="fixed bottom-6 right-6 z-40 p-4 bg-[#c5a880] text-white rounded-full shadow-2xl hover:bg-[#b59870] hover:scale-105 active:scale-95 transition-all group flex items-center justify-center border border-[#c5a880]/40"
-                aria-label="Toggle background music"
+                className="fixed bottom-6 right-6 z-40 p-3 bg-[#c5a880] text-white rounded-full shadow-2xl hover:bg-[#b59870] hover:scale-105 active:scale-95 transition-all group flex items-center justify-center border border-[#c5a880]/40"
+                aria-label="Escuchar música"
               >
-                <Music className="w-5 h-5 group-hover:scale-110 transition-transform text-white" />
-                <span className="max-w-0 overflow-hidden group-hover:max-w-32 group-hover:ml-2 transition-all duration-300 text-xs font-sans uppercase tracking-widest whitespace-nowrap text-white font-bold">Escuchar Música</span>
+                <Music className="w-4 h-4 group-hover:scale-110 transition-transform text-white" />
               </motion.button>
             )}
           </>

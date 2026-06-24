@@ -51,8 +51,9 @@ export default function Hero({ onVerEjemplosClick, onSolicitarClick }: HeroProps
 
   const toggleMusic = () => {
     if (!audioRef.current) {
-      audioRef.current = new Audio('/music.mp3');
+      audioRef.current = new Audio('https://res.cloudinary.com/dhs8skhqm/video/upload/v1782263468/AThousandYears_pjdjzt.mp3');
       audioRef.current.loop = true;
+      audioRef.current.volume = 0.5;
     }
     
     if (isPlaying) {
