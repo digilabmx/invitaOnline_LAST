@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Heart, Calendar, MapPin, Gift, Music, Play, Pause, 
   Copy, Check, Sparkles, ArrowLeft, Send, ExternalLink, 
-  ChevronLeft, ChevronRight, Shield, Smartphone, Volume2, VolumeX
+  ChevronLeft, ChevronRight, Shield, Smartphone, Volume2, VolumeX, X
 } from 'lucide-react';
 
 // Specialized Canvas Component for Premium Floating Sage/Ivory Petals and Golden Butterflies
@@ -270,7 +270,7 @@ export default function TemplateBoda7() {
   const [isOpening, setIsOpening] = useState(false);
   const [showCanvas, setShowCanvas] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [musicSource, setMusicSource] = useState<'local' | 'soundcloud'>('local');
+  const [isMusicCardOpen, setIsMusicCardOpen] = useState(true);
   const [activeStoryChapter, setActiveStoryChapter] = useState<number | null>(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration] = useState(131); // 2:11 music loop duration
@@ -362,34 +362,11 @@ export default function TemplateBoda7() {
 
   const handleAudioSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = parseFloat(e.target.value);
-    if (audioRef.current) {
-      audioRef.current.currentTime = val;
-      setCurrentTime(val);
-    }
-  };
-
-  const handleMusicSourceChange = (src: 'local' | 'soundcloud') => {
-    setMusicSource(src);
-    if (src === 'soundcloud') {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-      }
-    } else {
-      if (audioRef.current) {
-        audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
-      }
-    }
+    setCurrentTime(val);
   };
 
   const toggleMusic = () => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play().catch(() => {});
-    }
-    setIsPlaying(!isPlaying);
+    setIsMusicCardOpen(!isMusicCardOpen);
   };
 
   const triggerToast = (msg: string) => {
@@ -490,9 +467,7 @@ export default function TemplateBoda7() {
 
     setTimeout(() => {
       setEnvelopeOpened(true);
-      if (audioRef.current) {
-        audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
-      }
+      setIsMusicCardOpen(true);
     }, 1500);
   };
 
@@ -528,25 +503,54 @@ export default function TemplateBoda7() {
         )}
       </AnimatePresence>
 
-      {/* Floating Crystal Music Box control */}
-      {envelopeOpened && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          onClick={toggleMusic}
-          className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-[#F8F4EE]/90 border border-[#D9A58D]/30 backdrop-blur-md flex items-center justify-center text-stone-700 shadow-2xl active:scale-95 transition-transform"
-          id="music-floating-btn"
-        >
-          {isPlaying ? (
-            <div className="relative flex items-center justify-center w-full h-full">
-              <span className="absolute animate-ping inline-flex h-5 w-5 rounded-full bg-[#A8BBA2]/25 opacity-75"></span>
-              <Music className="w-5 h-5 text-[#A8BBA2]" />
-            </div>
-          ) : (
-            <VolumeX className="w-5 h-5 text-stone-400" />
-          )}
-        </motion.button>
-      )}
+      {/* Floating Spotify Player Widget */}
+      <AnimatePresence>
+        {envelopeOpened && (
+          <>
+            {isMusicCardOpen ? (
+              <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 50, scale: 0.95 }}
+                className="fixed bottom-6 right-6 z-50 w-[300px] bg-[#FAF8F5]/95 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(42,37,33,0.15)] border border-[#D9A58D]/30 p-1 flex flex-col font-sans"
+              >
+                <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#D9A58D]/20">
+                  <div className="flex items-center space-x-1.5 text-stone-700">
+                    <Music className="w-3.5 h-3.5 text-[#D9A58D]" />
+                    <span className="text-[10px] uppercase tracking-widest font-sans font-bold">Música de Fondo</span>
+                  </div>
+                  <button onClick={toggleMusic} className="text-stone-400 hover:text-stone-600 transition-colors">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                <iframe 
+                  src="https://open.spotify.com/embed/track/59Yw2AGXDbG8I5wAEATyDW?utm_source=generator&theme=0&si=6993b0ecfc7449ea"
+                  width="100%"
+                  height="152"
+                  style={{ borderRadius: '12px' }}
+                  frameBorder="0"
+                  allowFullScreen={true}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="mt-1"
+                />
+              </motion.div>
+            ) : (
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                onClick={toggleMusic}
+                className="fixed bottom-6 right-6 z-40 p-4 bg-[#FAF8F5]/90 text-stone-700 rounded-full shadow-[0_15px_40px_rgba(0,0,0,0.15)] border border-[#D9A58D]/30 backdrop-blur-md transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-90 group"
+                aria-label="Toggle background music"
+              >
+                <Music className="w-5 h-5 group-hover:scale-110 transition-transform text-[#D9A58D]" />
+                <span className="max-w-0 overflow-hidden group-hover:max-w-32 group-hover:ml-2 transition-all duration-300 text-xs font-sans uppercase tracking-widest whitespace-nowrap text-stone-700 font-bold">Escuchar Música</span>
+              </motion.button>
+            )}
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Particles, sage leaves and golden butterflies */}
       {showCanvas && <BotanicalCanvas />}
@@ -798,13 +802,15 @@ export default function TemplateBoda7() {
 
                 <div className="rounded-2xl overflow-hidden shadow-inner border border-stone-200/40 bg-white p-0.5 relative z-10 transition-all duration-300">
                   <iframe 
-                    width="100%" 
-                    height="166" 
-                    scrolling="no" 
-                    frameBorder="no" 
-                    allow="autoplay; encrypted-media" 
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/326401397&color=%23a8bba2&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
-                    className="rounded-xl"
+                    src="https://open.spotify.com/embed/track/59Yw2AGXDbG8I5wAEATyDW?utm_source=generator&theme=0&si=6993b0ecfc7449ea"
+                    width="100%"
+                    height="152"
+                    style={{ borderRadius: '12px' }}
+                    frameBorder="0"
+                    allowFullScreen={true}
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                    className="mt-1"
                   />
                 </div>
               </div>

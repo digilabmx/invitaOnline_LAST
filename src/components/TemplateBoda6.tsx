@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Heart, Calendar, MapPin, Gift, Music, Play, Pause, 
   Copy, Check, Sparkles, ArrowLeft, Send, ExternalLink, 
-  ChevronLeft, ChevronRight, Shield, Smartphone
+  ChevronLeft, ChevronRight, Shield, Smartphone, X
 } from 'lucide-react';
 import SilverGlitterCanvas from './SilverGlitterCanvas';
 
@@ -67,6 +67,7 @@ export default function TemplateBoda6() {
   const [isOpening, setIsOpening] = useState(false);
   const [showSilverCanvas, setShowSilverCanvas] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMusicCardOpen, setIsMusicCardOpen] = useState(true);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [safeOpen, setSafeOpen] = useState(false);
   const [safeUnlocking, setSafeUnlocking] = useState(false);
@@ -106,28 +107,7 @@ export default function TemplateBoda6() {
 
   // Background music audio setup
   useEffect(() => {
-    audioRef.current = new Audio('/music.mp3');
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.40;
-
-    audioRef.current.play()
-      .then(() => setIsPlaying(true))
-      .catch((err) => {
-        console.warn("Autoplay blocked on mount:", err);
-      });
-
-    const updateTime = () => {
-      if (audioRef.current) setCurrentTime(Math.floor(audioRef.current.currentTime));
-    };
-    audioRef.current.addEventListener('timeupdate', updateTime);
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.removeEventListener('timeupdate', updateTime);
-        audioRef.current = null;
-      }
-    };
+    setIsPlaying(true);
   }, []);
 
   // Countdown timer logic
@@ -159,20 +139,11 @@ export default function TemplateBoda6() {
 
   const handleAudioSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = parseFloat(e.target.value);
-    if (audioRef.current) {
-      audioRef.current.currentTime = val;
-      setCurrentTime(val);
-    }
+    setCurrentTime(val);
   };
 
   const toggleMusic = () => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play().catch(() => {});
-    }
-    setIsPlaying(!isPlaying);
+    setIsMusicCardOpen(!isMusicCardOpen);
   };
 
   const handleOpenEnvelope = () => {
@@ -204,9 +175,7 @@ export default function TemplateBoda6() {
 
     setTimeout(() => {
       setEnvelopeOpened(true);
-      if (audioRef.current) {
-        audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
-      }
+      setIsMusicCardOpen(true);
     }, 1800);
   };
 
@@ -281,24 +250,54 @@ export default function TemplateBoda6() {
         )}
       </AnimatePresence>
 
-      {/* Floating Music Button */}
-      {envelopeOpened && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          onClick={toggleMusic}
-          className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-[#121212]/90 border border-[#C8C8C8]/25 backdrop-blur-md flex items-center justify-center text-[#F8F8F8] shadow-2xl"
-        >
-          {isPlaying ? (
-            <div className="relative flex items-center justify-center w-full h-full">
-              <span className="absolute animate-ping inline-flex h-5 w-5 rounded-full bg-[#C8C8C8]/10 opacity-75"></span>
-              <Music className="w-5 h-5 text-[#C8C8C8]" />
-            </div>
-          ) : (
-            <Music className="w-5 h-5 text-stone-500" />
-          )}
-        </motion.button>
-      )}
+      {/* Floating Spotify Player Widget */}
+      <AnimatePresence>
+        {envelopeOpened && (
+          <>
+            {isMusicCardOpen ? (
+              <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 50, scale: 0.95 }}
+                className="fixed bottom-6 right-6 z-50 w-[300px] bg-[#121212]/95 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] border border-[#C8C8C8]/30 p-1 flex flex-col font-sans"
+              >
+                <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#C8C8C8]/20">
+                  <div className="flex items-center space-x-1.5 text-[#C8C8C8]">
+                    <Music className="w-3.5 h-3.5 text-[#C8C8C8]" />
+                    <span className="text-[10px] uppercase tracking-widest font-sans font-bold">Música de Fondo</span>
+                  </div>
+                  <button onClick={toggleMusic} className="text-stone-400 hover:text-stone-200 transition-colors">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                <iframe 
+                  src="https://open.spotify.com/embed/track/59Yw2AGXDbG8I5wAEATyDW?utm_source=generator&theme=0&si=6993b0ecfc7449ea"
+                  width="100%"
+                  height="152"
+                  style={{ borderRadius: '12px' }}
+                  frameBorder="0"
+                  allowFullScreen={true}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="mt-1"
+                />
+              </motion.div>
+            ) : (
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                onClick={toggleMusic}
+                className="fixed bottom-6 right-6 z-40 p-4 bg-[#121212]/95 hover:bg-stone-900 text-white rounded-full shadow-[0_15px_40px_rgba(0,0,0,0.6)] border border-[#C8C8C8]/30 transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-90 group"
+                aria-label="Toggle background music"
+              >
+                <Music className="w-5 h-5 group-hover:scale-110 transition-transform text-[#C8C8C8]" />
+                <span className="max-w-0 overflow-hidden group-hover:max-w-32 group-hover:ml-2 transition-all duration-300 text-xs font-sans uppercase tracking-widest whitespace-nowrap text-[#C8C8C8] font-bold">Escuchar Música</span>
+              </motion.button>
+            )}
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Dynamic Glitter Background FX */}
       {showSilverCanvas && <SilverGlitterCanvas />}
@@ -476,15 +475,15 @@ export default function TemplateBoda6() {
             </section>
 
 
-            {/* APPLE MUSIC PLAYER */}
+            {/* SPOTIFY MUSIC PLAYER */}
             <section className="relative py-12 bg-[#0D0D0D] border-t border-b border-white/5 px-4">
               <div className="max-w-[380px] mx-auto bg-[#141414]/90 rounded-[24px] p-5 border border-[#C8C8C8]/15 shadow-xl backdrop-blur-md">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center space-x-1.5 text-stone-400">
                     <Music className="w-3.5 h-3.5 text-[#C8C8C8]" />
-                    <span className="text-[8px] uppercase tracking-[0.2em] font-medium font-mono">Apple Music Edition</span>
+                    <span className="text-[8px] uppercase tracking-[0.2em] font-medium font-mono">Spotify Edition</span>
                   </div>
-                  <span className="text-[7px] uppercase tracking-[0.15em] border border-white/10 px-1.5 py-0.5 rounded text-stone-500">Lossless</span>
+                  <span className="text-[7px] uppercase tracking-[0.15em] border border-white/10 px-1.5 py-0.5 rounded text-stone-500">HD AUDIO</span>
                 </div>
 
                 <div className="flex items-center space-x-3 mb-4">
@@ -492,37 +491,22 @@ export default function TemplateBoda6() {
                     <img src="/v_s_hero_1782248283047.jpg" alt="Mini Cover" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                   </div>
                   <div className="overflow-hidden">
-                    <p className="font-serif text-[13px] text-white truncate tracking-wide">Midnight Walk in CDMX</p>
-                    <p className="text-[9px] text-stone-400 uppercase tracking-widest truncate mt-0.5">Victoria & Sebastián Symphonic Jazz</p>
+                    <p className="font-serif text-[13px] text-white truncate tracking-wide">Nuestra Canción de Boda</p>
+                    <p className="text-[9px] text-stone-400 uppercase tracking-widest truncate mt-0.5">Victoria & Sebastián</p>
                   </div>
                 </div>
 
-                <div>
-                  <input
-                    type="range"
-                    min="0"
-                    max={duration}
-                    value={currentTime}
-                    onChange={handleAudioSeek}
-                    className="w-full h-[2px] bg-stone-800 roundedappearance-none cursor-pointer accent-[#C8C8C8]"
-                  />
-                  <div className="flex justify-between text-[7px] font-mono text-stone-500 mt-1.5">
-                    <span>{formatTime(currentTime)}</span>
-                    <span>-{formatTime(duration - currentTime)}</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-center space-x-6 mt-3">
-                  <button onClick={() => { if(audioRef.current) audioRef.current.currentTime = Math.max(0, audioRef.current.currentTime - 10); }} className="text-stone-500 hover:text-white transition-colors">
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <button onClick={toggleMusic} className="w-11 h-11 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 active:scale-95 transition-all">
-                    {isPlaying ? <Pause className="w-4 h-4 fill-black" /> : <Play className="w-4 h-4 ml-0.5 fill-black" />}
-                  </button>
-                  <button onClick={() => { if(audioRef.current) audioRef.current.currentTime = Math.min(duration, audioRef.current.currentTime + 10); }} className="text-stone-500 hover:text-white transition-colors">
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                </div>
+                <iframe 
+                  src="https://open.spotify.com/embed/track/59Yw2AGXDbG8I5wAEATyDW?utm_source=generator&theme=0&si=6993b0ecfc7449ea"
+                  width="100%"
+                  height="152"
+                  style={{ borderRadius: '12px' }}
+                  frameBorder="0"
+                  allowFullScreen={true}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="mt-1"
+                />
               </div>
             </section>
 

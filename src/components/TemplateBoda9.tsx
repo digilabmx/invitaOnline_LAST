@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Heart, Calendar, MapPin, Gift, Music, Play, Pause, 
   Copy, Check, Sparkles, Send, ExternalLink, 
-  ChevronLeft, ChevronRight, Volume2, VolumeX, Info, Phone, Eye, ArrowLeft
+  ChevronLeft, ChevronRight, Volume2, VolumeX, Info, Phone, Eye, ArrowLeft, X
 } from 'lucide-react';
 
 // Color Palette Constants:
@@ -170,6 +170,7 @@ const CelestialCanvas: React.FC = () => {
 export default function TemplateBoda9() {
   const [isOpen, setIsOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMusicCardOpen, setIsMusicCardOpen] = useState(true);
   const [audioInited, setAudioInited] = useState(false);
   const [showShootingStarAnimation, setShowShootingStarAnimation] = useState(false);
   const [copiedAccount, setCopiedAccount] = useState(false);
@@ -209,40 +210,16 @@ export default function TemplateBoda9() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const startSynthesizer = () => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio('/music.mp3');
-      audioRef.current.loop = true;
-    }
     setIsPlaying(true);
-    audioRef.current.play().catch(err => {
-      console.warn("Audio blocked:", err);
-      setIsPlaying(true);
-    });
   };
 
   const stopSynthesizer = () => {
     setIsPlaying(false);
-    if (audioRef.current) {
-      audioRef.current.pause();
-    }
   };
 
   // Clean audio on unmount & autoplay on mount
   useEffect(() => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio('/music.mp3');
-      audioRef.current.loop = true;
-    }
     setIsPlaying(true);
-    audioRef.current.play().catch(err => {
-      console.warn("Autoplay blocked on mount:", err);
-    });
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-    };
   }, []);
 
   // Obsolete synthesis engines removed in favor of high-quality romantic MP3 streaming
@@ -251,7 +228,7 @@ export default function TemplateBoda9() {
   const handleOpenInvitation = () => {
     setIsOpen(true);
     setShowShootingStarAnimation(true);
-    startSynthesizer();
+    setIsMusicCardOpen(true);
 
     // Trigger visual nebula effect in the background
     setTimeout(() => {
@@ -260,11 +237,7 @@ export default function TemplateBoda9() {
   };
 
   const toggleMusic = () => {
-    if (isPlaying) {
-      stopSynthesizer();
-    } else {
-      startSynthesizer();
-    }
+    setIsMusicCardOpen(!isMusicCardOpen);
   };
 
   const handleCopy = (text: string) => {
@@ -363,30 +336,52 @@ export default function TemplateBoda9() {
       {/* Stars Background Twinkle Effect */}
       <CelestialCanvas />
 
-      {/* Floating Music Controller */}
+      {/* Floating Spotify Player Widget */}
       <AnimatePresence>
         {isOpen && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            onClick={toggleMusic}
-            id="celestial-music-btn"
-            className="fixed bottom-6 right-6 z-50 p-4 bg-[#0B1E3B]/80 text-[#FFFFFF] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:bg-[#1D3557] hover:shadow-[0_0_30px_rgba(165,243,252,0.3)] transition-all group flex items-center justify-center border border-[#DADADA]/30 backdrop-blur-md"
-            aria-label="Toggle wedding music arpeggio"
-          >
-            {isPlaying ? (
-              <>
-                <Volume2 className="w-5 h-5 text-cyan-200 animate-pulse" />
-                <span className="max-w-0 overflow-hidden group-hover:max-w-32 group-hover:ml-2 transition-all duration-300 text-[10px] font-sans uppercase tracking-widest whitespace-nowrap text-cyan-100">Piano Cósmico</span>
-              </>
+          <>
+            {isMusicCardOpen ? (
+              <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 50, scale: 0.95 }}
+                className="fixed bottom-6 right-6 z-50 w-[300px] bg-[#030712]/95 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(255,255,255,0.1)] border border-[#DADADA]/30 p-1 flex flex-col font-sans"
+              >
+                <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#DADADA]/20">
+                  <div className="flex items-center space-x-1.5 text-cyan-200">
+                    <Music className="w-3.5 h-3.5 text-cyan-200" />
+                    <span className="text-[10px] uppercase tracking-widest font-sans font-bold text-cyan-100">Música de Fondo</span>
+                  </div>
+                  <button onClick={toggleMusic} className="text-stone-400 hover:text-stone-200 transition-colors">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                <iframe 
+                  src="https://open.spotify.com/embed/track/59Yw2AGXDbG8I5wAEATyDW?utm_source=generator&theme=0&si=6993b0ecfc7449ea"
+                  width="100%"
+                  height="152"
+                  style={{ borderRadius: '12px' }}
+                  frameBorder="0"
+                  allowFullScreen={true}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="mt-1"
+                />
+              </motion.div>
             ) : (
-              <>
-                <VolumeX className="w-5 h-5 text-stone-400" />
-                <span className="max-w-0 overflow-hidden group-hover:max-w-32 group-hover:ml-2 transition-all duration-300 text-[10px] font-sans uppercase tracking-widest whitespace-nowrap text-stone-400">Escuchar Música</span>
-              </>
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                onClick={toggleMusic}
+                className="fixed bottom-6 right-6 z-50 p-4 bg-[#0B1E3B]/80 text-[#FFFFFF] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:bg-[#1D3557] hover:shadow-[0_0_30px_rgba(165,243,252,0.3)] transition-all group flex items-center justify-center border border-[#DADADA]/30 backdrop-blur-md"
+                aria-label="Toggle background music"
+              >
+                <Music className="w-5 h-5 group-hover:scale-110 transition-transform text-cyan-200" />
+                <span className="max-w-0 overflow-hidden group-hover:max-w-32 group-hover:ml-2 transition-all duration-300 text-xs font-sans uppercase tracking-widest whitespace-nowrap text-cyan-100 font-bold">Escuchar Música</span>
+              </motion.button>
             )}
-          </motion.button>
+          </>
         )}
       </AnimatePresence>
 

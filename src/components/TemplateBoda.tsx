@@ -256,13 +256,15 @@ export default function TemplateBoda() {
                   </button>
                 </div>
                 <iframe 
-                  width="100%" 
-                  height="120" 
-                  scrolling="no" 
-                  frameBorder="no" 
-                  allow="autoplay; encrypted-media" 
-                  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/326401397&color=%23d9a58d&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
-                  className="rounded-xl mt-1"
+                  src="https://open.spotify.com/embed/track/59Yw2AGXDbG8I5wAEATyDW?utm_source=generator&theme=0&si=6993b0ecfc7449ea"
+                  width="100%"
+                  height="152"
+                  style={{ borderRadius: '12px' }}
+                  frameBorder="0"
+                  allowFullScreen={true}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="mt-1"
                 />
               </motion.div>
             ) : (

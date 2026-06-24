@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { 
   Heart, Calendar, MapPin, Gift, Clock, Music, Play, Pause, 
-  Copy, Check, Sparkles, Users, ArrowLeft, Send, ExternalLink, ChevronLeft, ChevronRight, Home, Info
+  Copy, Check, Sparkles, Users, ArrowLeft, Send, ExternalLink, ChevronLeft, ChevronRight, Home, Info, X
 } from 'lucide-react';
 import FoliageCanvas from './FoliageCanvas';
 
@@ -39,6 +39,7 @@ export default function TemplateBoda4() {
   const [isOpening, setIsOpening] = useState(false);
   const [showFoliage, setShowFoliage] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMusicCardOpen, setIsMusicCardOpen] = useState(true);
   const [activePhoto, setActivePhoto] = useState(0);
   
   // Custom toast notification states
@@ -56,23 +57,7 @@ export default function TemplateBoda4() {
   ];
 
   useEffect(() => {
-    // Elegant, romantic instrumental classical track for luxury vibe - soft piano
-    audioRef.current = new Audio('/music.mp3');
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.45;
-
-    audioRef.current.play()
-      .then(() => setIsPlaying(true))
-      .catch((err) => {
-        console.warn("Autoplay blocked on mount:", err);
-      });
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
+    setIsPlaying(true);
   }, []);
 
   // Gallery auto rotation
@@ -85,15 +70,7 @@ export default function TemplateBoda4() {
   }, [envelopeOpened, galleryImages.length]);
 
   const toggleMusic = () => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play().catch(() => {
-        // Fallback for autoplay blocks
-      });
-    }
-    setIsPlaying(!isPlaying);
+    setIsMusicCardOpen(!isMusicCardOpen);
   };
 
   const triggerToast = (message: string) => {
@@ -152,11 +129,7 @@ export default function TemplateBoda4() {
     setTimeout(() => {
       setEnvelopeOpened(true);
       setShowFoliage(true);
-      if (audioRef.current) {
-        audioRef.current.play().then(() => {
-          setIsPlaying(true);
-        }).catch(() => {});
-      }
+      setIsMusicCardOpen(true);
     }, 900); // Wait for luxury card slide up transition
   };
 
@@ -244,23 +217,54 @@ export default function TemplateBoda4() {
         <ArrowLeft className="w-4 h-4 text-stone-700 group-hover:-translate-x-0.5 transition-transform" />
       </a>
 
-      {/* Luxury Sticky Floating Audio Controller */}
-      {envelopeOpened && (
-        <button
-          onClick={toggleMusic}
-          className="fixed bottom-6 right-6 z-40 bg-white/95 hover:bg-white text-[#1a1a1a] p-4 rounded-full shadow-2xl border border-[#c5a880]/30 transition-all duration-300 flex items-center justify-center hover:scale-110 active:scale-90"
-          title={isPlaying ? "Pausar música" : "Reproducir música"}
-        >
-          {isPlaying ? (
-            <div className="relative flex items-center justify-center">
-              <span className="absolute animate-ping inline-flex h-full w-full rounded-full bg-[#c5a880]/20" />
-              <Pause className="w-4 h-4 text-[#1a1a1a]" />
-            </div>
-          ) : (
-            <Play className="w-4 h-4 text-[#1a1a1a] fill-[#1a1a1a]" />
-          )}
-        </button>
-      )}
+      {/* Floating Spotify Player Widget */}
+      <AnimatePresence>
+        {envelopeOpened && (
+          <>
+            {isMusicCardOpen ? (
+              <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 50, scale: 0.95 }}
+                className="fixed bottom-6 right-6 z-50 w-[300px] bg-[#FDFBF7]/95 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(42,37,33,0.15)] border border-[#c5a880]/30 p-1 flex flex-col font-sans"
+              >
+                <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#c5a880]/10">
+                  <div className="flex items-center space-x-1.5 text-[#1a1a1a]">
+                    <Music className="w-3.5 h-3.5 text-[#c5a880]" />
+                    <span className="text-[10px] uppercase tracking-widest font-sans font-bold">Música de Fondo</span>
+                  </div>
+                  <button onClick={toggleMusic} className="text-stone-400 hover:text-stone-600 transition-colors">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                <iframe 
+                  src="https://open.spotify.com/embed/track/59Yw2AGXDbG8I5wAEATyDW?utm_source=generator&theme=0&si=6993b0ecfc7449ea"
+                  width="100%"
+                  height="152"
+                  style={{ borderRadius: '12px' }}
+                  frameBorder="0"
+                  allowFullScreen={true}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="mt-1"
+                />
+              </motion.div>
+            ) : (
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                onClick={toggleMusic}
+                className="fixed bottom-6 right-6 z-40 p-4 bg-[#c5a880] text-white rounded-full shadow-2xl hover:bg-[#b59870] hover:scale-105 active:scale-95 transition-all group flex items-center justify-center border border-[#c5a880]/40"
+                aria-label="Toggle background music"
+              >
+                <Music className="w-5 h-5 group-hover:scale-110 transition-transform text-white" />
+                <span className="max-w-0 overflow-hidden group-hover:max-w-32 group-hover:ml-2 transition-all duration-300 text-xs font-sans uppercase tracking-widest whitespace-nowrap text-white font-bold">Escuchar Música</span>
+              </motion.button>
+            )}
+          </>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence mode="wait">
         {!envelopeOpened ? (

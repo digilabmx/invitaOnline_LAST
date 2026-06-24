@@ -4,7 +4,7 @@ import {
   Heart, Calendar, MapPin, Clock, Gift, Users, Music, 
   CheckCircle, Copy, ChevronDown, ChevronRight, ChevronLeft, 
   Sparkles, VolumeX, Volume2, Info, Share2, Mail, ExternalLink,
-  ArrowLeft
+  ArrowLeft, X
 } from 'lucide-react';
 import SparkleCanvas from './SparkleCanvas';
 
@@ -12,6 +12,7 @@ export default function TemplateBoda2() {
   // Envelope open states
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMusicCardOpen, setIsMusicCardOpen] = useState(true);
   const [showGoldBurst, setShowGoldBurst] = useState(false);
 
   // Gallery slider control
@@ -66,29 +67,7 @@ export default function TemplateBoda2() {
 
   // Clean audio on unmount & autoplay on mount
   useEffect(() => {
-    if (!audioRef.current) {
-      try {
-        const audio = new Audio('/music.mp3');
-        audio.loop = true;
-        audioRef.current = audio;
-      } catch (err) {
-        console.warn("Could not load audio source: ", err);
-      }
-    }
-    if (audioRef.current) {
-      audioRef.current.play()
-        .then(() => setIsPlaying(true))
-        .catch((err) => {
-          console.warn("Autoplay blocked on mount:", err);
-        });
-    }
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
+    setIsPlaying(true);
   }, []);
 
   const triggerToast = (msg: string) => {
@@ -99,37 +78,13 @@ export default function TemplateBoda2() {
   };
 
   const handleToggleMusic = () => {
-    if (!audioRef.current) {
-      try {
-        const audio = new Audio('/music.mp3');
-        audio.loop = true;
-        audioRef.current = audio;
-      } catch (err) {
-        console.warn("Could not load audio source: ", err);
-      }
-    }
-
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        audioRef.current.play().then(() => {
-          setIsPlaying(true);
-        }).catch(() => {
-          setIsPlaying(true);
-          triggerToast("Música reproduciéndose (Tu navegador requiere interacción previa).");
-        });
-      }
-    }
+    setIsMusicCardOpen(!isMusicCardOpen);
   };
 
   const handleOpenEnvelope = () => {
     setEnvelopeOpened(true);
     setShowGoldBurst(true);
-    
-    // Play audio right away
-    handleToggleMusic();
+    setIsMusicCardOpen(true);
 
     // Auto terminate gold spark burst after 7 seconds
     setTimeout(() => {
@@ -220,36 +175,54 @@ export default function TemplateBoda2() {
       {/* Luxury Golden Sparkles Canopy */}
       {envelopeOpened && <SparkleCanvas />}
 
-      {/* Floating Audio Player Widget */}
-      {envelopeOpened && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1 }}
-          className="fixed bottom-6 right-6 z-50 flex items-center bg-[#1c1a17]/90 backdrop-blur-md border border-[#d4b78f]/40 p-2.5 rounded-full shadow-[0_15px_35px_rgba(0,0,0,0.8)]"
-        >
-          <button
-            onClick={handleToggleMusic}
-            className="w-10 h-10 rounded-full bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#c5a880] flex items-center justify-center text-stone-950 shadow-inner cursor-pointer"
-            aria-label="Toggle background music"
-          >
-            {isPlaying ? (
-              <Volume2 className="w-4 h-4 animate-pulse text-stone-950" />
+      {/* Floating Spotify Player Widget */}
+      <AnimatePresence>
+        {envelopeOpened && (
+          <>
+            {isMusicCardOpen ? (
+              <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 50, scale: 0.95 }}
+                className="fixed bottom-6 right-6 z-50 w-[300px] bg-[#1c1a17]/95 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] border border-[#d4b78f]/40 p-1 flex flex-col font-sans"
+              >
+                <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#d4b78f]/20">
+                  <div className="flex items-center space-x-1.5 text-[#d4af37]">
+                    <Music className="w-3.5 h-3.5 text-[#d4af37]" />
+                    <span className="text-[10px] uppercase tracking-widest font-sans font-bold">Música de Fondo</span>
+                  </div>
+                  <button onClick={handleToggleMusic} className="text-stone-400 hover:text-stone-200 transition-colors">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                <iframe 
+                  src="https://open.spotify.com/embed/track/59Yw2AGXDbG8I5wAEATyDW?utm_source=generator&theme=0&si=6993b0ecfc7449ea"
+                  width="100%"
+                  height="152"
+                  style={{ borderRadius: '12px' }}
+                  frameBorder="0"
+                  allowFullScreen={true}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="mt-1"
+                />
+              </motion.div>
             ) : (
-              <VolumeX className="w-4 h-4 text-stone-950" />
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                onClick={handleToggleMusic}
+                className="fixed bottom-6 right-6 z-50 p-4 bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#c5a880] text-stone-950 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all group flex items-center justify-center border border-[#d4b78f]"
+                aria-label="Toggle background music"
+              >
+                <Music className="w-5 h-5 group-hover:scale-110 transition-transform text-stone-950" />
+                <span className="max-w-0 overflow-hidden group-hover:max-w-32 group-hover:ml-2 transition-all duration-300 text-xs font-sans uppercase tracking-widest whitespace-nowrap text-stone-950 font-bold">Escuchar Música</span>
+              </motion.button>
             )}
-          </button>
-          
-          {isPlaying && (
-            <div className="flex items-center space-x-1.5 px-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-              <marquee className="font-sans text-[8px] uppercase tracking-widest text-[#d4af37] w-24">
-                Andrea & Juan · Piano de Boda
-              </marquee>
-            </div>
-          )}
-        </motion.div>
-      )}
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Dynamic Screen Toast Notifications */}
       <AnimatePresence>
