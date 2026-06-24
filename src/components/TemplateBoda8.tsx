@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Heart, Calendar, MapPin, Gift, Music, Play, Pause, 
   Copy, Check, Sparkles, Send, ExternalLink, 
-  ChevronLeft, ChevronRight, Volume2, VolumeX, Info, Phone, ArrowLeft
+  ChevronLeft, ChevronRight, Volume2, VolumeX, Info, Phone, ArrowLeft, X
 } from 'lucide-react';
 
 // Color Palette Constants
@@ -131,6 +131,7 @@ const HaciendaCanvas: React.FC = () => {
 export default function TemplateBoda8() {
   const [isOpen, setIsOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMusicCardOpen, setIsMusicCardOpen] = useState(true);
   const [audioInited, setAudioInited] = useState(false);
   const [candleLit, setCandleLit] = useState(false);
   const [activeTab, setActiveTab] = useState<'hacienda' | 'balcon' | 'caballos' | 'patios' | 'jardines' | 'novios'>('hacienda');
@@ -166,43 +167,17 @@ export default function TemplateBoda8() {
   }, []);
 
   // Background MP3 Music Engine
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
   const startSynthesizer = () => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio('/music.mp3');
-      audioRef.current.loop = true;
-    }
     setIsPlaying(true);
-    audioRef.current.play().catch(err => {
-      console.warn("Audio blocked:", err);
-      setIsPlaying(true);
-    });
   };
 
   const stopSynthesizer = () => {
     setIsPlaying(false);
-    if (audioRef.current) {
-      audioRef.current.pause();
-    }
   };
 
   // Clean audio on unmount & autoplay on mount
   useEffect(() => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio('/music.mp3');
-      audioRef.current.loop = true;
-    }
     setIsPlaying(true);
-    audioRef.current.play().catch(err => {
-      console.warn("Autoplay blocked on mount:", err);
-    });
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-    };
   }, []);
 
   // Obsolete synthesis engines removed in favor of high-quality romantic MP3 streaming
@@ -244,11 +219,7 @@ export default function TemplateBoda8() {
   };
 
   const toggleMusic = () => {
-    if (isPlaying) {
-      stopSynthesizer();
-    } else {
-      startSynthesizer();
-    }
+    setIsMusicCardOpen(!isMusicCardOpen);
   };
 
   const GALLERY_IMAGES = [
@@ -322,30 +293,51 @@ export default function TemplateBoda8() {
       {/* Floating Sparkles & Light effects */}
       <HaciendaCanvas />
 
-      {/* Floating Music Button (appears only when open) */}
+      {/* Floating SoundCloud Player (appears only when open) */}
       <AnimatePresence>
         {isOpen && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            onClick={toggleMusic}
-            id="music-toggle-btn"
-            className="fixed bottom-6 right-6 z-50 p-4 bg-[#C96A45] text-[#F8F4EE] rounded-full shadow-2xl hover:bg-[#b05835] transition-colors group flex items-center justify-center border border-[#C7A76C]"
-            aria-label="Toggle wedding music"
-          >
-            {isPlaying ? (
-              <>
-                <Pause className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                <span className="max-w-0 overflow-hidden group-hover:max-w-32 group-hover:ml-2 transition-all duration-300 text-xs font-sans uppercase tracking-widest whitespace-nowrap">Silenciar</span>
-              </>
+          <>
+            {isMusicCardOpen ? (
+              <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 50, scale: 0.95 }}
+                className="fixed bottom-6 right-6 z-50 w-[300px] bg-[#FAF8F5]/95 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(42,37,33,0.2)] border-2 border-[#C7A76C]/40 p-1 flex flex-col font-sans"
+              >
+                <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#C7A76C]/10">
+                  <div className="flex items-center space-x-1.5 text-[#2A2521]">
+                    <Music className="w-3.5 h-3.5 text-[#C96A45]" />
+                    <span className="text-[10px] uppercase tracking-widest font-sans font-bold">Música de Fondo</span>
+                  </div>
+                  <button onClick={toggleMusic} className="text-stone-400 hover:text-stone-600 transition-colors">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                <iframe 
+                  width="100%" 
+                  height="120" 
+                  scrolling="no" 
+                  frameBorder="no" 
+                  allow="autoplay; encrypted-media" 
+                  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/326401397&color=%23c96a45&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
+                  className="rounded-xl mt-1"
+                />
+              </motion.div>
             ) : (
-              <>
-                <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                <span className="max-w-0 overflow-hidden group-hover:max-w-32 group-hover:ml-2 transition-all duration-300 text-xs font-sans uppercase tracking-widest whitespace-nowrap">Escuchar Guitarra</span>
-              </>
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                onClick={toggleMusic}
+                id="music-toggle-btn"
+                className="fixed bottom-6 right-6 z-50 p-4 bg-[#C96A45] text-[#F8F4EE] rounded-full shadow-2xl hover:bg-[#b05835] transition-colors group flex items-center justify-center border border-[#C7A76C]"
+                aria-label="Toggle wedding music"
+              >
+                <Music className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <span className="max-w-0 overflow-hidden group-hover:max-w-32 group-hover:ml-2 transition-all duration-300 text-xs font-sans uppercase tracking-widest whitespace-nowrap">Escuchar Música</span>
+              </motion.button>
             )}
-          </motion.button>
+          </>
         )}
       </AnimatePresence>
 

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Heart, Calendar, MapPin, Gift, Clock, Music, Play, Pause, 
   Copy, Check, CheckCircle, ChevronDown, Sparkles, Users, 
-  Info, Compass, ChevronRight, Share2, AlertCircle, ArrowLeft
+  Info, Compass, ChevronRight, Share2, AlertCircle, ArrowLeft, X
 } from 'lucide-react';
 
 import FallingPetalsCanvas from './FallingPetalsCanvas';
@@ -40,6 +40,7 @@ export default function TemplateBoda() {
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
   const [showPetals, setShowPetals] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMusicCardOpen, setIsMusicCardOpen] = useState(true);
   
   // Custom toast notification states
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -110,41 +111,12 @@ export default function TemplateBoda() {
 
   // Initialize background music lazy
   const handleToggleMusic = () => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio('/music.mp3');
-      audioRef.current.loop = true;
-    }
-
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play()
-        .then(() => setIsPlaying(true))
-        .catch((err) => {
-          console.warn("Audio player blocked:", err);
-          setIsPlaying(true); // Force visually so guests can see active state
-        });
-    }
+    setIsMusicCardOpen(!isMusicCardOpen);
   };
 
   // Clean audio on unmount & autoplay on mount
   useEffect(() => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio('/music.mp3');
-      audioRef.current.loop = true;
-    }
-    audioRef.current.play()
-      .then(() => setIsPlaying(true))
-      .catch((err) => {
-        console.warn("Autoplay blocked on mount:", err);
-      });
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-    };
+    setIsPlaying(true);
   }, []);
 
 
@@ -263,29 +235,52 @@ export default function TemplateBoda() {
         )}
       </AnimatePresence>
 
-      {/* Floating Ambient Audio Widget */}
-      {envelopeOpened && (
-        <div 
-          onClick={handleToggleMusic}
-          className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-white/75 backdrop-blur-md border border-neutral-200/50 p-2.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] cursor-pointer hover:bg-white active:scale-95 transition-all duration-200 group"
-        >
-          {isPlaying ? (
-            <div className="flex items-end gap-[2px] h-3 px-1.5 justify-center w-5">
-              <span className="w-[1.5px] h-2.5 bg-luxury-beige-600 rounded-full animate-bounce" style={{ animationDuration: '0.6s' }} />
-              <span className="w-[1.5px] h-4 bg-luxury-beige-600 rounded-full animate-bounce" style={{ animationDuration: '0.4s', animationDelay: '0.1s' }} />
-              <span className="w-[1.5px] h-1.5 bg-luxury-beige-600 rounded-full animate-bounce" style={{ animationDuration: '0.7s', animationDelay: '0.2s' }} />
-              <span className="w-[1.5px] h-3 bg-luxury-beige-600 rounded-full animate-bounce" style={{ animationDuration: '0.5s', animationDelay: '0.3s' }} />
-            </div>
-          ) : (
-            <div className="flex items-center justify-center w-5">
-              <Play className="w-3.5 h-3.5 text-luxury-beige-600 fill-luxury-beige-600" />
-            </div>
-          )}
-          <span className="font-sans text-[9px] font-bold tracking-widest uppercase text-stone-700 pr-1.5 select-none hidden md:inline">
-            {isPlaying ? 'Silenciar' : 'Música'}
-          </span>
-        </div>
-      )}
+      {/* Floating SoundCloud Player (appears only when open) */}
+      <AnimatePresence>
+        {envelopeOpened && (
+          <>
+            {isMusicCardOpen ? (
+              <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 50, scale: 0.95 }}
+                className="fixed bottom-6 right-6 z-50 w-[300px] bg-white/95 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] border border-neutral-200/50 p-1 flex flex-col font-sans"
+              >
+                <div className="flex items-center justify-between px-3 py-1.5 border-b border-neutral-100">
+                  <div className="flex items-center space-x-1.5 text-stone-800">
+                    <Music className="w-3.5 h-3.5 text-luxury-beige-600" />
+                    <span className="text-[10px] uppercase tracking-widest font-sans font-bold text-stone-700">Música de Fondo</span>
+                  </div>
+                  <button onClick={handleToggleMusic} className="text-stone-400 hover:text-stone-600 transition-colors">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                <iframe 
+                  width="100%" 
+                  height="120" 
+                  scrolling="no" 
+                  frameBorder="no" 
+                  allow="autoplay; encrypted-media" 
+                  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/326401397&color=%23d9a58d&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
+                  className="rounded-xl mt-1"
+                />
+              </motion.div>
+            ) : (
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                onClick={handleToggleMusic}
+                className="fixed bottom-6 right-6 z-50 p-4 bg-luxury-beige-600 text-white rounded-full shadow-2xl hover:bg-luxury-beige-700 transition-colors group flex items-center justify-center border border-luxury-beige-300"
+                aria-label="Toggle wedding music"
+              >
+                <Music className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <span className="max-w-0 overflow-hidden group-hover:max-w-32 group-hover:ml-2 transition-all duration-300 text-xs font-sans uppercase tracking-widest whitespace-nowrap">Escuchar Música</span>
+              </motion.button>
+            )}
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Interactive Toast Notification */}
       <AnimatePresence>

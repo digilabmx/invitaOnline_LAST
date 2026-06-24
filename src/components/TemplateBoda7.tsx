@@ -270,6 +270,7 @@ export default function TemplateBoda7() {
   const [isOpening, setIsOpening] = useState(false);
   const [showCanvas, setShowCanvas] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [musicSource, setMusicSource] = useState<'local' | 'soundcloud'>('local');
   const [activeStoryChapter, setActiveStoryChapter] = useState<number | null>(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration] = useState(131); // 2:11 music loop duration
@@ -329,28 +330,7 @@ export default function TemplateBoda7() {
 
   // Music setup
   useEffect(() => {
-    audioRef.current = new Audio('/music.mp3');
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.45;
-
-    audioRef.current.play()
-      .then(() => setIsPlaying(true))
-      .catch((err) => {
-        console.warn("Autoplay blocked on mount:", err);
-      });
-
-    const updateTime = () => {
-      if (audioRef.current) setCurrentTime(Math.floor(audioRef.current.currentTime));
-    };
-    audioRef.current.addEventListener('timeupdate', updateTime);
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.removeEventListener('timeupdate', updateTime);
-        audioRef.current = null;
-      }
-    };
+    setIsPlaying(true);
   }, []);
 
   // Countdown timer logic
@@ -385,6 +365,20 @@ export default function TemplateBoda7() {
     if (audioRef.current) {
       audioRef.current.currentTime = val;
       setCurrentTime(val);
+    }
+  };
+
+  const handleMusicSourceChange = (src: 'local' | 'soundcloud') => {
+    setMusicSource(src);
+    if (src === 'soundcloud') {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    } else {
+      if (audioRef.current) {
+        audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+      }
     }
   };
 
@@ -794,71 +788,24 @@ export default function TemplateBoda7() {
                 </div>
 
                 {/* Player Header */}
-                <div className="flex items-center justify-between mb-5 relative z-10">
+                <div className="flex items-center justify-between mb-3 relative z-10">
                   <div className="flex items-center space-x-2 text-stone-500">
                     <Music className="w-4 h-4 text-[#A8BBA2]" />
                     <span className="text-[9px] uppercase tracking-[0.25em] font-medium font-mono">Boîte à Musique de Cristal</span>
                   </div>
-                  <span className="text-[7px] uppercase tracking-[0.2em] bg-[#A8BBA2]/10 border border-[#A8BBA2]/25 px-2.5 py-0.5 rounded-full text-stone-600 font-semibold">24-bit HD Acoustic</span>
+                  <span className="text-[7px] uppercase tracking-[0.2em] bg-[#A8BBA2]/10 border border-[#A8BBA2]/25 px-2.5 py-0.5 rounded-full text-stone-600 font-semibold">Live Music</span>
                 </div>
 
-                {/* Cover & Audio Details */}
-                <div className="flex items-center space-x-4 mb-5 relative z-10">
-                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-stone-100 border border-[#D9A58D]/30 flex-shrink-0 relative group">
-                    <img 
-                      src="/isabella_mateo_couple.jpg" 
-                      alt="Isabella & Mateo"
-                      className={`w-full h-full object-cover transition-transform duration-[4s] ${isPlaying ? 'scale-105' : 'scale-100'}`}
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-stone-800/5" />
-                  </div>
-                  <div className="overflow-hidden">
-                    <p className="font-serif text-[15px] text-stone-800 truncate tracking-wide">Romantic Vows under Sunbeams</p>
-                    <p className="text-[9px] text-stone-400 uppercase tracking-widest truncate mt-0.5 font-mono">Piano & Orchestral Cuerdas</p>
-                  </div>
-                </div>
-
-                {/* Timeline / Seek slider */}
-                <div className="mb-4 relative z-10">
-                  <input
-                    type="range"
-                    min="0"
-                    max={duration}
-                    value={currentTime}
-                    onChange={handleAudioSeek}
-                    className="w-full h-[3px] bg-stone-100 rounded-lg appearance-none cursor-pointer accent-[#D9A58D]"
+                <div className="rounded-2xl overflow-hidden shadow-inner border border-stone-200/40 bg-white p-0.5 relative z-10 transition-all duration-300">
+                  <iframe 
+                    width="100%" 
+                    height="166" 
+                    scrolling="no" 
+                    frameBorder="no" 
+                    allow="autoplay; encrypted-media" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/326401397&color=%23a8bba2&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
+                    className="rounded-xl"
                   />
-                  <div className="flex justify-between text-[8px] font-mono text-stone-400 mt-2">
-                    <span>{formatTime(currentTime)}</span>
-                    <span>-{formatTime(duration - currentTime)}</span>
-                  </div>
-                </div>
-
-                {/* Audio buttons */}
-                <div className="flex items-center justify-center space-x-6 relative z-10">
-                  <button 
-                    onClick={() => {
-                      if (audioRef.current) audioRef.current.currentTime = Math.max(0, audioRef.current.currentTime - 10);
-                    }}
-                    className="text-stone-400 hover:text-stone-700 transition-colors p-2"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <button
-                    onClick={toggleMusic}
-                    className="w-14 h-14 rounded-full bg-gradient-to-br from-[#FAF8F5] to-[#F8F4EE] text-stone-700 border-2 border-[#D9A58D]/40 flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-[0_5px_15px_rgba(110,95,85,0.06)]"
-                  >
-                    {isPlaying ? <Pause className="w-5 h-5 text-stone-700 fill-stone-700" /> : <Play className="w-5 h-5 ml-1 text-stone-700 fill-stone-700" />}
-                  </button>
-                  <button 
-                    onClick={() => {
-                      if (audioRef.current) audioRef.current.currentTime = Math.min(duration, audioRef.current.currentTime + 10);
-                    }}
-                    className="text-stone-400 hover:text-stone-700 transition-colors p-2"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
                 </div>
               </div>
             </section>

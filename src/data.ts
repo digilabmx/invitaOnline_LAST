@@ -249,7 +249,7 @@ export const FAQS: FAQItem[] = [
   {
     id: 'f-3',
     question: '¿Puedo cambiar la música, las fotos y el orden de los elementos?',
-    answer: '¡Por supuesto! En ambos paquetes puedes mandarnos tu canción de preferencia (o un link de YouTube/Spotify) y nosotros la integramos. También colocamos tus fotos de sesión y podemos adaptar los textos en el orden que prefieras.'
+    answer: '¡Por supuesto! Integramos cualquier archivo de audio (como tu propio music.mp3) o reproductores interactivos Premium directos de SoundCloud con controles personalizados, para que tu canción favorita suene automáticamente al abrir la invitación.'
   },
   {
     id: 'f-4',
