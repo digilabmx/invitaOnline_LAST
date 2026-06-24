@@ -12,24 +12,9 @@ export default defineConfig(() => {
       },
     },
     build: {
-      target: 'esnext',
-      minify: 'esbuild',
+      target: 'es2022',
+      minify: 'esbuild' as const,
       cssMinify: true,
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('react') || id.includes('react-dom')) {
-                return 'vendor-react';
-              }
-              if (id.includes('motion')) {
-                return 'vendor-motion';
-              }
-              return 'vendor-others';
-            }
-          },
-        },
-      },
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
