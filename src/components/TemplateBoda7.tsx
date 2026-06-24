@@ -313,12 +313,12 @@ export default function TemplateBoda7() {
   ];
 
   const galleryImages = [
-    { src: "/isabella_mateo_couple.jpg", title: "Isabella & Mateo", subtitle: "Nuestra Esencia" },
-    { src: "/versailles_garden.jpg", title: "Versalles de Ensueño", subtitle: "Sinfonía Verde" },
-    { src: "/greenhouse_wedding.jpg", title: "Invernadero de Cristal", subtitle: "Luz Eterna" },
-    { src: "/tuscany_villa.jpg", title: "Atardecer en Toscana", subtitle: "Sabor a Campo" },
-    { src: "/romantic_lake.jpg", title: "El Reflejo del Alma", subtitle: "Luz y Misterio" },
-    { src: "/flower_meadow.jpg", title: "Pradera Silvestre", subtitle: "Naturaleza Pura" }
+    { src: "/isabella_mateo_couple.webp", title: "Isabella & Mateo", subtitle: "Nuestra Esencia" },
+    { src: "/versailles_garden.webp", title: "Versalles de Ensueño", subtitle: "Sinfonía Verde" },
+    { src: "/greenhouse_wedding.webp", title: "Invernadero de Cristal", subtitle: "Luz Eterna" },
+    { src: "/tuscany_villa.webp", title: "Atardecer en Toscana", subtitle: "Sabor a Campo" },
+    { src: "/romantic_lake.webp", title: "El Reflejo del Alma", subtitle: "Luz y Misterio" },
+    { src: "/flower_meadow.webp", title: "Pradera Silvestre", subtitle: "Naturaleza Pura" }
   ];
 
   const bankDetails = {
@@ -616,7 +616,7 @@ export default function TemplateBoda7() {
             className="fixed inset-0 z-50 bg-[#F5F2EC] flex flex-col items-center justify-center px-4 overflow-hidden"
           >
             {/* Defocused garden light background rays */}
-            <div className="absolute inset-0 z-0 bg-cover bg-center opacity-30 filter blur-xl scale-110" style={{ backgroundImage: "url('/versailles_garden.jpg')" }} />
+            <div className="absolute inset-0 z-0 bg-cover bg-center opacity-30 filter blur-xl scale-110" style={{ backgroundImage: "url('/versailles_garden.webp')" }} />
             <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-[#FAF8F5]/80 pointer-events-none" />
 
             {/* Cotton paper luxury envelope container */}
@@ -706,7 +706,7 @@ export default function TemplateBoda7() {
               {/* Versailles Garden Backdrop with subtle zoom and parallax feel */}
               <div className="absolute inset-0 z-0">
                 <img 
-                  src="/versailles_garden.jpg" 
+                  src="/versailles_garden.webp" 
                   alt="Versailles European Garden"
                   className="w-full h-full object-cover brightness-[0.70] contrast-[0.98] scale-105"
                   referrerPolicy="no-referrer"

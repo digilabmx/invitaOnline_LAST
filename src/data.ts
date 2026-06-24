@@ -1,13 +1,13 @@
 import { InvitationExample, Benefit, PricingPackage, Testimonial, FAQItem } from './types';
 
-export const HERO_IMAGE = '/hero_phone_mockup_1781992151448.jpg';
+export const HERO_IMAGE = '/hero_phone_mockup_1781992151448.webp';
 
 export const EXAMPLES: InvitationExample[] = [
   {
     id: 'ex-starry-night-celestial',
     title: 'Plantilla 8 - Celestial',
     category: 'Bodas',
-    image: '/celestial_hero_1782250292221.jpg',
+    image: '/celestial_hero_1782250292221.webp',
     demoUrl: '#templateboda9',
     accentColor: '#0B1E3B',
     features: ['Sobre Celestial Azul Medianoche', 'Constelaciones Interactivas', 'Sintetizador Piano de Cola Cósmico', 'Mosaico Orbital de Recuerdos']
@@ -16,7 +16,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-mexican-hacienda',
     title: 'Plantilla 7 - Hacienda',
     category: 'Bodas',
-    image: '/hacienda_hero_1782249686184.jpg',
+    image: '/hacienda_hero_1782249686184.webp',
     demoUrl: '#templateboda8',
     accentColor: '#C96A45',
     features: ['Pliego Heráldico (Pergamino)', 'Campanas de Catedral y Velas', 'Sintetizador Guitarra Española', 'Arcos de Cantera e Historia de Amor']
@@ -25,7 +25,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-botanical-luxury',
     title: 'Plantilla 6 - Toscana',
     category: 'Bodas',
-    image: '/isabella_mateo_couple.jpg',
+    image: '/isabella_mateo_couple.webp',
     demoUrl: '#templateboda7',
     accentColor: '#A8BBA2',
     features: ['Sobre de Algodón and Sello de Cera', 'Partículas de Hojas y Mariposas', 'Reproductor Caja Musical de Cristal', 'Capítulos Florales Interactivos']
@@ -34,7 +34,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-rolls-royce-dior',
     title: 'Plantilla 5 - Obsidian',
     category: 'Bodas',
-    image: '/v_s_hero_1782248283047.jpg',
+    image: '/v_s_hero_1782248283047.webp',
     demoUrl: '#templateboda6',
     accentColor: '#C8C8C8',
     features: ['Sobre de Lujo Obsidian & Plata', 'Efecto Partículas Plata Cromada', 'Reloj Suizo de Cuenta Regresiva', 'Caja Fuerte de Regalos e Historia 3D']
@@ -43,7 +43,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-cartier-luxury',
     title: 'Plantilla 4 - Champagne',
     category: 'Bodas',
-    image: '/sofia_alejandro_stairs_1782247280237.jpg',
+    image: '/sofia_alejandro_stairs_1782247280237.webp',
     demoUrl: '#templateboda5',
     accentColor: '#D4AF37',
     features: ['Diseño Editorial de Lujo', 'Efecto Partículas Oro Champagne', 'Reproductor Apple Music Edition', 'Libro de Recuerdos Real-time']
@@ -52,7 +52,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-1',
     title: 'Plantilla 1 - Elegante',
     category: 'Bodas',
-    image: '/wedding_portrait_1781994427687.jpg',
+    image: '/wedding_portrait_1781994427687.webp',
     demoUrl: '#templateboda',
     accentColor: '#b9976b',
     features: ['Música de Fondo', 'Confirmación por WhatsApp', 'Mesa de Regalos', 'Efecto de Hojas cayendo']
@@ -79,7 +79,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-2',
     title: 'Plantilla 9 - XV Años',
     category: 'XV Años',
-    image: '/quince_card_1781992176864.jpg',
+    image: '/quince_card_1781992176864.webp',
     demoUrl: '#demo-xv',
     accentColor: '#e0b3b3',
     features: ['Cuenta Regresiva', 'Código de Vestimenta', 'Galería de Fotos', 'Efecto Glitter']
@@ -88,7 +88,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-3',
     title: 'Plantilla 10 - Bautizo',
     category: 'Bautizos',
-    image: '/bautizo_card_1781992187887.jpg',
+    image: '/bautizo_card_1781992187887.webp',
     demoUrl: '#demo-bautizo',
     accentColor: '#8da592',
     features: ['Ubicación GPS', 'Información de Padrinos', 'Espacio para Oración', 'Estilo Minimalista']
@@ -97,7 +97,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-4',
     title: 'Plantilla 11 - Cumpleaños',
     category: 'Cumpleaños',
-    image: '/cumpleanos_card_1781992199358.jpg',
+    image: '/cumpleanos_card_1781992199358.webp',
     demoUrl: '#demo-cumpleanos',
     accentColor: '#3a3028',
     features: ['Sugerencia de Hospedaje', 'Confirmación Instantánea', 'Playlist de Spotify', 'Diseño Dark Premium']

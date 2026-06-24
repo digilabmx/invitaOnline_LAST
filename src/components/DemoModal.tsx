@@ -27,7 +27,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Sofia & Alejandro',
       tagline: '¡Nos casamos y queremos festejarlo contigo!',
       badge: 'Nuestra Unión',
-      image: '/wedding_portrait_1781994427687.jpg',
+      image: '/wedding_portrait_1781994427687.webp',
       description: 'Paleta floral suave y pétalos cayendo.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda'
@@ -83,7 +83,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Sofía & Alejandro',
       tagline: 'Una experiencia premium de cinco estrellas inspirada en la alta joyería.',
       badge: 'Template 5 Premium',
-      image: '/sofia_alejandro_stairs_1782247280237.jpg',
+      image: '/sofia_alejandro_stairs_1782247280237.webp',
       description: 'Diseño editorial con reproductor de audio de lujo, pétalos de oro champagne, libro de recuerdos real e interactivo.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda5'
@@ -97,7 +97,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Victoria & Sebastián',
       tagline: 'La experiencia definitiva de ultra-lujo y silencioso refinamiento.',
       badge: 'Template 6 Ultra Premium',
-      image: '/v_s_hero_1782248283047.jpg',
+      image: '/v_s_hero_1782248283047.webp',
       description: 'Sobre negro mate obsidiana interactivo con monograma de plata cromada, reloj suizo mecánico y caja fuerte de regalos.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda6'
@@ -111,7 +111,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Isabella & Mateo',
       tagline: 'Un amor que florece bajo el sol de la campiña.',
       badge: 'Template 7 Botánico Lujo',
-      image: '/isabella_mateo_couple.jpg',
+      image: '/isabella_mateo_couple.webp',
       description: 'Sobre de algodón puro con sello de cera, reproducción de caja musical, capítulos de amor florales y mariposas flotantes.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda7'
@@ -125,7 +125,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Sofía & Alejandro',
       tagline: 'Descubre el encanto de nuestra unión en una hacienda del siglo XVIII.',
       badge: 'Template 8 Gentry',
-      image: '/hacienda_hero_1782249686184.jpg',
+      image: '/hacienda_hero_1782249686184.webp',
       description: 'Inspiración barroca virreinal, pergamino heráldico medieval con música de guitarra española sintetizada y velas flotantes.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda8'
@@ -139,7 +139,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Valentina & Gabriel',
       tagline: 'Una historia escrita entre las estrellas y el infinito.',
       badge: 'Template 9 Celestial Ultra Premium',
-      image: '/celestial_hero_1782250292221.jpg',
+      image: '/celestial_hero_1782250292221.webp',
       description: 'Sobre de lujo medianoche, estrellas fugaces cruzando, constelaciones interactivas, piano cinematográfico y partículas cósmicas.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda9'
@@ -155,7 +155,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Valentina',
       tagline: 'Mis Dulces XV Años. Una noche mágica de gala.',
       badge: 'Mis XV',
-      image: '/quince_card_1781992176864.jpg',
+      image: '/quince_card_1781992176864.webp',
       description: 'Elegante rosa pastel con sutiles destellos de glitter.'
     },
     {
@@ -193,7 +193,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Bautizo de Mateo',
       tagline: 'Mi primer sacramento en compañía de mis padrinos.',
       badge: 'Santo Sacramento',
-      image: '/bautizo_card_1781992187887.jpg',
+      image: '/bautizo_card_1781992187887.webp',
       description: 'Toque natural botánico con acuarelas elegantes y verdes suaves.'
     },
     {
@@ -231,7 +231,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Santiago 40th',
       tagline: 'Una noche de oro y buen jazz. ¡Ven a brindar!',
       badge: 'Brindis Especial',
-      image: '/cumpleanos_card_1781992199358.jpg',
+      image: '/cumpleanos_card_1781992199358.webp',
       description: 'Elegante combinación retro dark-mode con foil dorado.'
     },
     {

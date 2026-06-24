@@ -270,42 +270,42 @@ export default function TemplateBoda8() {
     {
       id: 'hacienda',
       title: 'Hacienda Histórica',
-      src: '/hacienda_hero_1782249686184.jpg',
+      src: '/hacienda_hero_1782249686184.webp',
       description: 'Una joya del siglo XVIII, con majestuosos arcos de cantera, rodeada de historia y romance clásico.',
       credit: 'Vista del jardín principal'
     },
     {
       id: 'balcon',
       title: 'Balcones de Cantera',
-      src: '/hacienda_balcony_1782249700340.jpg',
+      src: '/hacienda_balcony_1782249700340.webp',
       description: 'Detalles tallados a mano que conservan los ecos de banquetes virreinales y tertulias imperiales.',
       credit: 'Detalle arquitectónico colonial'
     },
     {
       id: 'caballos',
       title: 'Caballos Elegantes',
-      src: '/hacienda_horses_1782249712620.jpg',
+      src: '/hacienda_horses_1782249712620.webp',
       description: 'Tradición ecuestre y distinción, reflejo de la hidalguía y opulencia de nuestra historia.',
       credit: 'Tradición de la hacienda mexicana'
     },
     {
       id: 'patios',
       title: 'Patios Iluminados',
-      src: '/hacienda_patio_1782249723122.jpg',
+      src: '/hacienda_patio_1782249723122.webp',
       description: 'La velada cobrará vida bajo un cielo de candiles antiguos y cientos de velas parpadeantes.',
       credit: 'Atmósfera de recepción'
     },
     {
       id: 'jardines',
       title: 'Jardines Coloniales',
-      src: '/hacienda_gardens_1782249733973.jpg',
+      src: '/hacienda_gardens_1782249733973.webp',
       description: 'Vegetación exuberante y fuentes de cantera que susurran secretos de amores eternos.',
       credit: 'Rincón romántico de San Miguel'
     },
     {
       id: 'novios',
       title: 'Sofía & Alejandro',
-      src: '/sofia_alejandro_stairs_1782247280237.jpg',
+      src: '/sofia_alejandro_stairs_1782247280237.webp',
       description: 'Nuestro destino estaba escrito mucho antes de encontrarnos, y hoy celebramos este gran camino.',
       credit: 'Sesión de compromiso en la hacienda'
     }
@@ -523,7 +523,7 @@ export default function TemplateBoda8() {
               {/* Background cover image of the Mexican Colonial Hacienda */}
               <div className="absolute inset-0 pointer-events-none opacity-50 select-none">
                 <img 
-                  src="/hacienda_hero_1782249686184.jpg" 
+                  src="/hacienda_hero_1782249686184.webp" 
                   alt="Hacienda colonial mexicana hero" 
                   className="w-full h-full object-cover filter brightness-[0.45] contrast-[1.1]"
                   referrerPolicy="no-referrer"
@@ -563,7 +563,7 @@ export default function TemplateBoda8() {
                   {/* Arched image mask for that romantic 18th-century portrait aesthetic */}
                   <div className="relative overflow-hidden rounded-xl border border-[#C7A76C]/40 aspect-[3/4]">
                     <img 
-                      src="/sofia_alejandro_stairs_1782247280237.jpg" 
+                      src="/sofia_alejandro_stairs_1782247280237.webp" 
                       alt="Sofía Hernández & Alejandro Ramírez"
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                       referrerPolicy="no-referrer"

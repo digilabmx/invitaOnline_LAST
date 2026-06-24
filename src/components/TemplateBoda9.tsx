@@ -343,35 +343,35 @@ export default function TemplateBoda9() {
     {
       id: 1,
       title: "Fusión Cósmica",
-      src: "/celestial_hero_1782250292221.jpg",
+      src: "/celestial_hero_1782250292221.webp",
       desc: "Valentina y Gabriel contemplando la majestuosidad de la Vía Láctea en una noche mágica.",
       coord: "RA 18h 36m / DEC +38°"
     },
     {
       id: 2,
       title: "Cúpula Estelar",
-      src: "/celestial_observatory_1782250302880.jpg",
+      src: "/celestial_observatory_1782250302880.webp",
       desc: "El observatorio donde trazamos las primeras coordenadas de nuestro destino juntos.",
       coord: "RA 19h 50m / DEC +08°"
     },
     {
       id: 3,
       title: "Bosque de Faroles",
-      src: "/celestial_forest_1782250315828.jpg",
+      src: "/celestial_forest_1782250315828.webp",
       desc: "Un claro mágico rodeado de pinos antiguos iluminados por candiles plateados.",
       coord: "RA 05h 35m / DEC -05°"
     },
     {
       id: 4,
       title: "Reflejo del Infinito",
-      src: "/celestial_lake_1782250329521.jpg",
+      src: "/celestial_lake_1782250329521.webp",
       desc: "La serenidad del lago de Valle de Bravo duplicando el esplendor de las estrellas.",
       coord: "RA 06h 45m / DEC -16°"
     },
     {
       id: 5,
       title: "Valentina & Gabriel",
-      src: "/celestial_couple_1782250364007.jpg",
+      src: "/celestial_couple_1782250364007.webp",
       desc: "Nuestro infinito amor inmortalizado bajo la inmensidad del firmamento nocturno.",
       coord: "RA 12h 45m / DEC -20°"
     }
@@ -573,7 +573,7 @@ export default function TemplateBoda9() {
               {/* Generated high-end background of couple watching the Milky Way */}
               <div className="absolute inset-0 pointer-events-none opacity-60 select-none">
                 <img 
-                  src="/celestial_hero_1782250292221.jpg" 
+                  src="/celestial_hero_1782250292221.webp" 
                   alt="Valentina & Gabriel Milky Way Background" 
                   className="w-full h-full object-cover filter brightness-[0.4] contrast-[1.2] saturate-[0.8]"
                   referrerPolicy="no-referrer"
@@ -615,7 +615,7 @@ export default function TemplateBoda9() {
                   <div className="relative overflow-hidden rounded-full aspect-square border-4 border-[#0B1E3B]">
                     {/* The beautiful image uploaded by the user */}
                     <img 
-                      src="/wedding_portrait_1781994427687.jpg" 
+                      src="/wedding_portrait_1781994427687.webp" 
                       alt="Valentina Cruz & Gabriel Torres Portrait"
                       className="w-full h-full object-cover scale-[1.08] hover:scale-110 transition-transform duration-1000 object-top"
                       referrerPolicy="no-referrer"

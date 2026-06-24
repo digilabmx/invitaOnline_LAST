@@ -504,7 +504,7 @@ export default function TemplateBoda5() {
           {/* Premium Main Image Portrait with Dior styling and luxury gold border */}
           <div className="relative w-full aspect-[4/5] rounded-[30px] overflow-hidden bg-stone-900 border border-[#D4AF37]/25 shadow-2xl my-8">
             <img
-              src="/sofia_alejandro_stairs_1782247280237.jpg"
+              src="/sofia_alejandro_stairs_1782247280237.webp"
               alt="Sofía & Alejandro"
               className="w-full h-full object-cover filter contrast-[1.05] brightness-[0.85] saturate-75 transition-all duration-1000"
               loading="eager"

@@ -88,11 +88,11 @@ export default function TemplateBoda6() {
   ];
 
   const carouselImages = [
-    { src: "/v_s_hero_1782248283047.jpg", title: "Victoria & Sebastián", subtitle: "Retrato Editorial de Pareja" },
-    { src: "/v_s_hotel_1782248295585.jpg", title: "Hotel Starlight Grand", subtitle: "Nuestra Sede de Cinco Estrellas" },
-    { src: "/v_s_gala_1782248306837.jpg", title: "Salón Imperial", subtitle: "El Gran Salón del Banquete" },
-    { src: "/v_s_terrace_1782248319080.jpg", title: "Terraza Panorámica", subtitle: "El Cóctel de Bienvenida" },
-    { src: "/v_s_stairs_1782248329087.jpg", title: "Escaleras Monumentales", subtitle: "Escenario de Nuestra Boda" }
+    { src: "/v_s_hero_1782248283047.webp", title: "Victoria & Sebastián", subtitle: "Retrato Editorial de Pareja" },
+    { src: "/v_s_hotel_1782248295585.webp", title: "Hotel Starlight Grand", subtitle: "Nuestra Sede de Cinco Estrellas" },
+    { src: "/v_s_gala_1782248306837.webp", title: "Salón Imperial", subtitle: "El Gran Salón del Banquete" },
+    { src: "/v_s_terrace_1782248319080.webp", title: "Terraza Panorámica", subtitle: "El Cóctel de Bienvenida" },
+    { src: "/v_s_stairs_1782248329087.webp", title: "Escaleras Monumentales", subtitle: "Escenario de Nuestra Boda" }
   ];
 
   const bankingDetails = {
@@ -424,7 +424,7 @@ export default function TemplateBoda6() {
             <header className="relative min-h-screen flex flex-col justify-between items-center text-center px-4 py-12 overflow-hidden bg-black">
               <div className="absolute inset-0 z-0">
                 <img 
-                  src="/v_s_hero_1782248283047.jpg" 
+                  src="/v_s_hero_1782248283047.webp" 
                   alt="Victoria & Sebastián Portada"
                   className="w-full h-full object-cover brightness-[0.40] contrast-[1.02]"
                   referrerPolicy="no-referrer"
@@ -539,7 +539,7 @@ export default function TemplateBoda6() {
 
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-12 h-12 rounded-lg overflow-hidden bg-stone-950 border border-white/10 flex-shrink-0">
-                    <img src="/v_s_hero_1782248283047.jpg" alt="Mini Cover" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                    <img src="/v_s_hero_1782248283047.webp" alt="Mini Cover" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                   </div>
                   <div className="overflow-hidden">
                     <p className="font-serif text-[13px] text-white truncate tracking-wide">Nuestra Canción de Boda</p>
@@ -764,7 +764,7 @@ export default function TemplateBoda6() {
                   <ScrollReveal delay={0.05}>
                     <div className="bg-[#121212]/90 border border-white/10 rounded-2xl overflow-hidden shadow-lg flex flex-col">
                       <div className="aspect-[3/4] overflow-hidden bg-stone-900 relative">
-                        <img src="/v_s_dress_men_1782248340756.jpg" alt="Esmoquin Masculino" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                        <img src="/v_s_dress_men_1782248340756.webp" alt="Esmoquin Masculino" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                       </div>
                       <div className="p-4 text-center">
@@ -778,7 +778,7 @@ export default function TemplateBoda6() {
                   <ScrollReveal delay={0.15}>
                     <div className="bg-[#121212]/90 border border-white/10 rounded-2xl overflow-hidden shadow-lg flex flex-col">
                       <div className="aspect-[3/4] overflow-hidden bg-stone-900 relative">
-                        <img src="/v_s_dress_women_1782248350235.jpg" alt="Vestido Gala Femenino" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                        <img src="/v_s_dress_women_1782248350235.webp" alt="Vestido Gala Femenino" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                       </div>
                       <div className="p-4 text-center">
