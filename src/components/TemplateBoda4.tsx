@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { 
   Heart, Calendar, MapPin, Gift, Clock, Music, Play, Pause, 
-  Copy, Check, Sparkles, Users, ArrowLeft, Send, ExternalLink, ChevronLeft, ChevronRight, Home, Info, X
+  Copy, Check, Sparkles, Users, ArrowLeft, Send, ExternalLink, ChevronLeft, ChevronRight, Home, Info, X,
+  Volume2, VolumeX
 } from 'lucide-react';
 import FoliageCanvas from './FoliageCanvas';
 
@@ -56,8 +57,40 @@ export default function TemplateBoda4() {
     "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=1200&fm=webp"
   ];
 
+  const togglePlayPause = () => {
+    if (!audioRef.current) {
+      const audio = new Audio('/music.mp3');
+      audio.loop = true;
+      audio.volume = 0.5;
+      
+      audio.addEventListener('error', () => {
+        console.warn("Local /music.mp3 not found, falling back to Chopin Nocturne Op. 9 No. 2");
+        audio.src = 'https://upload.wikimedia.org/wikipedia/commons/3/30/Chopin_Nocturne_Op._9_No._2_-_Florence_Robineau.mp3';
+        audio.load();
+        audio.play().then(() => setIsPlaying(true)).catch(err => console.log("Fallback play blocked:", err));
+      });
+
+      audioRef.current = audio;
+    }
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.play()
+        .then(() => setIsPlaying(true))
+        .catch(err => console.log("Audio play blocked by browser:", err));
+    }
+  };
+
+  // Clean audio on unmount
   useEffect(() => {
-    setIsPlaying(true);
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
   }, []);
 
   // Gallery auto rotation
@@ -126,6 +159,29 @@ export default function TemplateBoda4() {
 
   const handleOpenEnvelope = () => {
     setIsOpening(true);
+
+    // Play music immediately within user click gesture to guarantee autoplay
+    if (!audioRef.current) {
+      const audio = new Audio('/music.mp3');
+      audio.loop = true;
+      audio.volume = 0.5;
+      
+      audio.addEventListener('error', () => {
+        console.warn("Local /music.mp3 not found, falling back to Chopin Nocturne Op. 9 No. 2");
+        audio.src = 'https://upload.wikimedia.org/wikipedia/commons/3/30/Chopin_Nocturne_Op._9_No._2_-_Florence_Robineau.mp3';
+        audio.load();
+        audio.play().then(() => setIsPlaying(true)).catch(err => console.log("Fallback play blocked:", err));
+      });
+
+      audioRef.current = audio;
+    }
+
+    audioRef.current.play()
+      .then(() => setIsPlaying(true))
+      .catch((err) => {
+        console.warn("Audio autoplay blocked by browser policy:", err);
+      });
+
     setTimeout(() => {
       setEnvelopeOpened(true);
       setShowFoliage(true);
@@ -217,7 +273,7 @@ export default function TemplateBoda4() {
         <ArrowLeft className="w-4 h-4 text-stone-700 group-hover:-translate-x-0.5 transition-transform" />
       </a>
 
-      {/* Floating Spotify Player Widget */}
+      {/* Floating Premium Native Audio Player (appears only when open) */}
       <AnimatePresence>
         {envelopeOpened && (
           <>
@@ -226,28 +282,58 @@ export default function TemplateBoda4() {
                 initial={{ opacity: 0, y: 50, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 50, scale: 0.95 }}
-                className="fixed bottom-6 right-6 z-50 w-[300px] bg-[#FDFBF7]/95 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(42,37,33,0.15)] border border-[#c5a880]/30 p-1 flex flex-col font-sans"
+                className="fixed bottom-6 right-6 z-50 w-[300px] bg-[#FDFBF7]/95 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(42,37,33,0.15)] border border-[#c5a880]/30 p-3 flex flex-col font-sans"
               >
-                <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#c5a880]/10">
+                <div className="flex items-center justify-between pb-2 border-b border-[#c5a880]/10">
                   <div className="flex items-center space-x-1.5 text-[#1a1a1a]">
                     <Music className="w-3.5 h-3.5 text-[#c5a880]" />
-                    <span className="text-[10px] uppercase tracking-widest font-sans font-bold">Música de Fondo</span>
+                    <span className="text-[10px] uppercase tracking-widest font-sans font-bold text-stone-700">Música de Fondo</span>
                   </div>
                   <button onClick={toggleMusic} className="text-stone-400 hover:text-stone-600 transition-colors">
                     <X className="w-4 h-4" />
                   </button>
                 </div>
-                <iframe 
-                  src="https://open.spotify.com/embed/track/59Yw2AGXDbG8I5wAEATyDW?utm_source=generator&theme=0&si=6993b0ecfc7449ea"
-                  width="100%"
-                  height="152"
-                  style={{ borderRadius: '12px' }}
-                  frameBorder="0"
-                  allowFullScreen={true}
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  className="mt-1"
-                />
+                
+                <div className="flex flex-col space-y-2 pt-2 text-stone-800">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 rounded-lg bg-[#c5a880]/10 flex items-center justify-center border border-[#c5a880]/30">
+                      <Music className={`w-5 h-5 text-[#c5a880] ${isPlaying ? 'animate-spin' : ''}`} style={{ animationDuration: '6s' }} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-xs font-semibold truncate text-[#1a1a1a]">Sinfonía de Amor</h4>
+                      <p className="text-[10px] text-stone-500 truncate">Melodía Romántica de Piano</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between pt-1">
+                    <button 
+                      onClick={togglePlayPause}
+                      className="p-2 bg-[#c5a880] hover:bg-[#b59870] text-white rounded-lg transition-all active:scale-95 flex items-center justify-center"
+                      title={isPlaying ? "Pausar" : "Reproducir"}
+                    >
+                      {isPlaying ? <Pause className="w-4 h-4 fill-white" /> : <Play className="w-4 h-4 fill-white ml-0.5" />}
+                    </button>
+                    
+                    <div className="flex items-center space-x-2 flex-1 ml-4">
+                      {isPlaying ? (
+                        <Volume2 className="w-3.5 h-3.5 text-[#c5a880] animate-pulse" />
+                      ) : (
+                        <VolumeX className="w-3.5 h-3.5 text-stone-400" />
+                      )}
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max="1" 
+                        step="0.05" 
+                        defaultValue="0.5"
+                        onChange={(e) => {
+                          if (audioRef.current) audioRef.current.volume = parseFloat(e.target.value);
+                        }}
+                        className="w-full h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-[#c5a880]"
+                      />
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             ) : (
               <motion.button

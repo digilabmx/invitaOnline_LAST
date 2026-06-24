@@ -209,17 +209,40 @@ export default function TemplateBoda9() {
   // Background MP3 Music Engine
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const startSynthesizer = () => {
-    setIsPlaying(true);
+  const togglePlayPause = () => {
+    if (!audioRef.current) {
+      const audio = new Audio('/music.mp3');
+      audio.loop = true;
+      audio.volume = 0.5;
+      
+      audio.addEventListener('error', () => {
+        console.warn("Local /music.mp3 not found, falling back to Chopin Nocturne Op. 9 No. 2");
+        audio.src = 'https://upload.wikimedia.org/wikipedia/commons/3/30/Chopin_Nocturne_Op._9_No._2_-_Florence_Robineau.mp3';
+        audio.load();
+        audio.play().then(() => setIsPlaying(true)).catch(err => console.log("Fallback play blocked:", err));
+      });
+
+      audioRef.current = audio;
+    }
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.play()
+        .then(() => setIsPlaying(true))
+        .catch(err => console.log("Audio play blocked by browser:", err));
+    }
   };
 
-  const stopSynthesizer = () => {
-    setIsPlaying(false);
-  };
-
-  // Clean audio on unmount & autoplay on mount
+  // Clean audio on unmount
   useEffect(() => {
-    setIsPlaying(true);
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
   }, []);
 
   // Obsolete synthesis engines removed in favor of high-quality romantic MP3 streaming
@@ -227,6 +250,29 @@ export default function TemplateBoda9() {
 
   const handleOpenInvitation = () => {
     setIsOpen(true);
+    
+    // Play music immediately within user click gesture to guarantee autoplay
+    if (!audioRef.current) {
+      const audio = new Audio('/music.mp3');
+      audio.loop = true;
+      audio.volume = 0.5;
+      
+      audio.addEventListener('error', () => {
+        console.warn("Local /music.mp3 not found, falling back to Chopin Nocturne Op. 9 No. 2");
+        audio.src = 'https://upload.wikimedia.org/wikipedia/commons/3/30/Chopin_Nocturne_Op._9_No._2_-_Florence_Robineau.mp3';
+        audio.load();
+        audio.play().then(() => setIsPlaying(true)).catch(err => console.log("Fallback play blocked:", err));
+      });
+
+      audioRef.current = audio;
+    }
+
+    audioRef.current.play()
+      .then(() => setIsPlaying(true))
+      .catch((err) => {
+        console.warn("Audio autoplay blocked by browser policy:", err);
+      });
+
     setShowShootingStarAnimation(true);
     setIsMusicCardOpen(true);
 
@@ -336,7 +382,7 @@ export default function TemplateBoda9() {
       {/* Stars Background Twinkle Effect */}
       <CelestialCanvas />
 
-      {/* Floating Spotify Player Widget */}
+      {/* Floating Premium Native Audio Player (appears only when open) */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -345,28 +391,58 @@ export default function TemplateBoda9() {
                 initial={{ opacity: 0, y: 50, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 50, scale: 0.95 }}
-                className="fixed bottom-6 right-6 z-50 w-[300px] bg-[#030712]/95 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(255,255,255,0.1)] border border-[#DADADA]/30 p-1 flex flex-col font-sans"
+                className="fixed bottom-6 right-6 z-50 w-[300px] bg-[#030712]/95 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_rgba(255,255,255,0.1)] border border-[#DADADA]/30 p-3 flex flex-col font-sans"
               >
-                <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#DADADA]/20">
+                <div className="flex items-center justify-between pb-2 border-b border-[#DADADA]/20">
                   <div className="flex items-center space-x-1.5 text-cyan-200">
-                    <Music className="w-3.5 h-3.5 text-cyan-200" />
+                    <Music className="w-3.5 h-3.5 text-cyan-200 animate-pulse" />
                     <span className="text-[10px] uppercase tracking-widest font-sans font-bold text-cyan-100">Música de Fondo</span>
                   </div>
                   <button onClick={toggleMusic} className="text-stone-400 hover:text-stone-200 transition-colors">
                     <X className="w-4 h-4" />
                   </button>
                 </div>
-                <iframe 
-                  src="https://open.spotify.com/embed/track/59Yw2AGXDbG8I5wAEATyDW?utm_source=generator&theme=0&si=6993b0ecfc7449ea"
-                  width="100%"
-                  height="152"
-                  style={{ borderRadius: '12px' }}
-                  frameBorder="0"
-                  allowFullScreen={true}
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  className="mt-1"
-                />
+                
+                <div className="flex flex-col space-y-2 pt-2 text-[#FAF8F5]">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 rounded-lg bg-[#0c1424] flex items-center justify-center border border-cyan-500/30">
+                      <Music className={`w-5 h-5 text-cyan-300 ${isPlaying ? 'animate-spin' : ''}`} style={{ animationDuration: '6s' }} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-xs font-semibold truncate text-cyan-100">Melodía Estelar</h4>
+                      <p className="text-[10px] text-cyan-300 truncate">Sinfonía Cósmica de Amor</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between pt-1">
+                    <button 
+                      onClick={togglePlayPause}
+                      className="p-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:opacity-90 text-white rounded-lg transition-all active:scale-95 flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.4)]"
+                      title={isPlaying ? "Pausar" : "Reproducir"}
+                    >
+                      {isPlaying ? <Pause className="w-4 h-4 fill-white" /> : <Play className="w-4 h-4 fill-white ml-0.5" />}
+                    </button>
+                    
+                    <div className="flex items-center space-x-2 flex-1 ml-4">
+                      {isPlaying ? (
+                        <Volume2 className="w-3.5 h-3.5 text-cyan-300 animate-pulse" />
+                      ) : (
+                        <VolumeX className="w-3.5 h-3.5 text-stone-500" />
+                      )}
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max="1" 
+                        step="0.05" 
+                        defaultValue="0.5"
+                        onChange={(e) => {
+                          if (audioRef.current) audioRef.current.volume = parseFloat(e.target.value);
+                        }}
+                        className="w-full h-1 bg-stone-800 rounded-lg appearance-none cursor-pointer accent-cyan-400"
+                      />
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             ) : (
               <motion.button
