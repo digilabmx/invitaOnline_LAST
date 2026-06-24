@@ -227,6 +227,7 @@ export default function Hero({ onVerEjemplosClick, onSolicitarClick }: HeroProps
                   className="w-full h-full object-cover brightness-[0.75] contrast-[1.05]"
                   referrerPolicy="no-referrer"
                   decoding="async"
+                  fetchPriority="high"
                 />
                 {/* Custom vignette gradients exactly mimicking the original photo's ambient depth */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/35" />

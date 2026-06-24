@@ -97,6 +97,8 @@ export default function Testimonials() {
                     alt={current.name}
                     className="w-12 h-12 rounded-full border border-luxury-beige-300 object-cover select-none"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="text-left">
                     <p className="font-serif text-sm font-medium text-luxury-beige-900">{current.name}</p>

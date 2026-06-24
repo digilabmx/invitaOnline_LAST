@@ -218,6 +218,8 @@ export default function Gallery() {
                           alt="Vista Móvil"
                           className="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-110"
                           referrerPolicy="no-referrer"
+                          loading="lazy"
+                          decoding="async"
                         />
                         {/* Elegant luxury background gradient for ultimate readability */}
                         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/85" />
