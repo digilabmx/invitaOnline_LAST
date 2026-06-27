@@ -37,7 +37,7 @@ export default function HowItWorks() {
         staggerChildren: 0.15
       }
     }
-  };
+  } as const;
 
   const stepVariants = {
     hidden: { opacity: 0, y: 40 },
@@ -46,7 +46,7 @@ export default function HowItWorks() {
       y: 0,
       transition: { duration: 0.7, ease: 'easeOut' }
     }
-  };
+  } as const;
 
   return (
     <section id="como-funciona" className="py-24 bg-white relative overflow-hidden">

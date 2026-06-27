@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Sparkles, Smartphone, Heart, Calendar, MapPin, Music } from 'lucide-react';
 import { HERO_IMAGE } from '../data';
+import OptimizedImage from './OptimizedImage';
 
 interface HeroProps {
   onVerEjemplosClick: () => void;
@@ -221,11 +222,11 @@ export default function Hero({ onVerEjemplosClick, onSolicitarClick }: HeroProps
               
               {/* Background portrait of the couple taking the whole screen */}
               <div className="absolute inset-0 pointer-events-none z-0">
-                <img
+                <OptimizedImage
                   src="/wedding_portrait_1781994427687.webp"
                   alt="Andrea & Josue"
                   className="w-full h-full object-cover brightness-[0.75] contrast-[1.05]"
-                  referrerPolicy="no-referrer"
+                  referrerPolicy="no-referrer-when-downgrade"
                   decoding="async"
                   fetchPriority="high"
                 />

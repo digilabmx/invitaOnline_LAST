@@ -31,12 +31,12 @@ export default function Testimonials() {
     center: {
       x: 0,
       opacity: 1,
-      transition: { duration: 0.6, ease: 'easeOut' }
+      transition: { duration: 0.6, ease: 'easeOut' as const }
     },
     exit: (dir: number) => ({
       x: dir > 0 ? -50 : 50,
       opacity: 0,
-      transition: { duration: 0.4, ease: 'easeIn' }
+      transition: { duration: 0.4, ease: 'easeIn' as const }
     })
   };
 
@@ -96,7 +96,7 @@ export default function Testimonials() {
                     src={current.avatar}
                     alt={current.name}
                     className="w-12 h-12 rounded-full border border-luxury-beige-300 object-cover select-none"
-                    referrerPolicy="no-referrer"
+                    referrerPolicy="no-referrer-when-downgrade"
                     loading="lazy"
                     decoding="async"
                   />

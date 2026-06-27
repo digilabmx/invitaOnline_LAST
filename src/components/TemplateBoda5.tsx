@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import OptimizedImage from './OptimizedImage';
 import { 
   Heart, Calendar, MapPin, Gift, Clock, Music, Play, Pause, 
   Copy, Check, Sparkles, Users, ArrowLeft, Send, ExternalLink, 
@@ -61,36 +62,36 @@ export default function TemplateBoda5() {
       title: "El Comienzo",
       date: "14 de Febrero, 2021",
       desc: "Nuestros caminos se cruzaron de manera inesperada en una tarde lluviosa. Una conversación sin pretensiones se convirtió en el inicio de la historia más hermosa de nuestras vidas.",
-      image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800&fm=webp"
+      image: "/v_s_hotel_1782248295585.webp"
     },
     {
       title: "Primer Viaje Juntos",
       date: "Octubre, 2022",
       desc: "París nos recibió con sus luces otoñales. Caminando de la mano por el Sena, descubrimos que viajar juntos no era solo conocer lugares, sino descubrir nuevos mundos en el otro.",
-      image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800&fm=webp"
+      image: "/v_s_terrace_1782248319080.webp"
     },
     {
       title: "La Propuesta",
       date: "Noviembre, 2025",
       desc: "Frente al mar y bajo un cielo estrellado en la Costa de Amalfi, con lágrimas de felicidad y el latido de dos corazones latiendo al unísono, dijimos el gran: SÍ, ACEPTO.",
-      image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800&fm=webp"
+      image: "/v_s_gala_1782248306837.webp"
     },
     {
       title: "La Promesa Eterna",
       date: "15 de Noviembre, 2027",
       desc: "Hoy consagramos este gran amor frente a Dios y todos ustedes. Un nuevo capítulo comienza con la promesa de amarnos por el resto de la eternidad.",
-      image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800&fm=webp"
+      image: "/v_s_stairs_1782248329087.webp"
     }
   ];
 
   // Gallery list for Masonry & Lightbox
   const galleryImages = [
-    "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200&fm=webp",
-    "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=1200&fm=webp",
-    "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=1200&fm=webp",
-    "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=1200&fm=webp",
-    "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=1200&fm=webp",
-    "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1200&fm=webp"
+    "/sofia_alejandro_stairs_1782247280237.webp",
+    "/wedding_portrait_1781994427687.webp",
+    "/v_s_hero_1782248283047.webp",
+    "/v_s_dress_women_1782248350235.webp",
+    "/v_s_dress_men_1782248340756.webp",
+    "/v_s_hotel_1782248295585.webp"
   ];
 
   // Dynamic RSVP Form state
@@ -364,6 +365,7 @@ export default function TemplateBoda5() {
       {/* Floating back controller to close demo view */}
       <a
         href="#"
+        onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
         className="fixed top-5 left-5 z-40 bg-[#161616]/90 hover:bg-[#222]/90 text-white p-3 rounded-full shadow-2xl border border-[#D4AF37]/20 transition-all duration-300 flex items-center justify-center hover:scale-105 active:scale-95 group"
         title="Volver al catálogo"
       >
@@ -503,12 +505,12 @@ export default function TemplateBoda5() {
 
           {/* Premium Main Image Portrait with Dior styling and luxury gold border */}
           <div className="relative w-full aspect-[4/5] rounded-[30px] overflow-hidden bg-stone-900 border border-[#D4AF37]/25 shadow-2xl my-8">
-            <img
+            <OptimizedImage
               src="/sofia_alejandro_stairs_1782247280237.webp"
               alt="Sofía & Alejandro"
               className="w-full h-full object-cover filter contrast-[1.05] brightness-[0.85] saturate-75 transition-all duration-1000"
               loading="eager"
-              referrerPolicy="no-referrer"
+              referrerPolicy="no-referrer-when-downgrade"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0E] via-transparent to-transparent" />
             
@@ -632,7 +634,7 @@ export default function TemplateBoda5() {
                   
                   <div className="bg-[#121212] border border-[#D4AF37]/15 rounded-2xl overflow-hidden shadow-xl hover:border-[#D4AF37]/35 transition-all duration-300">
                     <div className="h-44 overflow-hidden relative">
-                      <img 
+                      <OptimizedImage 
                         src={evt.image} 
                         alt={evt.title}
                         className="w-full h-full object-cover filter brightness-[0.7] contrast-[1.05] hover:scale-105 transition-transform duration-1000"
@@ -738,7 +740,7 @@ export default function TemplateBoda5() {
                     index === 0 || index === 3 ? 'col-span-2 aspect-[16/10]' : 'aspect-square'
                   }`}
                 >
-                  <img 
+                  <OptimizedImage 
                     src={img} 
                     alt={`Foto de compromiso ${index + 1}`}
                     className="w-full h-full object-cover filter brightness-[0.8] contrast-[1.05] group-hover:scale-105 transition-transform duration-700"
@@ -772,7 +774,7 @@ export default function TemplateBoda5() {
               </button>
 
               <div className="relative w-full max-w-[450px] aspect-[4/5] flex items-center justify-center">
-                <img 
+                <OptimizedImage 
                   src={galleryImages[lightboxIndex]} 
                   alt="Commitment Lightbox View" 
                   className="w-full h-full object-contain rounded-2xl"

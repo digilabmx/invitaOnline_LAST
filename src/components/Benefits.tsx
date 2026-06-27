@@ -18,7 +18,7 @@ export default function Benefits() {
         staggerChildren: 0.1,
       },
     },
-  };
+  } as const;
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -30,7 +30,7 @@ export default function Benefits() {
         ease: 'easeOut',
       },
     },
-  };
+  } as const;
 
   return (
     <section id="beneficios" className="py-24 bg-white border-y border-luxury-beige-200/30 relative">

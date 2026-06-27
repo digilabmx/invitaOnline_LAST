@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Play, Pause, MapPin, Calendar, Clock, Gift, Users, Music, Image as ImageIcon, Send, Sparkles, CheckCircle } from 'lucide-react';
 import { InvitationExample } from '../types';
+import OptimizedImage from './OptimizedImage';
 
 const CATEGORY_STYLES: Record<string, Array<{
   id: number;
@@ -590,11 +591,11 @@ export default function DemoModal({ example, onClose }: DemoModalProps) {
               
               {/* Image Banner top Header Cover relative */}
               <div className="relative w-full h-[180px] shrink-0 overflow-hidden bg-luxury-beige-100">
-                <img
+                <OptimizedImage
                   src={themeColors.image}
                   alt={themeColors.title}
                   className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
+                  referrerPolicy="no-referrer-when-downgrade"
                 />
                 
                 {/* Visual shade overlay */}

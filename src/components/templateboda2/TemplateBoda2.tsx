@@ -219,6 +219,7 @@ export default function TemplateBoda2() {
       {/* Floating back controller to close demo view */}
       <a
         href="#"
+        onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
         className="fixed top-5 left-5 z-45 bg-stone-900/90 hover:bg-stone-800 text-white p-3 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.5)] border border-stone-800 transition-all duration-300 flex items-center justify-center hover:scale-105 active:scale-95 group"
         title="Volver al catálogo"
       >
@@ -387,7 +388,7 @@ export default function TemplateBoda2() {
                 <img
                   src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200&fm=webp"
                   alt="Andrea y Juan"
-                  referrerPolicy="no-referrer"
+                  referrerPolicy="no-referrer-when-downgrade"
                   className="w-full h-full object-cover filter brightness-[0.7] saturate-[0.8]"
                 />
                 {/* Rich matte black gradients covering top and bottom segments */}
@@ -721,7 +722,7 @@ export default function TemplateBoda2() {
                       key={activePhotoIdx}
                       src={memoriesPhotos[activePhotoIdx]}
                       alt="Recuerdo de Andrea & Juan"
-                      referrerPolicy="no-referrer"
+                      referrerPolicy="no-referrer-when-downgrade"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}

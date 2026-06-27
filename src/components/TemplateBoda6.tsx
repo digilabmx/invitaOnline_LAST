@@ -7,6 +7,7 @@ import {
   Volume2, VolumeX
 } from 'lucide-react';
 import SilverGlitterCanvas from './SilverGlitterCanvas';
+import OptimizedImage from './OptimizedImage';
 
 // Elegant minimalist silver/chrome divider
 const SilverDivider = () => (
@@ -423,11 +424,11 @@ export default function TemplateBoda6() {
             {/* HERO PRINCIPAL */}
             <header className="relative min-h-screen flex flex-col justify-between items-center text-center px-4 py-12 overflow-hidden bg-black">
               <div className="absolute inset-0 z-0">
-                <img 
+                <OptimizedImage 
                   src="/v_s_hero_1782248283047.webp" 
                   alt="Victoria & Sebastián Portada"
                   className="w-full h-full object-cover brightness-[0.40] contrast-[1.02]"
-                  referrerPolicy="no-referrer"
+                  referrerPolicy="no-referrer-when-downgrade"
                   loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-[#0A0A0A]" />
@@ -539,7 +540,7 @@ export default function TemplateBoda6() {
 
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-12 h-12 rounded-lg overflow-hidden bg-stone-950 border border-white/10 flex-shrink-0">
-                    <img src="/v_s_hero_1782248283047.webp" alt="Mini Cover" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                    <OptimizedImage src="/v_s_hero_1782248283047.webp" alt="Mini Cover" className="w-full h-full object-cover" referrerPolicy="no-referrer-when-downgrade" />
                   </div>
                   <div className="overflow-hidden">
                     <p className="font-serif text-[13px] text-white truncate tracking-wide">Nuestra Canción de Boda</p>
@@ -667,7 +668,7 @@ export default function TemplateBoda6() {
                           className="absolute w-full h-full rounded-[20px] overflow-hidden bg-stone-900 border border-white/10 shadow-2xl cursor-pointer"
                           onClick={() => setCarouselIndex(idx)}
                         >
-                          <img src={img.src} alt={img.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                          <OptimizedImage src={img.src} alt={img.title} className="w-full h-full object-cover" referrerPolicy="no-referrer-when-downgrade" />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                           <div className="absolute bottom-4 left-4 right-4 text-left">
                             <p className="text-[8px] uppercase tracking-widest text-stone-400 font-mono mb-0.5">{img.subtitle}</p>
@@ -764,8 +765,8 @@ export default function TemplateBoda6() {
                   <ScrollReveal delay={0.05}>
                     <div className="bg-[#121212]/90 border border-white/10 rounded-2xl overflow-hidden shadow-lg flex flex-col">
                       <div className="aspect-[3/4] overflow-hidden bg-stone-900 relative">
-                        <img src="/v_s_dress_men_1782248340756.webp" alt="Esmoquin Masculino" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+                        <OptimizedImage src="/v_s_dress_men_1782248340756.webp" alt="Esmoquin Masculino" className="w-full h-full object-cover" referrerPolicy="no-referrer-when-downgrade" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/via-transparent to-transparent" />
                       </div>
                       <div className="p-4 text-center">
                         <h4 className="font-serif text-[15px] text-white mb-1">Hombres</h4>
@@ -778,8 +779,8 @@ export default function TemplateBoda6() {
                   <ScrollReveal delay={0.15}>
                     <div className="bg-[#121212]/90 border border-white/10 rounded-2xl overflow-hidden shadow-lg flex flex-col">
                       <div className="aspect-[3/4] overflow-hidden bg-stone-900 relative">
-                        <img src="/v_s_dress_women_1782248350235.webp" alt="Vestido Gala Femenino" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+                        <OptimizedImage src="/v_s_dress_women_1782248350235.webp" alt="Vestido Gala Femenino" className="w-full h-full object-cover" referrerPolicy="no-referrer-when-downgrade" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/via-transparent to-transparent" />
                       </div>
                       <div className="p-4 text-center">
                         <h4 className="font-serif text-[15px] text-white mb-1">Mujeres</h4>
@@ -986,16 +987,14 @@ export default function TemplateBoda6() {
       </AnimatePresence>
 
       {/* Catálogo button */}
-      {envelopeOpened && (
-        <a 
-          href="#" 
-          onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
-          className="fixed top-6 left-6 z-40 bg-[#121212]/90 border border-white/10 backdrop-blur-md px-3.5 py-2 rounded-full flex items-center space-x-1.5 hover:bg-stone-900 shadow-2xl transition-all"
-        >
-          <ArrowLeft className="w-3.5 h-3.5 text-stone-400" />
-          <span className="text-[8px] uppercase tracking-[0.2em] font-medium text-stone-300">Regresar</span>
-        </a>
-      )}
+      <a 
+        href="#" 
+        onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
+        className="fixed top-6 left-6 z-40 bg-[#121212]/90 border border-white/10 backdrop-blur-md px-3.5 py-2 rounded-full flex items-center space-x-1.5 hover:bg-stone-900 shadow-2xl transition-all"
+      >
+        <ArrowLeft className="w-3.5 h-3.5 text-stone-400" />
+        <span className="text-[8px] uppercase tracking-[0.2em] font-medium text-stone-300">Regresar</span>
+      </a>
 
     </div>
   );

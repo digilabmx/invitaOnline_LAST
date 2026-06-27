@@ -7,18 +7,20 @@ import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { AnimatePresence } from 'motion/react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Benefits from './components/Benefits';
-import Gallery from './components/Gallery';
-import HowItWorks from './components/HowItWorks';
-import Pricing from './components/Pricing';
-import Testimonials from './components/Testimonials';
-import FAQ from './components/FAQ';
-import CTA from './components/CTA';
 import Footer from './components/Footer';
-import DemoModal from './components/DemoModal';
-import WhatsAppFloatingButton from './components/WhatsAppFloatingButton';
 import { InvitationExample } from './types';
 import { EXAMPLES } from './data';
+
+// Lazy load section components for maximum Google PageSpeed and performance optimization
+const Benefits = lazy(() => import('./components/Benefits'));
+const Gallery = lazy(() => import('./components/Gallery'));
+const HowItWorks = lazy(() => import('./components/HowItWorks'));
+const Pricing = lazy(() => import('./components/Pricing'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
+const FAQ = lazy(() => import('./components/FAQ'));
+const CTA = lazy(() => import('./components/CTA'));
+const DemoModal = lazy(() => import('./components/DemoModal'));
+const WhatsAppFloatingButton = lazy(() => import('./components/WhatsAppFloatingButton'));
 
 // Lazily load massive fullscreen template components to keep index bundle extremely lightweight
 const TemplateBoda = lazy(() => import('./components/TemplateBoda'));
@@ -65,10 +67,7 @@ export default function App() {
         const found = EXAMPLES.find(ex => ex.id === 'ex-4');
         if (found) setSelectedExample(found);
       } else {
-        // Only close if we are not on one of the custom fullscreens
-        if (!['#templateboda', '#templateboda2', '#templateboda4', '#templateboda5', '#templateboda6', '#templateboda7', '#templateboda8', '#templateboda9'].includes(currentHash)) {
-          setSelectedExample(null);
-        }
+        setSelectedExample(null);
       }
     };
     handleHashCheck();
@@ -222,44 +221,62 @@ export default function App() {
       />
 
       {/* Benefits Module */}
-      <Benefits />
+      <Suspense fallback={null}>
+        <Benefits />
+      </Suspense>
 
       {/* Active High-Fashion Gallery Grid */}
-      <Gallery />
+      <Suspense fallback={null}>
+        <Gallery />
+      </Suspense>
 
       {/* 4 Steps Tutorial */}
-      <HowItWorks />
+      <Suspense fallback={null}>
+        <HowItWorks />
+      </Suspense>
 
       {/* Pricing and service packaging tiers */}
-      <Pricing />
+      <Suspense fallback={null}>
+        <Pricing />
+      </Suspense>
 
       {/* Testimonials and slider */}
-      <Testimonials />
+      <Suspense fallback={null}>
+        <Testimonials />
+      </Suspense>
 
       {/* FAQ Modern Accordion layout */}
-      <FAQ />
+      <Suspense fallback={null}>
+        <FAQ />
+      </Suspense>
 
       {/* Final Conversion Pitch */}
-      <CTA />
+      <Suspense fallback={null}>
+        <CTA />
+      </Suspense>
 
       {/* Luxury Footer with Privacy notice drawer */}
       <Footer />
 
       {/* Floating Sticky helper WhatsApp button */}
-      <WhatsAppFloatingButton />
+      <Suspense fallback={null}>
+        <WhatsAppFloatingButton />
+      </Suspense>
 
       {/* Live-action Interactive Simulation Modal */}
       <AnimatePresence>
         {selectedExample && (
-          <DemoModal
-            example={selectedExample}
-            onClose={() => {
-              setSelectedExample(null);
-              if (['#demo-xv', '#demo-bautizo', '#demo-cumpleanos'].includes(window.location.hash)) {
-                window.location.hash = '';
-              }
-            }}
-          />
+          <Suspense fallback={null}>
+            <DemoModal
+              example={selectedExample}
+              onClose={() => {
+                setSelectedExample(null);
+                if (['#demo-xv', '#demo-bautizo', '#demo-cumpleanos'].includes(window.location.hash)) {
+                  window.location.hash = '';
+                }
+              }}
+            />
+          </Suspense>
         )}
       </AnimatePresence>
 

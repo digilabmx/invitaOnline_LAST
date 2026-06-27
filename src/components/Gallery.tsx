@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { EXAMPLES } from '../data';
 import { Eye, ChevronRight, Sparkles } from 'lucide-react';
 import { InvitationExample } from '../types';
+import OptimizedImage from './OptimizedImage';
 
 interface PreviewDetails {
   names: string;
@@ -191,11 +192,11 @@ export default function Gallery() {
                 <div className="relative w-full h-[360px] overflow-hidden bg-gradient-to-tr from-stone-950 via-stone-900 to-luxury-beige-200 flex items-center justify-center p-4">
                   {/* Background blurred cover */}
                   <div className="absolute inset-0">
-                    <img
+                    <OptimizedImage
                       src={example.image}
                       alt={example.title}
                       className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-all duration-700 select-none blur-[4px] scale-105"
-                      referrerPolicy="no-referrer"
+                      referrerPolicy="no-referrer-when-downgrade"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black/45" />
@@ -213,11 +214,11 @@ export default function Gallery() {
                     <div className="relative w-full h-full overflow-hidden bg-stone-950 flex flex-col justify-between select-none">
                       {/* Scaled Template Background Image */}
                       <div className="absolute inset-0">
-                        <img
+                        <OptimizedImage
                           src={example.image}
                           alt="Vista Móvil"
                           className="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-110"
-                          referrerPolicy="no-referrer"
+                          referrerPolicy="no-referrer-when-downgrade"
                           loading="lazy"
                           decoding="async"
                         />

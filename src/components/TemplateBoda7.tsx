@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import OptimizedImage from './OptimizedImage';
 import { 
   Heart, Calendar, MapPin, Gift, Music, Play, Pause, 
   Copy, Check, Sparkles, ArrowLeft, Send, ExternalLink, 
@@ -542,6 +543,16 @@ export default function TemplateBoda7() {
   return (
     <div id="botanical-luxury-template-7" className="min-h-screen bg-[#FAF8F5] text-stone-800 font-sans antialiased overflow-x-hidden selection:bg-[#A8BBA2]/30 selection:text-stone-900">
       
+      {/* Floating back controller to close demo view */}
+      <a
+        href="#"
+        onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
+        className="fixed top-5 left-5 z-55 bg-[#FAF8F5]/90 hover:bg-white text-stone-700 p-3 rounded-full shadow-2xl border border-[#D9A58D]/25 transition-all duration-300 flex items-center justify-center hover:scale-105 active:scale-95 group"
+        title="Volver al catálogo"
+      >
+        <ArrowLeft className="w-4 h-4 text-stone-600 group-hover:-translate-x-0.5 transition-transform" />
+      </a>
+
       {/* Toast Notification */}
       <AnimatePresence>
         {toastMessage && (
@@ -705,11 +716,11 @@ export default function TemplateBoda7() {
             <header className="relative min-h-screen flex flex-col justify-between items-center text-center px-4 py-12 overflow-hidden bg-[#FAF8F5]">
               {/* Versailles Garden Backdrop with subtle zoom and parallax feel */}
               <div className="absolute inset-0 z-0">
-                <img 
+                <OptimizedImage 
                   src="/versailles_garden.webp" 
                   alt="Versailles European Garden"
                   className="w-full h-full object-cover brightness-[0.70] contrast-[0.98] scale-105"
-                  referrerPolicy="no-referrer"
+                  referrerPolicy="no-referrer-when-downgrade"
                   loading="eager"
                 />
                 {/* Seamless vignettes blending into Sage/Ivory */}
@@ -1035,11 +1046,11 @@ export default function TemplateBoda7() {
                     <div className="break-inside-avoid bg-[#F8F4EE] border border-stone-100 rounded-3xl p-3.5 shadow-[0_12px_30px_rgba(110,95,85,0.04)] group relative overflow-hidden flex flex-col">
                       
                       <div className="overflow-hidden rounded-2xl aspect-[3/4] relative">
-                        <img 
+                        <OptimizedImage 
                           src={img.src} 
                           alt={img.title}
                           className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-                          referrerPolicy="no-referrer"
+                          referrerPolicy="no-referrer-when-downgrade"
                           loading="lazy"
                         />
                         {/* Gradient tint overlay */}

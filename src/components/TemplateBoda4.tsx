@@ -267,6 +267,7 @@ export default function TemplateBoda4() {
       {/* Floating back controller to close demo view */}
       <a
         href="#"
+        onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
         className="fixed top-5 left-5 z-40 bg-white/95 hover:bg-white text-stone-900 p-3 rounded-full shadow-lg border border-stone-200/55 transition-all duration-300 flex items-center justify-center hover:scale-105 active:scale-95 group"
         title="Volver al catálogo"
       >

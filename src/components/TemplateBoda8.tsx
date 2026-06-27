@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import OptimizedImage from './OptimizedImage';
 import { 
   Heart, Calendar, MapPin, Gift, Music, Play, Pause, 
   Copy, Check, Sparkles, Send, ExternalLink, 
@@ -334,6 +335,16 @@ export default function TemplateBoda8() {
 
   return (
     <div className="relative min-h-screen bg-[#F8F4EE] text-[#2A2521] overflow-x-hidden font-serif selection:bg-[#C96A45]/20">
+      {/* Floating back controller to close demo view */}
+      <a
+        href="#"
+        onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
+        className="fixed top-5 left-5 z-55 bg-[#FAF6F2]/90 hover:bg-white text-[#8C3A1F] p-3 rounded-full shadow-2xl border border-[#C7A76C]/30 transition-all duration-300 flex items-center justify-center hover:scale-105 active:scale-95 group"
+        title="Volver al catálogo"
+      >
+        <ArrowLeft className="w-4 h-4 text-[#8C3A1F] group-hover:-translate-x-0.5 transition-transform" />
+      </a>
+
       {/* Floating Sparkles & Light effects */}
       <HaciendaCanvas />
 
@@ -522,11 +533,11 @@ export default function TemplateBoda8() {
               
               {/* Background cover image of the Mexican Colonial Hacienda */}
               <div className="absolute inset-0 pointer-events-none opacity-50 select-none">
-                <img 
+                <OptimizedImage 
                   src="/hacienda_hero_1782249686184.webp" 
                   alt="Hacienda colonial mexicana hero" 
                   className="w-full h-full object-cover filter brightness-[0.45] contrast-[1.1]"
-                  referrerPolicy="no-referrer"
+                  referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
 
@@ -562,11 +573,11 @@ export default function TemplateBoda8() {
                 <div className="relative bg-[#2A2521] p-3 rounded-2xl border-2 border-[#C7A76C] shadow-2xl">
                   {/* Arched image mask for that romantic 18th-century portrait aesthetic */}
                   <div className="relative overflow-hidden rounded-xl border border-[#C7A76C]/40 aspect-[3/4]">
-                    <img 
+                    <OptimizedImage 
                       src="/sofia_alejandro_stairs_1782247280237.webp" 
                       alt="Sofía Hernández & Alejandro Ramírez"
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                      referrerPolicy="no-referrer"
+                      referrerPolicy="no-referrer-when-downgrade"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
                     
@@ -788,7 +799,7 @@ export default function TemplateBoda8() {
                           src={GALLERY_IMAGES.find(gi => gi.id === activeTab)?.src}
                           alt={GALLERY_IMAGES.find(gi => gi.id === activeTab)?.title}
                           className="w-full h-full object-cover"
-                          referrerPolicy="no-referrer"
+                          referrerPolicy="no-referrer-when-downgrade"
                         />
                       </AnimatePresence>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />

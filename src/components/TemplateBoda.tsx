@@ -265,6 +265,7 @@ export default function TemplateBoda() {
       {/* Floating back controller to close demo view */}
       <a
         href="#"
+        onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
         className="fixed top-5 left-5 z-40 bg-white/95 hover:bg-white text-stone-900 p-3 rounded-full shadow-lg border border-stone-200/55 transition-all duration-300 flex items-center justify-center hover:scale-105 active:scale-95 group"
         title="Volver al catálogo"
       >
@@ -501,7 +502,7 @@ export default function TemplateBoda() {
                     className="w-full h-full object-cover select-none filter brightness-90 saturate-[0.8] sepia-[15%] contrast-[105%]"
                     loading="eager"
                     decoding="async"
-                    referrerPolicy="no-referrer"
+                    referrerPolicy="no-referrer-when-downgrade"
                   />
                   
                   {/* Elegant warm gradient vignette */}
@@ -620,7 +621,7 @@ export default function TemplateBoda() {
                       className="w-full h-full object-cover filter brightness-[0.85] saturate-[0.75] sepia-[15%] contrast-[105%]"
                       loading="lazy"
                       decoding="async"
-                      referrerPolicy="no-referrer"
+                      referrerPolicy="no-referrer-when-downgrade"
                     />
                     {/* Shadow overlay gradient */}
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950/60 via-transparent to-transparent pointer-events-none" />
@@ -642,7 +643,7 @@ export default function TemplateBoda() {
                       className="w-full h-full object-cover filter brightness-[0.85] saturate-[0.75] sepia-[15%] contrast-[105%]"
                       loading="lazy"
                       decoding="async"
-                      referrerPolicy="no-referrer"
+                      referrerPolicy="no-referrer-when-downgrade"
                     />
                     {/* Shadow overlay gradient */}
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-950/60 via-transparent to-transparent pointer-events-none" />
@@ -770,7 +771,7 @@ export default function TemplateBoda() {
                     className="w-full h-full border-0"
                     allowFullScreen={false}
                     loading="lazy"
-                    referrerPolicy="no-referrer"
+                    referrerPolicy="no-referrer-when-downgrade"
                   />
                 </div>
               </div>
@@ -799,7 +800,7 @@ export default function TemplateBoda() {
                     className="w-full h-full object-cover transition-all filter brightness-[0.85] saturate-[0.75] sepia-[15%] contrast-[105%]"
                     loading="lazy"
                     decoding="async"
-                    referrerPolicy="no-referrer"
+                    referrerPolicy="no-referrer-when-downgrade"
                   />
                 </AnimatePresence>
 
@@ -1141,7 +1142,7 @@ export default function TemplateBoda() {
                       className="w-full h-full object-cover"
                       loading="lazy"
                       decoding="async"
-                      referrerPolicy="no-referrer"
+                      referrerPolicy="no-referrer-when-downgrade"
                     />
                   </div>
                   <div className="p-4 flex flex-col grow">
@@ -1163,7 +1164,7 @@ export default function TemplateBoda() {
                       className="w-full h-full object-cover"
                       loading="lazy"
                       decoding="async"
-                      referrerPolicy="no-referrer"
+                      referrerPolicy="no-referrer-when-downgrade"
                     />
                   </div>
                   <div className="p-4 flex flex-col grow">
@@ -1185,7 +1186,7 @@ export default function TemplateBoda() {
                       className="w-full h-full object-cover"
                       loading="lazy"
                       decoding="async"
-                      referrerPolicy="no-referrer"
+                      referrerPolicy="no-referrer-when-downgrade"
                     />
                   </div>
                   <div className="p-4 flex flex-col grow">

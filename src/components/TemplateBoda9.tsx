@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import OptimizedImage from './OptimizedImage';
 import { 
   Heart, Calendar, MapPin, Gift, Music, Play, Pause, 
   Copy, Check, Sparkles, Send, ExternalLink, 
@@ -379,6 +380,16 @@ export default function TemplateBoda9() {
 
   return (
     <div className="relative min-h-screen bg-[#030712] text-[#DADADA] overflow-x-hidden font-serif selection:bg-[#1D3557]/40 selection:text-[#FFFFFF]">
+      {/* Floating back controller to close demo view */}
+      <a
+        href="#"
+        onClick={(e) => { e.preventDefault(); window.location.hash = ''; window.location.pathname = '/'; }}
+        className="fixed top-5 left-5 z-55 bg-[#030712]/90 hover:bg-[#0b1329] text-[#22D3EE] p-3 rounded-full shadow-2xl border border-[#22D3EE]/25 transition-all duration-300 flex items-center justify-center hover:scale-105 active:scale-95 group"
+        title="Volver al catálogo"
+      >
+        <ArrowLeft className="w-4 h-4 text-[#22D3EE] group-hover:-translate-x-0.5 transition-transform" />
+      </a>
+
       {/* Stars Background Twinkle Effect */}
       <CelestialCanvas />
 
@@ -572,11 +583,11 @@ export default function TemplateBoda9() {
               
               {/* Generated high-end background of couple watching the Milky Way */}
               <div className="absolute inset-0 pointer-events-none opacity-60 select-none">
-                <img 
+                <OptimizedImage 
                   src="/celestial_hero_1782250292221.webp" 
                   alt="Valentina & Gabriel Milky Way Background" 
                   className="w-full h-full object-cover filter brightness-[0.4] contrast-[1.2] saturate-[0.8]"
-                  referrerPolicy="no-referrer"
+                  referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
 
@@ -614,11 +625,11 @@ export default function TemplateBoda9() {
                   {/* Perfect Circular Portrait layout representing the Celestial alignment */}
                   <div className="relative overflow-hidden rounded-full aspect-square border-4 border-[#0B1E3B]">
                     {/* The beautiful image uploaded by the user */}
-                    <img 
+                    <OptimizedImage 
                       src="/wedding_portrait_1781994427687.webp" 
                       alt="Valentina Cruz & Gabriel Torres Portrait"
                       className="w-full h-full object-cover scale-[1.08] hover:scale-110 transition-transform duration-1000 object-top"
-                      referrerPolicy="no-referrer"
+                      referrerPolicy="no-referrer-when-downgrade"
                     />
                     {/* Deep sapphire space gradient overlay to match hijab/celestial vibe */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/75 via-transparent to-[#0B1E3B]/20" />
@@ -850,11 +861,11 @@ export default function TemplateBoda9() {
                   {/* Grid Item 1: Massive 9:16 vertical representation or full-height landscape */}
                   <div className="md:col-span-7 bg-[#030712]/80 rounded-3xl border border-[#DADADA]/15 overflow-hidden p-6 relative group flex flex-col justify-between aspect-video md:aspect-auto md:h-[420px]">
                     <div className="absolute inset-0 opacity-40 select-none">
-                      <img 
+                      <OptimizedImage 
                         src={GALLERY_IMAGES[0].src} 
                         alt={GALLERY_IMAGES[0].title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
-                        referrerPolicy="no-referrer"
+                        referrerPolicy="no-referrer-when-downgrade"
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent pointer-events-none" />
@@ -872,11 +883,11 @@ export default function TemplateBoda9() {
                   {/* Grid Item 2: Portrait square */}
                   <div className="md:col-span-5 bg-[#030712]/80 rounded-3xl border border-[#DADADA]/15 overflow-hidden p-6 relative group flex flex-col justify-between h-80 md:h-[420px]">
                     <div className="absolute inset-0 opacity-40 select-none">
-                      <img 
+                      <OptimizedImage 
                         src={GALLERY_IMAGES[4].src} 
                         alt={GALLERY_IMAGES[4].title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 object-top"
-                        referrerPolicy="no-referrer"
+                        referrerPolicy="no-referrer-when-downgrade"
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent pointer-events-none" />
@@ -894,11 +905,11 @@ export default function TemplateBoda9() {
                   {/* Grid Item 3: Square */}
                   <div className="md:col-span-4 bg-[#030712]/80 rounded-3xl border border-[#DADADA]/15 overflow-hidden p-6 relative group flex flex-col justify-between h-72">
                     <div className="absolute inset-0 opacity-45 select-none">
-                      <img 
+                      <OptimizedImage 
                         src={GALLERY_IMAGES[1].src} 
                         alt={GALLERY_IMAGES[1].title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
-                        referrerPolicy="no-referrer"
+                        referrerPolicy="no-referrer-when-downgrade"
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent pointer-events-none" />
@@ -916,11 +927,11 @@ export default function TemplateBoda9() {
                   {/* Grid Item 4: Square */}
                   <div className="md:col-span-4 bg-[#030712]/80 rounded-3xl border border-[#DADADA]/15 overflow-hidden p-6 relative group flex flex-col justify-between h-72">
                     <div className="absolute inset-0 opacity-45 select-none">
-                      <img 
+                      <OptimizedImage 
                         src={GALLERY_IMAGES[2].src} 
                         alt={GALLERY_IMAGES[2].title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
-                        referrerPolicy="no-referrer"
+                        referrerPolicy="no-referrer-when-downgrade"
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent pointer-events-none" />
@@ -938,11 +949,11 @@ export default function TemplateBoda9() {
                   {/* Grid Item 5: Square */}
                   <div className="md:col-span-4 bg-[#030712]/80 rounded-3xl border border-[#DADADA]/15 overflow-hidden p-6 relative group flex flex-col justify-between h-72">
                     <div className="absolute inset-0 opacity-45 select-none">
-                      <img 
+                      <OptimizedImage 
                         src={GALLERY_IMAGES[3].src} 
                         alt={GALLERY_IMAGES[3].title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
-                        referrerPolicy="no-referrer"
+                        referrerPolicy="no-referrer-when-downgrade"
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent pointer-events-none" />
