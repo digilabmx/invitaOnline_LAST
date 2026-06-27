@@ -208,9 +208,9 @@ export default function TemplateBoda2() {
   };
 
   const memoriesPhotos = [
-    'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=700&fm=webp',
-    'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=700&fm=webp',
-    'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=700&fm=webp',
+    '/v_s_stairs_1782248329087.webp',
+    '/v_s_dress_women_1782248350235.webp',
+    '/v_s_dress_men_1782248340756.webp',
   ];
 
   return (
@@ -386,7 +386,7 @@ export default function TemplateBoda2() {
               {/* Couple visual backplate cover */}
               <div className="absolute inset-0">
                 <img
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200&fm=webp"
+                  src="/v_s_gala_1782248306837.webp"
                   alt="Andrea y Juan"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="w-full h-full object-cover filter brightness-[0.7] saturate-[0.8]"

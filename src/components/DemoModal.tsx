@@ -42,7 +42,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Andrea & Juan',
       tagline: 'Una noche de gala mágica para celebrar nuestro amor.',
       badge: 'Gala de Bodas',
-      image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200&fm=webp',
+      image: '/v_s_gala_1782248306837.webp',
       description: 'Fondo negro mate elegante con polvo estelar de oro.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda2'
@@ -56,7 +56,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Adriana & Mauricio',
       tagline: 'Unión espiritual frente al mar en una tarde cálida.',
       badge: 'Nuestra Ceremonia',
-      image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1200&fm=webp',
+      image: '/wedding_portrait_1781994427687.webp',
       description: 'Estilo botánico minimalista con delicados follajes de eucalipto.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda?theme=ivory'
@@ -70,7 +70,7 @@ const CATEGORY_STYLES: Record<string, Array<{
       title: 'Andrés & Paulete',
       tagline: 'Tenemos el honor de invitarlos a nuestro matrimonio.',
       badge: 'Alta Costura',
-      image: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=1200&fm=webp',
+      image: '/sofia_alejandro_stairs_1782247280237.webp',
       description: 'Diseño grayscale minimalista de alta costura inspirado en el romance vintage.',
       isCustomFullscreen: true,
       fullscreenUrl: '#templateboda4'

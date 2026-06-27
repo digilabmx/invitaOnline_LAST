@@ -57,9 +57,9 @@ export default function TemplateBoda() {
   // Photo Carousel State
   const [activePhoto, setActivePhoto] = useState(0);
   const photos = [
-    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=70&w=600&fm=webp', // Romantic bride & groom
-    'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=70&w=600&fm=webp', // Outdoors vows
-    'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=70&w=600&fm=webp', // Sparkling sunset couple
+    '/wedding_portrait_1781994427687.webp', // Romantic bride & groom
+    '/flower_meadow.webp', // Outdoors vows
+    '/romantic_lake.webp', // Sparkling sunset couple
   ];
 
   // FAQ interactive state
@@ -497,7 +497,7 @@ export default function TemplateBoda() {
                 {/* Photo container with custom color grades and overlay typography */}
                 <div className="relative aspect-[3/4.2] w-full overflow-hidden bg-stone-100 rounded-t-full">
                   <img
-                    src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=70&w=800&fm=webp"
+                    src="/wedding_portrait_1781994427687.webp"
                     alt={coupleNames}
                     className="w-full h-full object-cover select-none filter brightness-90 saturate-[0.8] sepia-[15%] contrast-[105%]"
                     loading="eager"
@@ -616,7 +616,7 @@ export default function TemplateBoda() {
                   {/* Ella / Andrea */}
                   <div className="relative aspect-[3/4] rounded-lg overflow-hidden border-3 border-white shadow-md">
                     <img
-                      src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&fit=crop&q=70&fm=webp"
+                      src="/v_s_dress_women_1782248350235.webp"
                       alt="Recuerdo 1"
                       className="w-full h-full object-cover filter brightness-[0.85] saturate-[0.75] sepia-[15%] contrast-[105%]"
                       loading="lazy"
@@ -638,7 +638,7 @@ export default function TemplateBoda() {
                   {/* Él / Josué */}
                   <div className="relative aspect-[3/4] rounded-lg overflow-hidden border-3 border-white shadow-md mt-4">
                     <img
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&fit=crop&q=70&fm=webp"
+                      src="/v_s_dress_men_1782248340756.webp"
                       alt="Recuerdo 2"
                       className="w-full h-full object-cover filter brightness-[0.85] saturate-[0.75] sepia-[15%] contrast-[105%]"
                       loading="lazy"

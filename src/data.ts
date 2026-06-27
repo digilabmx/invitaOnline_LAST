@@ -61,7 +61,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-deep-gold',
     title: 'Plantilla 2 - Oro y Negro',
     category: 'Bodas',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600&fm=webp',
+    image: '/v_s_gala_1782248306837.webp',
     demoUrl: '#templateboda2',
     accentColor: '#d4af37',
     features: ['Sobre Wax-Seal Interactivo', 'Efecto Stardust de Oro', 'Mapeo Directo GPS', 'Cuenta Regresiva Circular']
@@ -70,7 +70,7 @@ export const EXAMPLES: InvitationExample[] = [
     id: 'ex-monochrome-minimalist',
     title: 'Plantilla 3 - Minimalista',
     category: 'Bodas',
-    image: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=600&fm=webp',
+    image: '/sofia_alejandro_stairs_1782247280237.webp',
     demoUrl: '#templateboda4',
     accentColor: '#1a1a1a',
     features: ['Efecto de Hojas Orgánicas', 'Monograma de Alta Costura', 'Diseño Grayscale Minimalista', 'Itinerario de Íconos Hand-drawn']

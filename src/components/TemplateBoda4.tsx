@@ -52,9 +52,9 @@ export default function TemplateBoda4() {
 
   // Auto-rotating gallery pictures
   const galleryImages = [
-    "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200&fm=webp",
-    "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=1200&fm=webp",
-    "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=1200&fm=webp"
+    "/sofia_alejandro_stairs_1782247280237.webp",
+    "/wedding_portrait_1781994427687.webp",
+    "/v_s_hero_1782248283047.webp"
   ];
 
   const togglePlayPause = () => {
@@ -350,7 +350,7 @@ export default function TemplateBoda4() {
               {/* Main premium image representing the classic walk */}
               <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-stone-100 border border-stone-200/30">
                 <img
-                  src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=1200&fm=webp"
+                  src="/wedding_portrait_1781994427687.webp"
                   alt="Andrés & Paulete"
                   className="w-full h-full object-cover filter grayscale contrast-[1.05] brightness-[0.98]"
                   loading="eager"
@@ -433,7 +433,7 @@ export default function TemplateBoda4() {
               {/* Main Wedding Grayscale portrait matching instructions placeholder */}
               <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden bg-stone-100 border border-[#c5a880]/10 shadow-xl my-10">
                 <img
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200&fm=webp"
+                  src="/sofia_alejandro_stairs_1782247280237.webp"
                   alt="Wedding Couple"
                   className="w-full h-full object-cover filter grayscale contrast-[1.06] brightness-[0.97]"
                   loading="eager"
